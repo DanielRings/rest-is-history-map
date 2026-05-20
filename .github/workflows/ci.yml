@@ -49,12 +49,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # TODO(W2-cleanup): drop `version:` once frontend/package.json declares
-      # "packageManager": "pnpm@11.x.x". W2 owns adding that field.
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 11
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -74,6 +70,12 @@ jobs:
 
       - name: Test
         run: pnpm run test
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium webkit
+
+      - name: Playwright e2e
+        run: pnpm exec playwright test
 
       - name: Build
         run: pnpm run build
