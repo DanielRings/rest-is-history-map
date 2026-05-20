@@ -36,5 +36,10 @@ notebooks/
 # Logs
 *.log
 
+# Frontend build + test artifacts
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+
 # Claude Code per-machine settings
 .claude/settings.local.json

@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -23,5 +23,9 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+  },
+  test: {
+    include: ["tests/**/*.test.ts"],
+    exclude: ["tests/e2e/**", "node_modules/**"],
   },
 });
