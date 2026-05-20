@@ -1,5 +1,9 @@
 # Rest Is History — Map + Timeline Browser
 
+[![CI](https://github.com/DanielRings/rest-is-history-map/actions/workflows/ci.yml/badge.svg)](https://github.com/DanielRings/rest-is-history-map/actions/workflows/ci.yml)
+[![Deploy](https://github.com/DanielRings/rest-is-history-map/actions/workflows/deploy.yml/badge.svg)](https://github.com/DanielRings/rest-is-history-map/actions/workflows/deploy.yml)
+[![Weekly RSS refresh](https://github.com/DanielRings/rest-is-history-map/actions/workflows/refresh.yml/badge.svg)](https://github.com/DanielRings/rest-is-history-map/actions/workflows/refresh.yml)
+
 An interactive static site for browsing *The Rest Is History* episodes by
 present-day country and historical period. Aimed at the podcast's Discord
 community; mobile-first.

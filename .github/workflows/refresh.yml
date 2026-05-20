@@ -1,0 +1,68 @@
+name: Weekly RSS refresh
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: Refresh pending episodes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Run rih-pipeline refresh
+        env:
+          RIH_RSS_URL: ${{ secrets.RIH_RSS_URL }}
+        run: uv run rih-pipeline refresh
+
+      - name: Detect new pending stubs
+        id: detect
+        run: |
+          set -euo pipefail
+          # Untracked .yaml files under data/pending/ are the new stubs.
+          mapfile -t new_files < <(git ls-files --others --exclude-standard -- 'data/pending/*.yaml')
+          count=${#new_files[@]}
+          echo "count=$count" >>"$GITHUB_OUTPUT"
+          if [ "$count" -eq 0 ]; then
+            echo "No new pending episodes; exiting."
+            exit 0
+          fi
+          {
+            echo "body<<EOF"
+            echo "Automated weekly RSS refresh found $count new episode(s):"
+            echo
+            for f in "${new_files[@]}"; do
+              echo "- \`$f\`"
+            done
+            echo
+            echo "Each YAML is a stub awaiting human tagging. Fill in countries,"
+            echo "year_start, year_end, date_precision, kind, topics, and"
+            echo "historical_figures, then move the file from \`data/pending/\`"
+            echo "to \`data/episodes/\`."
+            echo "EOF"
+          } >>"$GITHUB_OUTPUT"
+
+      - name: Open refresh PR
+        if: steps.detect.outputs.count != '0'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/weekly-refresh
+          delete-branch: true
+          add-paths: data/pending
+          commit-message: "chore(refresh): ${{ steps.detect.outputs.count }} new pending episode(s)"
+          title: "Weekly RSS refresh: ${{ steps.detect.outputs.count }} new episodes"
+          body: ${{ steps.detect.outputs.body }}
