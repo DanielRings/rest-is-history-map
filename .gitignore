@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Notebooks (scratch only)
+notebooks/
+.ipynb_checkpoints/
+
+# Project-specific cache
+.cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+
+# Claude Code per-machine settings
+.claude/settings.local.json
