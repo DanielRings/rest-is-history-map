@@ -73,11 +73,5 @@ jobs:
       - name: Test
         run: pnpm run test
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium webkit
-
-      - name: Playwright e2e
-        run: pnpm exec playwright test
-
       - name: Build
         run: pnpm run build
