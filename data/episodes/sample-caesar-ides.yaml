@@ -1,0 +1,22 @@
+guid: sample-caesar-ides
+title: "The Ides of March"
+description: "Tom and Dominic on the assassination of Julius Caesar on 15 March 44 BC, and how a single act of conspiracy in the Theatre of Pompey reshaped the Mediterranean world."
+pub_date: "2024-03-15T07:00:00Z"
+access: public
+countries: ["ITA"]
+year_start: -44
+year_end: -44
+date_precision: year
+kind: historical
+topics:
+  - Roman Republic
+  - assassination
+  - civil war
+historical_figures:
+  - Julius Caesar
+  - Brutus
+  - Cassius
+  - Mark Antony
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-caesar-ides"
+  spotify: "https://open.spotify.com/episode/sample-caesar-ides"

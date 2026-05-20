@@ -1,0 +1,18 @@
+guid: sample-interview-hughes
+title: "In Conversation with Bettany Hughes"
+description: "Tom Holland sits down with Bettany Hughes to talk about her career as a historian and broadcaster, and the joys and perils of writing popular history."
+pub_date: "2024-06-03T07:00:00Z"
+access: public
+countries: []
+year_start: 1900
+year_end: 2024
+date_precision: year
+kind: interview
+topics:
+  - popular history
+  - broadcasting
+historical_figures:
+  - Bettany Hughes
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-interview-hughes"
+  spotify: "https://open.spotify.com/episode/sample-interview-hughes"

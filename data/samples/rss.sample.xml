@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Anonymized RSS sample for pipeline tests. Modeled loosely on the Supporting
+  Cast feed shape (RSS 2.0 + itunes namespace) but contains no auth tokens and
+  no real audio URLs. Items mirror data/samples/episodes.sample.json by GUID.
+
+  The pipeline fetch step only reads: title, description, pubDate, guid,
+  enclosure URL. Apple/Spotify links and the access field are added later by
+  the human tagger; both are absent here by design.
+-->
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>The Rest Is History</title>
+    <link>https://example.invalid/the-rest-is-history</link>
+    <description>Sample feed for tests. Not a real subscription.</description>
+    <language>en-gb</language>
+
+    <item>
+      <title>How We Make The Rest Is History</title>
+      <description>Tom and Dominic pull back the curtain: how episodes get chosen, how the research happens, and what they argue about most.</description>
+      <pubDate>Tue, 01 Oct 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-meta-anniversary</guid>
+      <enclosure url="https://example.invalid/audio/sample-meta-anniversary.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>Live in London: The Hundred Years' War</title>
+      <description>Recorded live at the Royal Festival Hall: Tom and Dominic on Edward III, the Black Prince, Agincourt, and how England and France made one another.</description>
+      <pubDate>Thu, 12 Sep 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-live-london</guid>
+      <enclosure url="https://example.invalid/audio/sample-live-london.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Late Bronze Age Collapse</title>
+      <description>Around 1200 BC, the great palace civilisations of the eastern Mediterranean — Mycenae, the Hittites, the New Kingdom of Egypt — all collapsed within a century. Tom and Dominic on the Sea Peoples, climate change, and the end of an age.</description>
+      <pubDate>Mon, 15 Jul 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-bronze-age</guid>
+      <enclosure url="https://example.invalid/audio/sample-bronze-age.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>In Conversation with Bettany Hughes</title>
+      <description>Tom Holland sits down with Bettany Hughes to talk about her career as a historian and broadcaster, and the joys and perils of writing popular history.</description>
+      <pubDate>Mon, 03 Jun 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-interview-hughes</guid>
+      <enclosure url="https://example.invalid/audio/sample-interview-hughes.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Fall of Constantinople, Part 2: The Siege</title>
+      <description>Mehmed II's seven-week siege of the walls of Theodosius, the death of the last Roman emperor, and the end of the Middle Ages.</description>
+      <pubDate>Thu, 30 May 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-constantinople-2</guid>
+      <enclosure url="https://example.invalid/audio/sample-constantinople-2.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Fall of Constantinople, Part 1: The City</title>
+      <description>The thousand-year history of Constantinople, from its founding by Constantine the Great to the eve of the Ottoman siege of 1453.</description>
+      <pubDate>Wed, 29 May 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-constantinople-1</guid>
+      <enclosure url="https://example.invalid/audio/sample-constantinople-1.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Mongol Empire</title>
+      <description>The largest contiguous land empire in history. Tom and Dominic on how a confederation of steppe horsemen conquered from the Pacific to the Danube.</description>
+      <pubDate>Mon, 20 May 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-mongol-empire</guid>
+      <enclosure url="https://example.invalid/audio/sample-mongol-empire.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>Augustus: First Roman Emperor</title>
+      <description>From the chaos of civil war to the Pax Romana — how Octavian became Augustus and ruled an empire spanning the Mediterranean for over forty years.</description>
+      <pubDate>Mon, 08 Apr 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-augustus</guid>
+      <enclosure url="https://example.invalid/audio/sample-augustus.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Ides of March</title>
+      <description>Tom and Dominic on the assassination of Julius Caesar on 15 March 44 BC, and how a single act of conspiracy in the Theatre of Pompey reshaped the Mediterranean world.</description>
+      <pubDate>Fri, 15 Mar 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-caesar-ides</guid>
+      <enclosure url="https://example.invalid/audio/sample-caesar-ides.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>Abraham Lincoln</title>
+      <description>From Kentucky log cabin to the White House: the life and presidency of America's sixteenth president, and the Civil War that defined him.</description>
+      <pubDate>Mon, 12 Feb 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-lincoln</guid>
+      <enclosure url="https://example.invalid/audio/sample-lincoln.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>Listener Questions: Ancient Rome</title>
+      <description>Tom and Dominic answer listener questions about Roman gladiators, latrines, slavery, and just what exactly happened at a triumph.</description>
+      <pubDate>Mon, 29 Jan 2024 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-listener-rome</guid>
+      <enclosure url="https://example.invalid/audio/sample-listener-rome.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>The Birth of Christianity</title>
+      <description>From the Judean countryside under Roman occupation to a movement that would, within centuries, conquer the empire that crucified its founder.</description>
+      <pubDate>Mon, 25 Dec 2023 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-boundary-jesus</guid>
+      <enclosure url="https://example.invalid/audio/sample-boundary-jesus.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>full</itunes:episodeType>
+    </item>
+
+    <item>
+      <title>Bonus: A Roman Saturnalia</title>
+      <description>A Club-only festive special: Tom and Dominic on the riotous Roman midwinter festival of Saturnalia — the inversion of the social order, the gambling, the gifts, and what survives in our own Christmas.</description>
+      <pubDate>Wed, 20 Dec 2023 07:00:00 +0000</pubDate>
+      <guid isPermaLink="false">sample-bonus-saturnalia</guid>
+      <enclosure url="https://example.invalid/audio/sample-bonus-saturnalia.mp3" length="0" type="audio/mpeg"/>
+      <itunes:episodeType>bonus</itunes:episodeType>
+    </item>
+
+  </channel>
+</rss>

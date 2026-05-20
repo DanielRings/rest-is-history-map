@@ -1,0 +1,21 @@
+guid: sample-live-london
+title: "Live in London: The Hundred Years' War"
+description: "Recorded live at the Royal Festival Hall: Tom and Dominic on Edward III, the Black Prince, Agincourt, and how England and France made one another."
+pub_date: "2024-09-12T07:00:00Z"
+access: public
+countries: ["FRA", "GBR"]
+year_start: 1337
+year_end: 1453
+date_precision: year
+kind: live
+topics:
+  - Hundred Years' War
+  - medieval warfare
+  - chivalry
+historical_figures:
+  - Edward III
+  - Henry V
+  - Joan of Arc
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-live-london"
+  spotify: "https://open.spotify.com/episode/sample-live-london"

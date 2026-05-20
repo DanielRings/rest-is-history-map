@@ -1,0 +1,21 @@
+guid: sample-lincoln
+title: "Abraham Lincoln"
+description: "From Kentucky log cabin to the White House: the life and presidency of America's sixteenth president, and the Civil War that defined him."
+pub_date: "2024-02-12T07:00:00Z"
+access: public
+countries: ["USA"]
+year_start: 1809
+year_end: 1865
+date_precision: year
+kind: historical
+topics:
+  - American Civil War
+  - presidency
+  - emancipation
+historical_figures:
+  - Abraham Lincoln
+  - Mary Todd Lincoln
+  - John Wilkes Booth
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-lincoln"
+  spotify: "https://open.spotify.com/episode/sample-lincoln"

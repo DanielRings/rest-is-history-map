@@ -1,0 +1,18 @@
+guid: sample-bonus-saturnalia
+title: "Bonus: A Roman Saturnalia"
+description: "A Club-only festive special: Tom and Dominic on the riotous Roman midwinter festival of Saturnalia — the inversion of the social order, the gambling, the gifts, and what survives in our own Christmas."
+pub_date: "2023-12-20T07:00:00Z"
+access: members
+countries: ["ITA"]
+year_start: -50
+year_end: 50
+date_precision: century
+kind: historical
+topics:
+  - Roman religion
+  - festivals
+  - Saturnalia
+historical_figures: []
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bonus-saturnalia"
+  spotify: "https://open.spotify.com/episode/sample-bonus-saturnalia"
