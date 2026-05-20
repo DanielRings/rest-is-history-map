@@ -1,0 +1,20 @@
+guid: sample-augustus
+title: "Augustus: First Roman Emperor"
+description: "From the chaos of civil war to the Pax Romana — how Octavian became Augustus and ruled an empire spanning the Mediterranean for over forty years."
+pub_date: "2024-04-08T07:00:00Z"
+access: public
+countries: ["ITA"]
+year_start: -27
+year_end: 14
+date_precision: year
+kind: historical
+topics:
+  - Roman Empire
+  - principate
+historical_figures:
+  - Augustus
+  - Livia
+  - Agrippa
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-augustus"
+  spotify: "https://open.spotify.com/episode/sample-augustus"

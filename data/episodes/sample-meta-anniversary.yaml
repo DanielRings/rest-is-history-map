@@ -1,0 +1,19 @@
+guid: sample-meta-anniversary
+title: "How We Make The Rest Is History"
+description: "Tom and Dominic pull back the curtain: how episodes get chosen, how the research happens, and what they argue about most."
+pub_date: "2024-10-01T07:00:00Z"
+access: public
+countries: []
+year_start: 2020
+year_end: 2024
+date_precision: year
+kind: meta
+topics:
+  - behind the scenes
+  - podcast craft
+historical_figures:
+  - Tom Holland
+  - Dominic Sandbrook
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-meta-anniversary"
+  spotify: "https://open.spotify.com/episode/sample-meta-anniversary"

@@ -1,0 +1,20 @@
+guid: sample-boundary-jesus
+title: "The Birth of Christianity"
+description: "From the Judean countryside under Roman occupation to a movement that would, within centuries, conquer the empire that crucified its founder."
+pub_date: "2023-12-25T07:00:00Z"
+access: public
+countries: ["ISR", "PSE"]
+year_start: -1
+year_end: 1
+date_precision: year
+kind: historical
+topics:
+  - Christianity
+  - Roman Judea
+historical_figures:
+  - Jesus of Nazareth
+  - Herod the Great
+  - Augustus
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-boundary-jesus"
+  spotify: "https://open.spotify.com/episode/sample-boundary-jesus"

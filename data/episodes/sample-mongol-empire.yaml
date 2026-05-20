@@ -1,0 +1,36 @@
+guid: sample-mongol-empire
+title: "The Mongol Empire"
+description: "The largest contiguous land empire in history. Tom and Dominic on how a confederation of steppe horsemen conquered from the Pacific to the Danube."
+pub_date: "2024-05-20T07:00:00Z"
+access: public
+countries:
+  - MNG
+  - CHN
+  - RUS
+  - KAZ
+  - UZB
+  - IRN
+  - IRQ
+  - AFG
+  - PAK
+  - TUR
+  - GEO
+  - ARM
+  - AZE
+  - HUN
+  - POL
+year_start: 1206
+year_end: 1368
+date_precision: year
+kind: historical
+topics:
+  - empire
+  - steppe
+  - conquest
+historical_figures:
+  - Genghis Khan
+  - Kublai Khan
+  - Ögedei Khan
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-mongol-empire"
+  spotify: "https://open.spotify.com/episode/sample-mongol-empire"

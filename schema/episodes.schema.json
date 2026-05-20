@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DanielRings/rest-is-history-map/schema/episodes.schema.json",
+  "title": "Rest Is History episodes dataset",
+  "description": "Canonical contract between the Python pipeline (producer) and the TypeScript frontend (consumer). The pipeline emits a JSON document conforming to this schema; the frontend reads it and treats any validation failure as fatal.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "generated_at", "episodes"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "Schema version. Bumped on any breaking change.",
+      "const": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp when the pipeline produced this file."
+    },
+    "episodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/episode" }
+    }
+  },
+  "$defs": {
+    "episode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "guid",
+        "title",
+        "description",
+        "pub_date",
+        "access",
+        "countries",
+        "year_start",
+        "year_end",
+        "date_precision",
+        "kind",
+        "topics",
+        "historical_figures",
+        "links"
+      ],
+      "properties": {
+        "guid": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable RSS GUID. Used as the per-episode file key."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "pub_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp at which the episode was published to the feed."
+        },
+        "access": {
+          "type": "string",
+          "enum": ["public", "members"],
+          "description": "public = standard feed; members = Supporting Cast Club-only."
+        },
+        "countries": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/iso3" },
+          "uniqueItems": true,
+          "description": "Present-day countries the episode is about. Empty array means non-geographic."
+        },
+        "year_start": {
+          "type": "integer",
+          "description": "Signed year. Negative values are BC (year_start = -44 means 44 BC). No year zero — historians skip from 1 BC (-1) to AD 1 (1), so the value 0 is reserved and should not be used; if an episode genuinely straddles the boundary, set year_start = -1 and year_end = 1.",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 }
+        },
+        "year_end": {
+          "type": "integer",
+          "description": "Signed year. Must satisfy year_end >= year_start (enforced in code; JSON Schema cannot cross-reference siblings).",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 }
+        },
+        "date_precision": {
+          "type": "string",
+          "enum": ["year", "decade", "century", "era"],
+          "description": "Used only for label rendering. The numeric year_start/year_end are always concrete."
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["historical", "interview", "live", "themed", "meta"]
+        },
+        "topics": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Free-text topic tags. Controlled vocabulary deferred."
+        },
+        "historical_figures": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Free-text figure names. Controlled vocabulary deferred."
+        },
+        "series_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional. Groups multi-part series (e.g. 'caesar-2024')."
+        },
+        "series_part": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Optional. 1-indexed part number within series_id."
+        },
+        "links": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "apple": { "type": "string", "format": "uri" },
+            "spotify": { "type": "string", "format": "uri" },
+            "youtube": { "type": "string", "format": "uri" }
+          },
+          "description": "Listen-out links. All optional; UI shows icons only for keys present."
+        }
+      },
+      "dependentRequired": {
+        "series_part": ["series_id"]
+      }
+    },
+    "iso3": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 3166-1 alpha-3 country code (uppercase)."
+    }
+  }
+}

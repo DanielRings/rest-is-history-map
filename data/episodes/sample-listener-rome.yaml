@@ -1,0 +1,17 @@
+guid: sample-listener-rome
+title: "Listener Questions: Ancient Rome"
+description: "Tom and Dominic answer listener questions about Roman gladiators, latrines, slavery, and just what exactly happened at a triumph."
+pub_date: "2024-01-29T07:00:00Z"
+access: public
+countries: []
+year_start: -750
+year_end: 476
+date_precision: era
+kind: themed
+topics:
+  - listener questions
+  - Roman daily life
+historical_figures: []
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-listener-rome"
+  spotify: "https://open.spotify.com/episode/sample-listener-rome"

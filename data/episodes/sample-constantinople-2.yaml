@@ -1,0 +1,23 @@
+guid: sample-constantinople-2
+title: "The Fall of Constantinople, Part 2: The Siege"
+description: "Mehmed II's seven-week siege of the walls of Theodosius, the death of the last Roman emperor, and the end of the Middle Ages."
+pub_date: "2024-05-30T07:00:00Z"
+access: public
+countries: ["TUR", "GRC"]
+year_start: 1453
+year_end: 1453
+date_precision: year
+kind: historical
+topics:
+  - Byzantine Empire
+  - siege
+  - Ottoman conquest
+historical_figures:
+  - Constantine XI Palaiologos
+  - Mehmed II
+  - Giustiniani
+series_id: constantinople-2024
+series_part: 2
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-constantinople-2"
+  spotify: "https://open.spotify.com/episode/sample-constantinople-2"

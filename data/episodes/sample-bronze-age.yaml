@@ -1,0 +1,20 @@
+guid: sample-bronze-age
+title: "The Late Bronze Age Collapse"
+description: "Around 1200 BC, the great palace civilisations of the eastern Mediterranean — Mycenae, the Hittites, the New Kingdom of Egypt — all collapsed within a century. Tom and Dominic on the Sea Peoples, climate change, and the end of an age."
+pub_date: "2024-07-15T07:00:00Z"
+access: public
+countries: ["EGY", "TUR", "GRC", "SYR", "LBN", "ISR", "CYP"]
+year_start: -1200
+year_end: -1150
+date_precision: era
+kind: historical
+topics:
+  - Bronze Age
+  - Sea Peoples
+  - climate
+  - collapse
+historical_figures:
+  - Ramesses III
+links:
+  apple: "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bronze-age"
+  spotify: "https://open.spotify.com/episode/sample-bronze-age"
