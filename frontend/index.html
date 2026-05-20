@@ -3,10 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f3ee" />
     <title>The Rest Is History — Map</title>
   </head>
   <body>
-    <main id="app"></main>
+    <main id="app">
+      <div id="map" aria-label="World map"></div>
+      <canvas id="timeline" aria-label="Timeline scrubber"></canvas>
+      <section id="panel" aria-label="Episode list">
+        <div class="bottom-sheet-handle" id="bottom-sheet-handle" aria-hidden="true"></div>
+      </section>
+    </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
