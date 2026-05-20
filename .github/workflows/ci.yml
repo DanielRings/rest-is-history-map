@@ -14,6 +14,23 @@ permissions:
   contents: read
 
 jobs:
+  changes:
+    name: Detect changed paths
+    runs-on: ubuntu-latest
+    outputs:
+      e2e: ${{ steps.filter.outputs.e2e }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            e2e:
+              - 'frontend/**'
+              - 'data/**'
+              - 'schema/**'
+              - '.github/workflows/ci.yml'
+
   pipeline:
     name: Pipeline (Python)
     runs-on: ubuntu-latest
@@ -75,3 +92,43 @@ jobs:
 
       - name: Build
         run: pnpm run build
+
+  e2e:
+    name: Frontend e2e (Playwright)
+    needs: changes
+    if: needs.changes.outputs.e2e == 'true'
+    runs-on: ubuntu-latest
+    # Image tag must match @playwright/test in frontend/package.json.
+    # If you bump @playwright/test, bump this tag in lockstep.
+    container:
+      image: mcr.microsoft.com/playwright:v1.60.0-noble
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      # The Playwright image ships Node 22 + corepack. Corepack reads
+      # frontend/package.json's "packageManager" and provisions that exact
+      # pnpm version — no separate pnpm-setup action needed inside the
+      # container.
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Playwright tests
+        run: pnpm exec playwright test
+        env:
+          # The container ships browsers at /ms-playwright; tell Playwright
+          # to use them instead of looking under $HOME/.cache.
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+
+      - name: Upload Playwright report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: frontend/playwright-report
+          retention-days: 7
