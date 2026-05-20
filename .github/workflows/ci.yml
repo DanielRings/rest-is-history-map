@@ -50,11 +50,11 @@ jobs:
       - uses: actions/checkout@v4
 
       # TODO(W2-cleanup): drop `version:` once frontend/package.json declares
-      # "packageManager": "pnpm@9.x.x". W2 owns adding that field.
+      # "packageManager": "pnpm@11.x.x". W2 owns adding that field.
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 11
 
       - name: Set up Node
         uses: actions/setup-node@v4
