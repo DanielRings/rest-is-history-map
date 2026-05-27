@@ -370,64 +370,6 @@
         "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-boundary-jesus",
         "spotify": "https://open.spotify.com/episode/sample-boundary-jesus"
       }
-    },
-    {
-      "guid": "sample-tur-extra-1",
-      "title": "The Fall of Constantinople, Part 1 (duplicate, post-1500)",
-      "description": "The thousand-year history of Constantinople, from its founding by Constantine the Great to the eve of the Ottoman siege of 1453.",
-      "pub_date": "2024-05-29T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "TUR"
-      ],
-      "year_start": 1600,
-      "year_end": 1700,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "Byzantine Empire",
-        "siege",
-        "Ottoman conquest"
-      ],
-      "historical_figures": [
-        "Constantine XI Palaiologos",
-        "Mehmed II"
-      ],
-      "series_id": "turkey-extras",
-      "series_part": 1,
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/sample-tur-extra-1",
-        "spotify": "https://open.spotify.com/episode/sample-tur-extra-1"
-      }
-    },
-    {
-      "guid": "sample-tur-extra-2",
-      "title": "The Fall of Constantinople, Part 2 (duplicate, modern)",
-      "description": "The thousand-year history of Constantinople, from its founding by Constantine the Great to the eve of the Ottoman siege of 1453.",
-      "pub_date": "2024-05-29T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "TUR"
-      ],
-      "year_start": 1900,
-      "year_end": 2000,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "Byzantine Empire",
-        "siege",
-        "Ottoman conquest"
-      ],
-      "historical_figures": [
-        "Constantine XI Palaiologos",
-        "Mehmed II"
-      ],
-      "series_id": "turkey-extras",
-      "series_part": 2,
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/sample-tur-extra-2",
-        "spotify": "https://open.spotify.com/episode/sample-tur-extra-2"
-      }
     }
   ]
 }
