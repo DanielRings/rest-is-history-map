@@ -16,6 +16,10 @@ export interface CountryProperties {
   ADMIN?: string;
   NAME?: string;
   NAME_LONG?: string;
+  /** Natural Earth's designed label-anchor longitude (centroid-like). */
+  LABEL_X?: number;
+  /** Natural Earth's designed label-anchor latitude (centroid-like). */
+  LABEL_Y?: number;
 }
 
 /** Minimal GeoJSON FeatureCollection typing for the country source. */

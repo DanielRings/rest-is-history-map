@@ -1,20 +1,44 @@
 @import url("maplibre-gl/dist/maplibre-gl.css");
 
+/* --------------------------------------------------------------------
+ * Antique-atlas surface tokens.
+ *
+ * All color, font, and timeline-rail values live here; CSS rules below
+ * consume the tokens so palette changes are local to this block. The
+ * MapLibre style is JS-driven (see ANTIQUE_ATLAS_PALETTE in
+ * src/map/style.ts) and the procedural paper texture is generated in
+ * src/main.ts (applyNoiseTexture) and painted onto the #map-texture
+ * overlay div.
+ * -------------------------------------------------------------------- */
 :root {
   color-scheme: light;
-  --bg: #f5f3ee;
-  --bg-panel: #ffffff;
-  --fg: #2a2620;
-  --fg-muted: #6b6358;
-  --accent: #e07a3c;
-  --accent-club: #6f4a85;
-  --border: #d8d3c8;
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    sans-serif;
+  --bg: #b1c4d8;
+  --bg-panel: #fbf6e9;
+  --bg-timeline: #ead9b3;
+  --fg: #2e2418;
+  --fg-muted: #6f5d44;
+  --accent: #9c3b2a;
+  --accent-club: #5a3a6e;
+  --border: #a89466;
+  --popup-bg: rgba(248, 240, 218, 0.62);
+  --popup-bg-fallback: rgba(248, 240, 218, 0.95);
+  --popup-outline: rgba(160, 130, 80, 0.7);
+  --popup-blur: blur(8px) saturate(160%);
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Marcellus Sans", "Optima", "Avenir Next", system-ui, sans-serif;
+  --display-titlecase: small-caps;
+  --timeline-track: #d3c19a;
+  --timeline-track-active: #9c3b2a;
+  --timeline-tick: #8c7a5e;
+  --timeline-label: #2e2418;
+  --timeline-handle-fill: #f8f0da;
+  --timeline-handle-border: #4a3826;
+  --timeline-label-font: 11px "Marcellus Sans", "Optima", sans-serif;
+  --timeline-year-font: 12px "Marcellus Sans", "Optima", sans-serif;
+  --timeline-handle-year-font: 13px "Marcellus Sans", "Optima", sans-serif;
+  --shadow-popup: 0 6px 24px -8px rgba(20, 18, 14, 0.25), 0 2px 6px -2px rgba(20, 18, 14, 0.15);
+  --timeline-height: 110px;
+  font-family: var(--font-ui);
 }
 
 * {
@@ -34,122 +58,318 @@ body {
   display: grid;
   height: 100dvh;
   width: 100vw;
-  container-type: size;
-  container-name: app;
-  grid-template-rows: 1fr 110px var(--panel-height, 32dvh);
+  grid-template-rows: 1fr var(--timeline-height);
   grid-template-columns: 1fr;
   grid-template-areas:
     "map"
-    "timeline"
-    "panel";
+    "timeline";
   background: var(--bg);
+  position: relative;
 }
 
 #map {
   grid-area: map;
-  background: var(--bg);
+  position: relative;
+  background-color: var(--bg);
+}
+
+/* Texture overlay: sits above the MapLibre canvas, below popups + timeline.
+   mix-blend-mode: multiply darkens the map underneath without shifting
+   color; pointer-events: none lets clicks reach the map. The actual noise
+   PNG is set as inline background-image by applyNoiseTexture in main.ts.
+   will-change puts the texture on its own compositor layer so per-frame
+   background-position updates don't trigger map repaints. */
+#map-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: repeat;
+  mix-blend-mode: multiply;
+  will-change: background-position, background-size;
+}
+
+#timeline-wrap {
+  grid-area: timeline;
+  position: relative;
+  background: var(--bg-timeline);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
 }
 
 #timeline {
-  grid-area: timeline;
+  flex: 1 1 auto;
   width: 100%;
-  height: 100%;
+  min-height: 0;
   display: block;
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background: transparent;
 }
 
-#panel {
-  grid-area: panel;
-  background: var(--bg-panel);
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+/* Play button is positioned absolutely at horizontal center so the speed
+   pill changing text width never shifts it. Speed pill is anchored by its
+   right edge a fixed distance left of center — also unaffected by the
+   pill's own text width. Both share the same vertical centering. */
+#timeline-controls {
+  flex: 0 0 auto;
   position: relative;
+  height: 32px;
+  padding: 4px 0 2px;
 }
 
-#panel .bottom-sheet-handle {
-  display: flex;
+#speed-pill,
+#play-button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--fg);
+  font-family: inherit;
+  cursor: pointer;
+  user-select: none;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+}
+
+#speed-pill {
+  /* Right edge anchored 20px left of horizontal center → text changes
+     are invisible because the button's right edge doesn't move. */
+  right: calc(50% + 20px);
+  width: 40px;
+  height: 28px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+  transform: translateY(-50%);
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#play-button {
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 18px;
-  flex-shrink: 0;
-  touch-action: none;
-  cursor: grab;
+  transform: translate(-50%, -50%);
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#panel .bottom-sheet-handle::before {
-  content: "";
-  width: 44px;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--border);
+#play-button svg {
+  width: 22px;
+  height: 22px;
+  overflow: visible;
 }
 
-.ep-panel {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  padding: 8px 12px 24px;
+/* Two overlaid play/pause graphics inside a square SVG; crossfade + scale
+   between them based on data-state on the parent button. */
+#play-button .play-icon,
+#play-button .pause-icon {
+  transform-origin: 12px 12px;
+  transition:
+    opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ep-panel__list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+#play-button[data-state="paused"] .play-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+#play-button[data-state="paused"] .pause-icon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+#play-button[data-state="playing"] .play-icon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+#play-button[data-state="playing"] .pause-icon {
+  opacity: 1;
+  transform: scale(1);
 }
 
-.ep-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 14px;
-  background: #fff;
+/* Speed pill text: two overlaid spans crossfade-scale on every cycle,
+   same easing/timing as the play/pause icon morph. */
+.speed-text {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.speed-text--active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#speed-pill:hover,
+#play-button:hover {
+  color: var(--fg);
+}
+
+#speed-pill:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+#play-button:active {
+  transform: translate(-50%, -50%) scale(0.85);
+}
+
+#speed-pill:focus-visible,
+#play-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.country-popup {
+  position: absolute;
+  z-index: 5;
+  pointer-events: auto;
+  max-width: min(280px, calc(100vw - 24px));
+  background: var(--popup-bg);
+  backdrop-filter: var(--popup-blur);
+  -webkit-backdrop-filter: var(--popup-blur);
+  border-radius: 10px;
+  padding: 8px 10px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  font-size: 13px;
+  color: var(--fg);
+  transform-origin: var(--popup-origin, top left);
 }
 
-.ep-card__header {
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .country-popup {
+    background: var(--popup-bg-fallback);
+  }
+}
+
+.country-popup__notch {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  background: var(--popup-bg);
+  backdrop-filter: var(--popup-blur);
+  -webkit-backdrop-filter: var(--popup-blur);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .country-popup__notch {
+    background: var(--popup-bg-fallback);
+  }
+}
+
+.country-popup__outline {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.country-popup__outline path {
+  fill: none;
+  stroke: var(--popup-outline);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.country-popup__header {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   justify-content: space-between;
   gap: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--border);
 }
 
-.ep-card__title {
+.country-popup__country {
   margin: 0;
+  font-family: var(--font-display);
   font-size: 15px;
   font-weight: 600;
-  line-height: 1.3;
+  letter-spacing: 0.02em;
+  font-variant-caps: var(--display-titlecase);
+  color: var(--fg);
 }
 
-.ep-card__meta {
+.country-popup__count {
   margin: 0;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--fg-muted);
   font-variant-numeric: tabular-nums;
 }
 
-.ep-card__chips {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  font-weight: 600;
+.country-popup__list {
+  display: flex;
+  flex-direction: column;
+  max-height: min(60dvh, 480px);
+  overflow-y: auto;
 }
 
-.ep-card__desc {
+.country-popup__empty {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
+  color: var(--fg-muted);
+  font-style: italic;
+}
+
+.ep-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 0;
+}
+
+.ep-card + .ep-card {
+  border-top: 1px solid var(--border);
+}
+
+.ep-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.ep-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--fg);
-  line-height: 1.45;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 4px;
+  row-gap: 0;
+}
+
+.ep-card__meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ep-card__meta {
+  font-size: 11px;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 .ep-card__links {
-  margin: 4px 0 0;
-  display: flex;
-  gap: 12px;
+  display: inline-flex;
+  gap: 8px;
   color: var(--fg-muted);
 }
 
@@ -157,54 +377,41 @@ body {
   color: inherit;
   display: inline-flex;
   align-items: center;
+  line-height: 0;
 }
 
-.ep-card__links a:hover,
 .ep-card__links a:focus-visible {
-  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 .club-badge {
   display: inline-block;
-  padding: 2px 6px;
-  font-size: 10px;
+  padding: 1px 5px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  border-radius: 4px;
+  border-radius: 3px;
   background: var(--accent-club);
   color: #fff;
   flex-shrink: 0;
 }
 
 .maplibregl-popup-content {
+  font-family: var(--font-display);
+  font-variant-caps: var(--display-titlecase);
   font-size: 13px;
-  padding: 4px 8px;
-  background: rgba(20, 18, 14, 0.85);
-  color: #fff;
+  letter-spacing: 0.02em;
+  padding: 4px 9px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--fg);
+  border: 1px solid var(--border);
   border-radius: 4px;
+  box-shadow: 0 2px 6px -2px rgba(20, 18, 14, 0.15);
 }
 
 .maplibregl-popup-tip {
-  border-top-color: rgba(20, 18, 14, 0.85) !important;
-}
-
-@container app (min-width: 768px) {
-  #app {
-    grid-template-rows: 1fr 110px;
-    grid-template-columns: 1fr 380px;
-    grid-template-areas:
-      "map panel"
-      "timeline panel";
-  }
-
-  #panel {
-    height: 100%;
-    border-top: none;
-    border-left: 1px solid var(--border);
-  }
-
-  #panel .bottom-sheet-handle {
-    display: none;
-  }
+  border-top-color: rgba(255, 255, 255, 0.95) !important;
 }

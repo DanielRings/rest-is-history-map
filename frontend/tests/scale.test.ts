@@ -6,6 +6,7 @@
 
 import { describe, expect, it } from "vitest";
 
+import { formatYearTick } from "../src/timeline/format";
 import {
   TIMELINE_BOUNDS,
   TIMELINE_TICKS,
@@ -69,8 +70,27 @@ describe("clampWindow", () => {
     expect(w.end).toBe(TIMELINE_BOUNDS.max);
   });
 
-  it("guarantees start < end even when caller passes equal years", () => {
+  it("preserves equal start/end (year-mode state)", () => {
     const w = clampWindow({ start: 1500, end: 1500 });
-    expect(w.start).toBeLessThan(w.end);
+    expect(w.start).toBe(1500);
+    expect(w.end).toBe(1500);
+  });
+});
+
+describe("formatYearTick", () => {
+  it("formats BC years with a suffix", () => {
+    expect(formatYearTick(-3000)).toBe("3000 BC");
+    expect(formatYearTick(-1)).toBe("1 BC");
+  });
+
+  it("renders the boundary as 'AD 1'", () => {
+    expect(formatYearTick(0)).toBe("AD 1");
+    expect(formatYearTick(1)).toBe("AD 1");
+  });
+
+  it("renders AD years > 1 as bare integers", () => {
+    expect(formatYearTick(500)).toBe("500");
+    expect(formatYearTick(1500)).toBe("1500");
+    expect(formatYearTick(2025)).toBe("2025");
   });
 });

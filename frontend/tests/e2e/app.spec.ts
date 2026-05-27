@@ -1,10 +1,15 @@
 /**
- * End-to-end tests covering the five assertions in the W2 brief.
+ * End-to-end behavior tests for the map-first UI.
  *
- * The tests target the same store/event code paths a real user drives, but
- * call the `window.__setTimeWindow` and `window.__clickCountry` hooks to
- * avoid the canvas-drag and map-hit-test fragility that bites on iPhone
- * WebKit. The hooks are dispatched via `page.evaluate`.
+ * The persistent episode panel is gone; episodes surface in a transient
+ * country popup. Tests drive the same store/event paths a real user would,
+ * via `window.__setTimeWindow`, `window.__hoverCountry`, and
+ * `window.__clickCountry` to bypass canvas/touch flakiness on WebKit.
+ *
+ * Episode-count semantics: only episodes with at least one country tag are
+ * surfaced at all. The 13-episode fixture has 3 non-geographic episodes
+ * (kind: interview/themed/meta with empty countries) which are excluded.
+ * That leaves 10 geographic episodes to choose from.
  */
 
 import { expect, test } from "@playwright/test";
@@ -16,36 +21,28 @@ test.beforeEach(async ({ page }) => {
   await expect(page.locator(READY_SELECTOR)).toBeVisible({ timeout: 30_000 });
 });
 
-test("loads all 13 fixture episodes", async ({ page }) => {
-  const cards = page.locator(".ep-card");
-  await expect(cards).toHaveCount(13);
+test("no popup at rest", async ({ page }) => {
+  await expect(page.locator(".country-popup")).toBeHidden();
 });
 
-test("scrub to AD 1400–1500 narrows to the three 15th-century-overlapping episodes", async ({
-  page,
-}) => {
-  // NOTE: the W2 brief named Constantinople 1, Constantinople 2, and Mongol
-  // Empire — but Mongol Empire (1206-1368) ends before 1400 and so does
-  // not overlap; the Hundred Years' War episode (1337-1453) does. The
-  // predicate's actual behavior is the source of truth (see
-  // src/filter/predicate.ts:timelineOverlaps).
-  await page.evaluate(() => window.__setTimeWindow?.(1400, 1500));
-  const cards = page.locator(".ep-card");
+test("hover Italy → popup shows Caesar, Augustus, Saturnalia", async ({ page }) => {
+  await page.evaluate(() => window.__hoverCountry?.("ITA"));
+  await expect(page.locator(".country-popup")).toBeVisible();
+  const cards = page.locator(".country-popup .ep-card");
   await expect(cards).toHaveCount(3);
   const guids = await cards.evaluateAll((els) =>
     els.map((el) => (el as HTMLElement).dataset["guid"] ?? ""),
   );
   expect(new Set(guids)).toEqual(
-    new Set(["sample-constantinople-1", "sample-constantinople-2", "sample-live-london"]),
+    new Set(["sample-caesar-ides", "sample-augustus", "sample-bonus-saturnalia"]),
   );
 });
 
-test("click Italy → sidebar shows Caesar, Augustus, Saturnalia", async ({ page }) => {
+test("click Italy → popup pinned with same three episodes", async ({ page }) => {
   await page.evaluate(() => window.__clickCountry?.("ITA"));
-  // Allow fitBounds animation + moveend recompute.
   await page.waitForTimeout(800);
   const guids = await page
-    .locator(".ep-card")
+    .locator(".country-popup .ep-card")
     .evaluateAll((els) => els.map((el) => (el as HTMLElement).dataset["guid"] ?? ""));
   expect(new Set(guids)).toEqual(
     new Set(["sample-caesar-ides", "sample-augustus", "sample-bonus-saturnalia"]),
@@ -53,10 +50,33 @@ test("click Italy → sidebar shows Caesar, Augustus, Saturnalia", async ({ page
 });
 
 test("Saturnalia bonus shows a Club badge", async ({ page }) => {
-  const card = page.locator('[data-guid="sample-bonus-saturnalia"]');
+  await page.evaluate(() => window.__hoverCountry?.("ITA"));
+  const card = page.locator('.country-popup [data-guid="sample-bonus-saturnalia"]');
   await expect(card).toBeVisible();
   await expect(card.locator(".club-badge")).toBeVisible();
   await expect(card.locator(".club-badge")).toHaveText(/club/i);
+});
+
+test("scrub to AD 1400–1500 narrows Italy popup to zero (no Italy match)", async ({ page }) => {
+  await page.evaluate(() => window.__setTimeWindow?.(1400, 1500));
+  await page.evaluate(() => window.__hoverCountry?.("ITA"));
+  // Italy has no episodes overlapping 1400–1500 in the fixture, so the
+  // popup either doesn't open (unlit country) or shows the empty state.
+  // __hoverCountry on an unlit country surfaces only the label popup; the
+  // rich country popup stays hidden.
+  await expect(page.locator(".country-popup")).toBeHidden();
+});
+
+test("scrub to AD 1400–1500: Turkey popup shows the two Constantinople episodes", async ({
+  page,
+}) => {
+  await page.evaluate(() => window.__setTimeWindow?.(1400, 1500));
+  await page.evaluate(() => window.__hoverCountry?.("TUR"));
+  await expect(page.locator(".country-popup")).toBeVisible();
+  const guids = await page
+    .locator(".country-popup .ep-card")
+    .evaluateAll((els) => els.map((el) => (el as HTMLElement).dataset["guid"] ?? ""));
+  expect(new Set(guids)).toEqual(new Set(["sample-constantinople-1", "sample-constantinople-2"]));
 });
 
 test("URL hash updates after timeline scrub and after country click", async ({ page }) => {
@@ -68,8 +88,10 @@ test("URL hash updates after timeline scrub and after country click", async ({ p
   expect(afterScrub).not.toBe(initialHash);
   expect(afterScrub).toContain("1400,1500");
 
-  await page.evaluate(() => window.__clickCountry?.("ITA"));
-  // The hash includes mapCenter+zoom; wait for moveend then read.
+  await page.evaluate(() => window.__clickCountry?.("TUR"));
+  // Same country clicked once → no fly yet; click again to commit-zoom and
+  // change mapCenter/zoom in the hash.
+  await page.evaluate(() => window.__clickCountry?.("TUR"));
   await page.waitForTimeout(900);
   const afterClick = await page.evaluate(() => window.location.hash);
   expect(afterClick).not.toBe(afterScrub);
