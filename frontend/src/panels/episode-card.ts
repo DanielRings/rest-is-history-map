@@ -1,8 +1,9 @@
 /**
- * Episode card renderer.
+ * Compact episode card for the country popup.
  *
- * Returns a detached `<article>` element. The sidebar and bottom-sheet
- * both call this; they each handle insertion and ordering.
+ * Title + year + listen links + optional Club badge. No description, no
+ * country chips — those exist on the data but compete for attention in the
+ * popup. Iterate when we have a richer surface to render them in.
  */
 
 import type { Episode } from "../data/episodes";
@@ -21,41 +22,48 @@ export function renderEpisodeCard(ep: Episode): HTMLElement {
   article.className = "ep-card";
   article.dataset["guid"] = ep.guid;
 
-  const header = document.createElement("header");
-  header.className = "ep-card__header";
+  const titleRow = document.createElement("div");
+  titleRow.className = "ep-card__title-row";
 
   const title = document.createElement("h3");
   title.className = "ep-card__title";
-  title.textContent = ep.title;
-  header.appendChild(title);
+  // Prefer wrapping at the first colon: split into prefix + rest spans and
+  // let flex-wrap decide. "Bonus: A Roman Saturnalia" → two flex children,
+  // "Bonus:" and "A Roman Saturnalia". When both fit one line they sit
+  // side-by-side; when the line overflows the rest drops to its own line.
+  const colonIdx = ep.title.indexOf(":");
+  if (colonIdx > 0 && colonIdx < ep.title.length - 1) {
+    const prefix = document.createElement("span");
+    prefix.className = "ep-card__title-prefix";
+    prefix.textContent = ep.title.slice(0, colonIdx + 1);
+    title.appendChild(prefix);
+    const rest = document.createElement("span");
+    rest.className = "ep-card__title-rest";
+    rest.textContent = ep.title.slice(colonIdx + 1).trimStart();
+    title.appendChild(rest);
+  } else {
+    title.textContent = ep.title;
+  }
+  titleRow.appendChild(title);
 
   if (ep.access === "members") {
     const badge = document.createElement("span");
     badge.innerHTML = CLUB_BADGE_HTML;
     const child = badge.firstElementChild;
-    if (child !== null) header.appendChild(child);
+    if (child !== null) titleRow.appendChild(child);
   }
 
-  article.appendChild(header);
+  article.appendChild(titleRow);
 
-  const meta = document.createElement("p");
+  const metaRow = document.createElement("div");
+  metaRow.className = "ep-card__meta-row";
+
+  const meta = document.createElement("span");
   meta.className = "ep-card__meta";
   meta.textContent = formatYearRange(ep.year_start, ep.year_end);
-  article.appendChild(meta);
+  metaRow.appendChild(meta);
 
-  if (ep.countries.length > 0) {
-    const chips = document.createElement("p");
-    chips.className = "ep-card__chips";
-    chips.textContent = ep.countries.join(" · ");
-    article.appendChild(chips);
-  }
-
-  const desc = document.createElement("p");
-  desc.className = "ep-card__desc";
-  desc.textContent = ep.description;
-  article.appendChild(desc);
-
-  const links = document.createElement("p");
+  const links = document.createElement("span");
   links.className = "ep-card__links";
   if (ep.links.apple !== undefined) {
     const a = document.createElement("a");
@@ -75,7 +83,9 @@ export function renderEpisodeCard(ep: Episode): HTMLElement {
     a.innerHTML = SPOTIFY_ICON;
     links.appendChild(a);
   }
-  if (links.childNodes.length > 0) article.appendChild(links);
+  metaRow.appendChild(links);
+
+  article.appendChild(metaRow);
 
   return article;
 }

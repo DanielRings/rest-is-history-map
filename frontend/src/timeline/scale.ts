@@ -44,8 +44,13 @@ export const TIMELINE_BOUNDS: { readonly min: number; readonly max: number } = {
   max: 2025,
 };
 
-/** Anchor years exposed to callers that want to draw tick labels. */
-export const TIMELINE_TICKS: readonly number[] = ANCHORS.map((a) => a.year);
+/** Anchor years exposed to callers that want to draw tick labels.
+ *  Year 1 is added on top of the anchor list as the BC/AD boundary marker;
+ *  it isn't an anchor (the piecewise scale already interpolates through it)
+ *  but it earns its own tick because formatYearTick(1) renders as "AD 1". */
+export const TIMELINE_TICKS: readonly number[] = [...ANCHORS.map((a) => a.year), 1].sort(
+  (a, b) => a - b,
+);
 
 /**
  * Convert a calendar year to a horizontal pixel offset.
@@ -99,17 +104,15 @@ export function pxToYear(px: number, width: number): number {
 }
 
 /**
- * Clamp a TimeWindow to the global bounds and enforce start < end.
+ * Clamp a TimeWindow to the global bounds.
  *
- * Used by the URL-hash decoder and by drag handlers to make sure a user
- * cannot pinch the window to zero width or push it off the axis.
+ * Used by the URL-hash decoder and by drag handlers. `start === end` is a
+ * valid state — it means the timeline is in "year mode" (a single year
+ * selected). Callers that want a non-empty range must check explicitly.
  */
 export function clampWindow(w: TimeWindow): TimeWindow {
   const start = clamp(Math.min(w.start, w.end), TIMELINE_BOUNDS.min, TIMELINE_BOUNDS.max);
   const end = clamp(Math.max(w.start, w.end), TIMELINE_BOUNDS.min, TIMELINE_BOUNDS.max);
-  if (start === end) {
-    return { start, end: Math.min(end + 1, TIMELINE_BOUNDS.max) };
-  }
   return { start, end };
 }
 

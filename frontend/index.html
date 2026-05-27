@@ -5,14 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f3ee" />
     <title>The Rest Is History — Map</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Marcellus+Sans&display=swap"
+    />
   </head>
   <body>
     <main id="app">
-      <div id="map" aria-label="World map"></div>
-      <canvas id="timeline" aria-label="Timeline scrubber"></canvas>
-      <section id="panel" aria-label="Episode list">
-        <div class="bottom-sheet-handle" id="bottom-sheet-handle" aria-hidden="true"></div>
-      </section>
+      <div id="map" aria-label="World map">
+        <div id="map-texture" aria-hidden="true"></div>
+      </div>
+      <div id="timeline-wrap">
+        <div id="timeline-controls" role="group" aria-label="Playback controls">
+          <button id="speed-pill" type="button" aria-label="Playback speed">
+            <span class="speed-text speed-text--active">1&times;</span>
+            <span class="speed-text" aria-hidden="true"></span>
+          </button>
+          <button id="play-button" type="button" aria-label="Play" data-state="paused">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path
+                class="play-icon"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                d="M8 5.5 L18 12 L8 18.5 Z"
+              ></path>
+              <g class="pause-icon" fill="currentColor">
+                <rect x="6.5" y="5.5" width="3.5" height="13" rx="1.5"></rect>
+                <rect x="14" y="5.5" width="3.5" height="13" rx="1.5"></rect>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <canvas id="timeline" aria-label="Timeline scrubber"></canvas>
+      </div>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>
