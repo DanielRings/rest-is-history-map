@@ -12,11 +12,22 @@
  * That leaves 10 geographic episodes to choose from.
  */
 
+import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import { expect, test } from "@playwright/test";
 
 const READY_SELECTOR = 'main#app[data-app-ready="true"]';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const SAMPLE_PATH = path.resolve(__dirname, "../../../data/samples/episodes.sample.json");
+const SAMPLE_JSON = readFileSync(SAMPLE_PATH, "utf-8");
+
 test.beforeEach(async ({ page }) => {
+  await page.route("**/data/episodes.json", (route) =>
+    route.fulfill({ status: 200, contentType: "application/json", body: SAMPLE_JSON }),
+  );
   await page.goto("/");
   await expect(page.locator(READY_SELECTOR)).toBeVisible({ timeout: 30_000 });
 });

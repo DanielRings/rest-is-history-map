@@ -6,8 +6,7 @@
  */
 
 import "./styles.css";
-import sampleData from "../../data/samples/episodes.sample.json";
-import type { Episode, EpisodesDocument } from "./data/episodes";
+import { type Episode, type EpisodesDocument, loadEpisodes } from "./data/episodes";
 import { litCountries, timelineOverlaps, type TimeWindow } from "./filter/predicate";
 import { createMap, fetchCountriesGeoJSON, type MapHandle } from "./map/basemap";
 import { ANTIQUE_ATLAS_PALETTE } from "./map/style";
@@ -26,10 +25,7 @@ declare global {
 }
 
 async function main(): Promise<void> {
-  const doc = sampleData as EpisodesDocument;
-  if (doc.version !== 1) {
-    throw new Error(`main: unexpected episodes schema version ${doc.version}`);
-  }
+  const doc: EpisodesDocument = await loadEpisodes(`${import.meta.env.BASE_URL}data/episodes.json`);
   // Drop non-geographic episodes — they have nowhere to live in the
   // map-first UI for now. To be reintroduced later through a different
   // affordance.

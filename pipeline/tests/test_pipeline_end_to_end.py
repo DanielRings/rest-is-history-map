@@ -10,7 +10,7 @@ from pipeline.assemble import assemble_episodes
 from pipeline.emit import emit
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-EPISODES_DIR = REPO_ROOT / "data" / "episodes"
+EPISODES_DIR = REPO_ROOT / "data" / "samples" / "yaml"
 EXPECTED_PATH = REPO_ROOT / "data" / "samples" / "episodes.sample.json"
 
 
