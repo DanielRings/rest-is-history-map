@@ -1,0 +1,24 @@
+guid: 33a0fa0c-4d53-11ec-ba01-9b2c2a6a4cc6
+title: Germany from Adenauer to Angela
+description: As Angela Merkel bows out of German politics, Dominic Sandbrook and Tom
+  Holland explore the surprisingly colourful world of Germany’s Chancellors since
+  the Second World War. It’s a story of rebels, exiles, Nazis, chain-smokers, the
+  colossal bulk of Helmut Kohl and the East German youth of the future Frau Merkel.
+  And to Tom’s relief, there’s lots of Christianity.
+pub_date: '2021-11-27T12:12:32Z'
+access: public
+countries:
+- DEU
+year_start: 1949
+year_end: 2021
+date_precision: era
+kind: historical
+topics:
+- german politics
+- cold war
+- chancellors of germany
+historical_figures:
+- Konrad Adenauer
+- Angela Merkel
+- Helmut Kohl
+links: {}

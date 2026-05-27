@@ -1,0 +1,21 @@
+guid: a17a7be0-63db-11ec-9193-4bbdd85d611d
+title: '27 Dec: Port wine and Darwin sets sail'
+description: How the English's fondness for Portuguese fortified wine began, and the
+  unlikely story of the voyage which inspired Charles Darwin's natural philosophy.
+pub_date: '2021-12-25T02:02:00Z'
+access: public
+countries:
+- GBR
+- PRT
+year_start: 1831
+year_end: 1836
+date_precision: decade
+kind: historical
+topics:
+- port wine
+- hms beagle
+- charles darwin
+- natural history
+historical_figures:
+- Charles Darwin
+links: {}

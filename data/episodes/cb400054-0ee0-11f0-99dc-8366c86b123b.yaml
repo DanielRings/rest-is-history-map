@@ -1,0 +1,29 @@
+guid: cb400054-0ee0-11f0-99dc-8366c86b123b
+title: '1066: The Shadows of War (Part 1)'
+description: "Why is 1066 the most important year in English history? Who were the\
+  \ three main candidates vying for the English throne on the eve of Edward the Confessor’s\
+  \ death? And how did the coronation of one of them on the 14th of October 1066 trigger\
+  \ one of the most famous invasions of all time? \n\nJoin Tom and Dominic as they\
+  \ launch into the dramatic series of events, at the dawn of 1066, that sparked the\
+  \ build up to the Battle of Hastings…\n\n_______\nTwitter:\n@TheRestHistory\n@holland_tom\n\
+  @dcsandbrook\nProducer: Theo Young-Smith\nAssistant Producer: Tabby Syrett + Aaliyah\
+  \ Akude\nExecutive Producers: Jack Davenport + Tony Pastor"
+pub_date: '2025-04-06T23:00:00Z'
+access: public
+countries:
+- GBR
+- NOR
+- FRA
+year_start: 1066
+year_end: 1066
+date_precision: year
+kind: historical
+topics:
+  - battle of hastings
+  - norman conquest
+  - edward the confessor
+  - english history
+historical_figures:
+  - Edward the Confessor
+  - William the Conqueror
+links: {}

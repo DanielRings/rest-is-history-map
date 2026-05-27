@@ -1,0 +1,20 @@
+guid: be885aa0-b5e2-11ec-aff2-373ec1a79307
+title: Chairman Mao and the Cultural Revolution
+description: China's Cultural Revolution under Chairman Mao was one of the most staggeringly
+  brutal events in recent human history. Tom and Dominic are joined by historian Rana
+  Mitter, who specialises in the history of Republican China.
+pub_date: '2022-04-07T01:00:00Z'
+access: public
+countries:
+- CHN
+year_start: 1966
+year_end: 1976
+date_precision: decade
+kind: historical
+topics:
+  - cultural revolution
+  - mao zedong
+  - chinese history
+historical_figures:
+  - Mao Zedong
+links: {}

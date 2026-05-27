@@ -1,0 +1,20 @@
+guid: 66cbdcaa-5b93-11ec-af0a-5786d483ce7f
+title: Superheroes
+description: From their origins in the 1930's running parallel to the rise of fascism
+  in Europe, to the Adam West-era camp of the 60's, to the gritty modern reboots -
+  what has made superheroes a cultural phenomenon, and what mirror does it hold up
+  to society?
+pub_date: '2021-12-13T02:00:00Z'
+access: public
+countries: []
+year_start: 1930
+year_end: 2000
+date_precision: century
+kind: themed
+topics:
+- superheroes
+- popular culture
+- fascism
+- comic books
+historical_figures: []
+links: {}

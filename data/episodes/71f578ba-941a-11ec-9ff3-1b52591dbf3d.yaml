@@ -1,0 +1,25 @@
+guid: 71f578ba-941a-11ec-9ff3-1b52591dbf3d
+title: Ukraine and Russia
+description: With eastern Europe apparently on the brink of war and Vladimir Putin
+  citing history as pretext, what exactly is Ukraine? Is it distinct from Russia,
+  and how long has it existed? Tom and Dominic run through a brutal and fractured
+  history, from the Viking conquest and Kyivan Rus', to the ever-shifting landscape
+  in the early modern period, to the incredibly complicated Russian Civil War, right
+  up to the modern day.
+pub_date: '2022-02-23T02:10:00Z'
+access: public
+countries:
+- UKR
+- RUS
+year_start: 800
+year_end: 2022
+date_precision: era
+kind: historical
+topics:
+- ukraine history
+- russia
+- kyivan rus
+- soviet union
+historical_figures:
+- Vladimir Putin
+links: {}
