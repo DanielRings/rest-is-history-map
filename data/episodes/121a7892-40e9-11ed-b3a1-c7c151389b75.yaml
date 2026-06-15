@@ -1,0 +1,35 @@
+guid: 121a7892-40e9-11ed-b3a1-c7c151389b75
+title: 'Young Churchill: Soldier of Empire (Ep 2)'
+description: 'Join Tom and Dominic in the second episode of our mini-series on Young
+  Churchill as they dive into his imperial exploits. From Cuba to Sudan, they explore
+  his obsession with adventure, the ambiguities that existed within his own moral
+  universe, and his swashbuckling prose.
+
+
+  Twitter:
+
+  @TheRestHistory
+
+  @holland_tom
+
+  @dcsandbrook
+
+
+  Email: restishistorypod@gmail.com'
+pub_date: '2022-10-03T01:05:00Z'
+access: public
+countries: [GBR, CUB, SDN]
+year_start: 1895
+year_end: 1900
+date_precision: decade
+kind: historical
+topics:
+  - winston churchill
+  - british empire
+  - colonial warfare
+  - victorian military
+historical_figures:
+  - Winston Churchill
+series_id: "young-churchill"
+series_part: 2
+links: {}

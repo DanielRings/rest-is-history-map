@@ -7,7 +7,7 @@
  * selectors — keep it small.
  */
 
-import type { TimeWindow } from "../filter/predicate";
+import type { FilterFlags, TimeWindow } from "../filter/predicate";
 
 /** A subscriber callback receives the new full state. */
 export type StoreSubscriber<T> = (state: T) => void;
@@ -59,4 +59,5 @@ export interface AppState {
   selectedCountry: string | null;
   mapCenter: readonly [number, number];
   mapZoom: number;
+  filters: FilterFlags;
 }

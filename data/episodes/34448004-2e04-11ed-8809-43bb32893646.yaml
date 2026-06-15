@@ -1,0 +1,24 @@
+guid: 34448004-2e04-11ed-8809-43bb32893646
+title: 'Portugal: Football, Fado, and Fascism? (Ep 4)'
+description: In the final chapter of this series on the history of Portugal, Tom and
+  Dominic explore Portugal in the 20th century, discussing the two World Wars, the
+  Miracle of Fatima and dictator Antonio Salazar.
+pub_date: '2022-09-07T01:05:00Z'
+access: public
+countries:
+- PRT
+year_start: 1900
+year_end: 1974
+date_precision: century
+kind: historical
+topics:
+- portuguese history
+- antonio salazar
+- miracle of fatima
+- world war i
+- world war ii
+historical_figures:
+- António de Oliveira Salazar
+series_id: "portugal"
+series_part: 4
+links: {}

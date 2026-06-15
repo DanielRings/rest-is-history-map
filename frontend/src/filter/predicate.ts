@@ -17,6 +17,39 @@ export interface TimeWindow {
 }
 
 /**
+ * User-controlled visibility filters orthogonal to the timeline window.
+ *
+ * - `hideClub`: drop members-only (Supporting Cast Club) episodes.
+ * - `hideNonHistorical`: drop themed / interview / live / meta kinds;
+ *   keeps only `historical`.
+ * - `narrowOnly`: drop any episode whose tagged span exceeds
+ *   {@link NARROW_MAX_SPAN_YEARS} years (the "narrow events only" toggle).
+ */
+export interface FilterFlags {
+  hideClub: boolean;
+  hideNonHistorical: boolean;
+  narrowOnly: boolean;
+}
+
+/** Inclusive ceiling on (year_end - year_start) when `narrowOnly` is on. */
+export const NARROW_MAX_SPAN_YEARS = 150;
+
+/** Default filter flags — hide Club episodes only. */
+export const DEFAULT_FILTERS: FilterFlags = {
+  hideClub: true,
+  hideNonHistorical: false,
+  narrowOnly: false,
+};
+
+/** Episode passes the user-controlled filter flags. */
+export function passesFilters(ep: Episode, f: FilterFlags): boolean {
+  if (f.hideClub && ep.access === "members") return false;
+  if (f.hideNonHistorical && ep.kind !== "historical") return false;
+  if (f.narrowOnly && ep.year_end - ep.year_start > NARROW_MAX_SPAN_YEARS) return false;
+  return true;
+}
+
+/**
  * Whether an episode's [year_start, year_end] interval overlaps the window.
  *
  * Touching endpoints count as overlap (e.g. an episode ending in year 1500
@@ -76,9 +109,11 @@ export function litCountries(
   eps: readonly Episode[],
   w: TimeWindow,
   visibleCountries: ReadonlySet<string>,
+  filters: FilterFlags = DEFAULT_FILTERS,
 ): ReadonlyMap<string, number> {
   const out = new Map<string, number>();
   for (const ep of eps) {
+    if (!passesFilters(ep, filters)) continue;
     if (!timelineOverlaps(ep, w)) continue;
     for (const iso3 of ep.countries) {
       if (!visibleCountries.has(iso3)) continue;

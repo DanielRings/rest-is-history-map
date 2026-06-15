@@ -6,9 +6,15 @@
  */
 
 import "./styles.css";
-import sampleData from "../../data/samples/episodes.sample.json";
-import type { Episode, EpisodesDocument } from "./data/episodes";
-import { litCountries, timelineOverlaps, type TimeWindow } from "./filter/predicate";
+import { type Episode, type EpisodesDocument, loadEpisodes } from "./data/episodes";
+import {
+  DEFAULT_FILTERS,
+  type FilterFlags,
+  litCountries,
+  passesFilters,
+  timelineOverlaps,
+  type TimeWindow,
+} from "./filter/predicate";
 import { createMap, fetchCountriesGeoJSON, type MapHandle } from "./map/basemap";
 import { ANTIQUE_ATLAS_PALETTE } from "./map/style";
 import { createCountryPopup } from "./panels/country-popup";
@@ -26,10 +32,7 @@ declare global {
 }
 
 async function main(): Promise<void> {
-  const doc = sampleData as EpisodesDocument;
-  if (doc.version !== 1) {
-    throw new Error(`main: unexpected episodes schema version ${doc.version}`);
-  }
+  const doc: EpisodesDocument = await loadEpisodes(`${import.meta.env.BASE_URL}data/episodes.json`);
   // Drop non-geographic episodes — they have nowhere to live in the
   // map-first UI for now. To be reintroduced later through a different
   // affordance.
@@ -93,6 +96,7 @@ async function main(): Promise<void> {
     selectedCountry: null,
     mapCenter: fromHash?.mapCenter ?? [10, 20],
     mapZoom: fromHash?.mapZoom ?? 0,
+    filters: fromHash?.filters ?? { ...DEFAULT_FILTERS },
   };
 
   const store = createStore<AppState>(initialState);
@@ -111,12 +115,16 @@ async function main(): Promise<void> {
   let currentLit: ReadonlyMap<string, number> = new Map();
 
   /**
-   * Episodes for a country whose timeline overlaps the current window.
-   * Single source of truth for the popup body.
+   * Episodes for a country whose timeline overlaps the current window and
+   * pass the active user filters. Single source of truth for the popup body.
    */
-  const episodesForCountry = (iso3: string, w: TimeWindow): readonly Episode[] => {
+  const episodesForCountry = (
+    iso3: string,
+    w: TimeWindow,
+    f: FilterFlags,
+  ): readonly Episode[] => {
     const bucket = episodesByIso3.get(iso3) ?? [];
-    return bucket.filter((ep) => timelineOverlaps(ep, w));
+    return bucket.filter((ep) => passesFilters(ep, f) && timelineOverlaps(ep, w));
   };
 
   // Lazy reference: the popup is created before the map (map's onMove
@@ -138,13 +146,13 @@ async function main(): Promise<void> {
   });
 
   const recompute = (s: AppState): void => {
-    currentLit = litCountries(episodes, s.window, s.visibleCountries);
+    currentLit = litCountries(episodes, s.window, s.visibleCountries, s.filters);
     if (map !== null) map.setLit(currentLit);
     timeline.setWindow(s.window);
     // Keep popup contents fresh if it's open and the window/viewport changed.
     const cur = popup.current();
     if (cur !== null) {
-      popup.update(episodesForCountry(cur.iso3, s.window));
+      popup.update(episodesForCountry(cur.iso3, s.window, s.filters));
     }
   };
 
@@ -277,7 +285,7 @@ async function main(): Promise<void> {
         return;
       }
       map?.hideLabel();
-      const eps = episodesForCountry(info.iso3, store.get().window);
+      const eps = episodesForCountry(info.iso3, store.get().window, store.get().filters);
       popup.show(info.iso3, eps, "hover");
     },
     onCountryClick: (info) => {
@@ -287,7 +295,7 @@ async function main(): Promise<void> {
         return;
       }
       const cur = popup.current();
-      const eps = episodesForCountry(info.iso3, store.get().window);
+      const eps = episodesForCountry(info.iso3, store.get().window, store.get().filters);
       if (cur?.iso3 === info.iso3) {
         // Same country tapped again → commit-zoom; popup stays pinned.
         map?.flyToCountry(info.iso3);
@@ -324,16 +332,41 @@ async function main(): Promise<void> {
   // faster through sparse eras (BC) and slower through dense ones (modern)
   // — visually even motion, regardless of calendar density.
   const SPEED_CYCLE = [0.5, 1, 1.5, 2, 4] as const;
+  // Playback window width in years. 1 = single-year window (start === end);
+  // 5/10/25/50/100 = symmetric span around the playhead so the user can
+  // watch "what was happening in the 1410s in Europe" instead of a single
+  // year at a time.
+  const RANGE_CYCLE = [1, 5, 10, 25, 50, 100] as const;
   const PIX_PER_SEC_BASE = 20;
   const TIMELINE_PAD_PX = 26; // HANDLE_RADIUS (22) + 4, matches TimelineCanvas
   let speedIdx = 1; // start at 1×
+  let rangeIdx = 0; // start at 1y
   let playing = false;
   let rafId: number | null = null;
   let lastFrameMs = 0;
   let playheadPx = 0; // current playhead position in rail px (sub-pixel ok)
 
   const speedPill = document.getElementById("speed-pill");
+  const rangePill = document.getElementById("range-pill");
   const playBtn = document.getElementById("play-button");
+
+  /** Convert a playhead year + selected range to a clamped TimeWindow. */
+  const windowForYear = (year: number): TimeWindow => {
+    const span = RANGE_CYCLE[rangeIdx] ?? 1;
+    const halfBefore = Math.floor(span / 2);
+    const halfAfter = span - 1 - halfBefore;
+    let start = year - halfBefore;
+    let end = year + halfAfter;
+    if (start < TIMELINE_BOUNDS.min) {
+      end += TIMELINE_BOUNDS.min - start;
+      start = TIMELINE_BOUNDS.min;
+    }
+    if (end > TIMELINE_BOUNDS.max) {
+      start -= end - TIMELINE_BOUNDS.max;
+      end = TIMELINE_BOUNDS.max;
+    }
+    return { start, end };
+  };
 
   const railWidthPx = (): number => {
     const rect = timelineEl.getBoundingClientRect();
@@ -366,14 +399,16 @@ async function main(): Promise<void> {
     const railW = railWidthPx();
     if (playheadPx >= railW) {
       // End of timeline: snap to max, stop.
-      store.set({ window: { start: TIMELINE_BOUNDS.max, end: TIMELINE_BOUNDS.max } });
+      const last = windowForYear(TIMELINE_BOUNDS.max);
+      store.set({ window: last });
       stopPlayback();
       return;
     }
     const newYear = Math.round(pxToYear(playheadPx, railW));
     const cur = store.get().window;
-    if (newYear !== cur.start) {
-      store.set({ window: { start: newYear, end: newYear } });
+    const next = windowForYear(newYear);
+    if (next.start !== cur.start || next.end !== cur.end) {
+      store.set({ window: next });
     }
     rafId = requestAnimationFrame(tick);
   };
@@ -382,12 +417,11 @@ async function main(): Promise<void> {
     // Close any open popup — episode list would flicker as years tick.
     popup.hide();
     const cur = store.get().window;
-    // If in range mode, collapse to year mode at the range start. The
-    // canvas's setWindow auto-saves the prior range for restore-on-toggle.
-    if (cur.start !== cur.end) {
-      store.set({ window: { start: cur.start, end: cur.start } });
-    }
-    playheadPx = yearToPx(store.get().window.start, railWidthPx());
+    // Anchor playback at the center of whatever window is currently
+    // selected, then size the window from the active range pill.
+    const center = Math.round((cur.start + cur.end) / 2);
+    store.set({ window: windowForYear(center) });
+    playheadPx = yearToPx(center, railWidthPx());
     setPlayState(true);
     lastFrameMs = performance.now();
     rafId = requestAnimationFrame(tick);
@@ -420,6 +454,30 @@ async function main(): Promise<void> {
     }
   });
 
+  // Range pill: same crossfade pattern. Clicking advances through the
+  // RANGE_CYCLE and immediately resizes the current window so the user
+  // sees the effect without having to press play.
+  const rangeSlots = rangePill?.querySelectorAll<HTMLElement>(".range-text") ?? null;
+  let activeRangeSlot = 0;
+  rangePill?.addEventListener("click", () => {
+    rangeIdx = (rangeIdx + 1) % RANGE_CYCLE.length;
+    const next = RANGE_CYCLE[rangeIdx] ?? 1;
+    if (rangeSlots !== null && rangeSlots.length === 2) {
+      const nextSlot = 1 - activeRangeSlot;
+      const nextEl = rangeSlots[nextSlot];
+      const prevEl = rangeSlots[activeRangeSlot];
+      if (nextEl !== undefined && prevEl !== undefined) {
+        nextEl.textContent = `${next}y`;
+        nextEl.classList.add("range-text--active");
+        prevEl.classList.remove("range-text--active");
+        activeRangeSlot = nextSlot;
+      }
+    }
+    const cur = store.get().window;
+    const center = Math.round((cur.start + cur.end) / 2);
+    store.set({ window: windowForYear(center) });
+  });
+
   // Playwright test hooks — same code paths as real input.
   window.__setTimeWindow = (start: number, end: number): void => {
     store.set({ window: { start, end } });
@@ -437,13 +495,17 @@ async function main(): Promise<void> {
       return;
     }
     map?.hideLabel();
-    popup.show(iso3, episodesForCountry(iso3, store.get().window), "hover");
+    popup.show(
+      iso3,
+      episodesForCountry(iso3, store.get().window, store.get().filters),
+      "hover",
+    );
   };
   window.__clickCountry = (iso3: string): void => {
     if (countryInfo.get(iso3) === undefined) return;
     if (!currentLit.has(iso3)) return;
     const cur = popup.current();
-    const eps = episodesForCountry(iso3, store.get().window);
+    const eps = episodesForCountry(iso3, store.get().window, store.get().filters);
     popup.show(iso3, eps, "pinned");
     if (cur?.iso3 === iso3) {
       // Same country tapped again → commit-zoom.
@@ -451,6 +513,29 @@ async function main(): Promise<void> {
     }
     store.set({ selectedCountry: iso3 });
   };
+
+  // ---------------------------------------------------------------------
+  // Filter chips
+  // ---------------------------------------------------------------------
+  const filterChips = document.querySelectorAll<HTMLButtonElement>(".filter-chip");
+  const syncChips = (f: FilterFlags): void => {
+    for (const chip of filterChips) {
+      const key = chip.dataset["filter"] as keyof FilterFlags | undefined;
+      if (key === undefined) continue;
+      chip.setAttribute("aria-pressed", f[key] ? "true" : "false");
+    }
+  };
+  syncChips(initialState.filters);
+  for (const chip of filterChips) {
+    const key = chip.dataset["filter"] as keyof FilterFlags | undefined;
+    if (key === undefined) continue;
+    chip.addEventListener("click", () => {
+      const cur = store.get().filters;
+      const next: FilterFlags = { ...cur, [key]: !cur[key] };
+      store.set({ filters: next });
+    });
+  }
+  store.subscribe((s) => syncChips(s.filters));
 
   appEl.dataset["appReady"] = "true";
 }

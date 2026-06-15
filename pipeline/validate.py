@@ -49,3 +49,9 @@ def validate_document(doc: dict[str, Any]) -> None:
             raise jsonschema.ValidationError(
                 f"episode {ep['guid']!r}: year_end {ep['year_end']} < year_start {ep['year_start']}"
             )
+        if ep.get("series_id") is not None:
+            if ep["series_end"] < ep["series_start"]:
+                raise jsonschema.ValidationError(
+                    f"episode {ep['guid']!r}: series_end {ep['series_end']} "
+                    f"< series_start {ep['series_start']}"
+                )

@@ -37,7 +37,7 @@
   --timeline-year-font: 12px "Marcellus Sans", "Optima", sans-serif;
   --timeline-handle-year-font: 13px "Marcellus Sans", "Optima", sans-serif;
   --shadow-popup: 0 6px 24px -8px rgba(20, 18, 14, 0.25), 0 2px 6px -2px rgba(20, 18, 14, 0.15);
-  --timeline-height: 110px;
+  --timeline-height: 140px;
   font-family: var(--font-ui);
 }
 
@@ -106,6 +106,49 @@ body {
   background: transparent;
 }
 
+#filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 8px 0;
+}
+
+.filter-chip {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg-muted);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 160ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-chip:hover {
+  color: var(--fg);
+  border-color: var(--fg-muted);
+}
+
+.filter-chip[aria-pressed="true"] {
+  background: var(--popup-outline);
+  color: #fff8e7;
+  border-color: var(--popup-outline);
+}
+
+.filter-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* Play button is positioned absolutely at horizontal center so the speed
    pill changing text width never shifts it. Speed pill is anchored by its
    right edge a fixed distance left of center — also unaffected by the
@@ -118,6 +161,7 @@ body {
 }
 
 #speed-pill,
+#range-pill,
 #play-button {
   appearance: none;
   border: 0;
@@ -131,10 +175,8 @@ body {
   top: 50%;
 }
 
-#speed-pill {
-  /* Right edge anchored 20px left of horizontal center → text changes
-     are invisible because the button's right edge doesn't move. */
-  right: calc(50% + 20px);
+#speed-pill,
+#range-pill {
   width: 40px;
   height: 28px;
   font-size: 12px;
@@ -144,6 +186,17 @@ body {
   color: var(--fg-muted);
   transform: translateY(-50%);
   transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#speed-pill {
+  /* Right edge anchored 20px left of horizontal center → text changes
+     are invisible because the button's right edge doesn't move. */
+  right: calc(50% + 20px);
+}
+
+#range-pill {
+  /* Mirror of #speed-pill on the right side of the play button. */
+  left: calc(50% + 20px);
 }
 
 #play-button {
@@ -190,9 +243,10 @@ body {
   transform: scale(1);
 }
 
-/* Speed pill text: two overlaid spans crossfade-scale on every cycle,
-   same easing/timing as the play/pause icon morph. */
-.speed-text {
+/* Speed/range pill text: two overlaid spans crossfade-scale on every
+   cycle, same easing/timing as the play/pause icon morph. */
+.speed-text,
+.range-text {
   position: absolute;
   inset: 0;
   display: inline-flex;
@@ -205,17 +259,20 @@ body {
     transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.speed-text--active {
+.speed-text--active,
+.range-text--active {
   opacity: 1;
   transform: scale(1);
 }
 
 #speed-pill:hover,
+#range-pill:hover,
 #play-button:hover {
   color: var(--fg);
 }
 
-#speed-pill:active {
+#speed-pill:active,
+#range-pill:active {
   transform: translateY(-50%) scale(0.85);
 }
 
@@ -224,6 +281,7 @@ body {
 }
 
 #speed-pill:focus-visible,
+#range-pill:focus-visible,
 #play-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
@@ -246,6 +304,12 @@ body {
   font-size: 13px;
   color: var(--fg);
   transform-origin: var(--popup-origin, top left);
+}
+
+@media (min-width: 800px) {
+  .country-popup {
+    max-width: min(360px, calc(100vw - 24px));
+  }
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -352,6 +416,12 @@ body {
   flex-wrap: wrap;
   column-gap: 4px;
   row-gap: 0;
+}
+
+.ep-card__title-marker {
+  white-space: nowrap;
+  color: var(--fg-muted);
+  font-weight: 500;
 }
 
 .ep-card__meta-row {

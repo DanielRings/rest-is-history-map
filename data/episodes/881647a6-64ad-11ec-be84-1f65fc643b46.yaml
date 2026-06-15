@@ -1,0 +1,23 @@
+guid: 881647a6-64ad-11ec-be84-1f65fc643b46
+title: '4 Jan: Solomon Northup and Albert Camus'
+description: Tom analyses the historical importance of Solomon Northup's story, made
+  famous by Steve McQueen's '12 Years A Slave'. Then, Dominic delves into the death
+  of French philosopher and author Albert Camus. Tune in to also hear about the travails
+  of Monsieur Sandbrook, the 21-year-old Provence-based English language assistant.
+pub_date: '2021-12-25T02:10:00Z'
+access: public
+countries:
+  - USA
+  - FRA
+year_start: 1841
+year_end: 1960
+date_precision: decade
+kind: themed
+topics:
+  - slavery in america
+  - existentialism
+  - 12 years a slave
+historical_figures:
+  - Solomon Northup
+  - Albert Camus
+links: {}

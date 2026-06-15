@@ -1,0 +1,23 @@
+guid: 2a8fce7e-3048-11ed-bd6e-3712c649aa71
+title: Queen Elizabeth II - part 1
+description: The death of the Queen at the age of 96 brings to an end seven decades
+  of her reign over Britain and the Commonwealth. In the first of a two-part series,
+  Dominic Sandbrook and Tom Holland look back at the early years of Elizabeth's life,
+  leading up to her coronation.
+pub_date: '2022-09-09T14:02:32Z'
+access: public
+countries: [GBR]
+year_start: 1926
+year_end: 1953
+date_precision: decade
+kind: historical
+topics:
+  - queen elizabeth ii
+  - british monarchy
+  - coronation
+  - 20th century britain
+historical_figures:
+  - Elizabeth II
+series_id: "queen-elizabeth-ii"
+series_part: 1
+links: {}

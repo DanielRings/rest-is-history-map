@@ -6,6 +6,9 @@
   "description": "Frontend for the Rest Is History map+timeline browser.",
   "packageManager": "pnpm@11.1.3",
   "scripts": {
+    "copy-data": "node scripts/copy-data.mjs",
+    "predev": "pnpm run copy-data",
+    "prebuild": "pnpm run copy-data",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

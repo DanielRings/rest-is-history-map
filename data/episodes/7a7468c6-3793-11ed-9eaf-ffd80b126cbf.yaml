@@ -1,0 +1,27 @@
+guid: 7a7468c6-3793-11ed-9eaf-ffd80b126cbf
+title: China and World War II - Part 1
+description: "Friend of the show Rana Mitter joins Tom and Dominic this week to discuss\
+  \ the role of China in the Second World War. \n\nIn the first of two episodes, Rana,\
+  \ Tom and Dominic cover the fall of the last Emperor and the establishment of a\
+  \ Chinese Republic in 1912, the Opium Wars, warlords, and the Kuomintang uniting China.\
+  \ \n\nPlus, tune in to find out why Rana argues that the Second World War actually\
+  \ began in 1937...\n\nTwitter:\n@TheRestHistory\n@holland_tom\n@dcsandbrook\n\n\
+  Email: restishistorypod@gmail.com"
+pub_date: '2022-09-19T01:00:00Z'
+access: public
+countries:
+- CHN
+year_start: 1912
+year_end: 1945
+date_precision: era
+kind: historical
+topics:
+- china
+- world war ii
+- chinese history
+- kuomintang
+historical_figures:
+- Rana Mitter
+series_id: "china-and-world-war-ii"
+series_part: 1
+links: {}

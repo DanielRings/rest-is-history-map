@@ -31,6 +31,14 @@ export interface Episode {
   historical_figures: readonly string[];
   series_id?: string;
   series_part?: number;
+  series_start?: number;
+  series_end?: number;
+  /** Sort anchor for this episode. Pipeline injects a default = midpoint
+   *  of year_start / year_end (bumped to 1 if midpoint would be 0). */
+  year_anchor?: number;
+  /** Sort anchor for the whole series. Pipeline injects a default =
+   *  midpoint of series_start / series_end. Same value on every part. */
+  series_year_anchor?: number;
   links: EpisodeLinks;
 }
 

@@ -1,0 +1,40 @@
+guid: 1352675a-4bda-11ed-b357-ebf24540eff4
+title: 'Trafalgar: A World at War (Ep 1)'
+description: 'Was the Battle of Trafalgar the most decisive battle of the 19th century?
+  Join Tom and Dominic as they embark on a three part series discussing this incredible
+  conflict between the British Royal Navy and combined fleets of the French and Spanish
+  navies. In this episode they discuss: the distrust between the standing army and
+  the Royal Navy; technology used for the first time during Trafalgar; and the martyr-like
+  status of Horatio Nelson, who led the British to victory.
+
+
+  Twitter:
+
+
+  @TheRestHistory
+
+
+  @holland_tom
+
+
+  @dcsandbrook
+
+
+  Email: restishistorypod@gmail.com'
+pub_date: '2022-10-17T01:00:00Z'
+access: public
+countries: [GBR, FRA, ESP]
+year_start: 1805
+year_end: 1805
+date_precision: year
+kind: historical
+topics:
+  - battle of trafalgar
+  - napoleonic wars
+  - naval warfare
+  - horatio nelson
+historical_figures:
+  - Horatio Nelson
+series_id: "trafalgar"
+series_part: 1
+links: {}

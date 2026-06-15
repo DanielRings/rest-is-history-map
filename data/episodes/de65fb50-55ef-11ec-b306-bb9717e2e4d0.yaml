@@ -1,0 +1,23 @@
+guid: de65fb50-55ef-11ec-b306-bb9717e2e4d0
+title: Rasputin
+description: The peasant who became one of the most influential figures in the final
+  days of the Russian Empire is an unbelievable story. But how much of the gossip,
+  rumour and scandal that surrounded Grigori Rasputin is true? Dominic and Tom discuss,
+  and somehow manage not to get too sidetracked by Boney M.
+pub_date: '2021-12-06T02:00:00Z'
+access: public
+countries:
+- RUS
+year_start: 1869
+year_end: 1916
+date_precision: era
+kind: historical
+topics:
+- rasputin
+- russian empire
+- russian nobility
+- scandals
+- peasant influence
+historical_figures:
+- Grigori Rasputin
+links: {}

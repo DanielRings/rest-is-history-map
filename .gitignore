@@ -40,6 +40,7 @@ notebooks/
 frontend/dist/
 frontend/test-results/
 frontend/playwright-report/
+frontend/public/data/
 
 # Claude Code per-machine settings
 .claude/settings.local.json

@@ -18,10 +18,40 @@
         <div id="map-texture" aria-hidden="true"></div>
       </div>
       <div id="timeline-wrap">
+        <div id="filter-chips" role="group" aria-label="Episode filters">
+          <button
+            type="button"
+            class="filter-chip"
+            data-filter="hideClub"
+            aria-pressed="true"
+          >
+            Hide Club
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-filter="hideNonHistorical"
+            aria-pressed="false"
+          >
+            Historical only
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-filter="narrowOnly"
+            aria-pressed="false"
+          >
+            Narrow episodes only
+          </button>
+        </div>
         <div id="timeline-controls" role="group" aria-label="Playback controls">
           <button id="speed-pill" type="button" aria-label="Playback speed">
             <span class="speed-text speed-text--active">1&times;</span>
             <span class="speed-text" aria-hidden="true"></span>
+          </button>
+          <button id="range-pill" type="button" aria-label="Playback range">
+            <span class="range-text range-text--active">1y</span>
+            <span class="range-text" aria-hidden="true"></span>
           </button>
           <button id="play-button" type="button" aria-label="Play" data-state="paused">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
