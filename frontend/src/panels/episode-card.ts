@@ -27,22 +27,35 @@ export function renderEpisodeCard(ep: Episode): HTMLElement {
 
   const title = document.createElement("h3");
   title.className = "ep-card__title";
+  // Split off the trailing series-part marker first ("(Part 3)", "(Ep 1)",
+  // "(Episode 4)") so it can render in its own nowrap span — keeps the
+  // parenthesized bit from breaking across lines mid-token.
+  const markerMatch = /\s*\((?:Ep|Episode|Part)\s+\d+\)\s*$/i.exec(ep.title);
+  const rawTitle = markerMatch ? ep.title.slice(0, markerMatch.index) : ep.title;
   // Prefer wrapping at the first colon: split into prefix + rest spans and
   // let flex-wrap decide. "Bonus: A Roman Saturnalia" → two flex children,
   // "Bonus:" and "A Roman Saturnalia". When both fit one line they sit
   // side-by-side; when the line overflows the rest drops to its own line.
-  const colonIdx = ep.title.indexOf(":");
-  if (colonIdx > 0 && colonIdx < ep.title.length - 1) {
+  const colonIdx = rawTitle.indexOf(":");
+  if (colonIdx > 0 && colonIdx < rawTitle.length - 1) {
     const prefix = document.createElement("span");
     prefix.className = "ep-card__title-prefix";
-    prefix.textContent = ep.title.slice(0, colonIdx + 1);
+    prefix.textContent = rawTitle.slice(0, colonIdx + 1);
     title.appendChild(prefix);
     const rest = document.createElement("span");
     rest.className = "ep-card__title-rest";
-    rest.textContent = ep.title.slice(colonIdx + 1).trimStart();
+    rest.textContent = rawTitle.slice(colonIdx + 1).trimStart();
     title.appendChild(rest);
   } else {
-    title.textContent = ep.title;
+    const main = document.createElement("span");
+    main.textContent = rawTitle;
+    title.appendChild(main);
+  }
+  if (markerMatch) {
+    const marker = document.createElement("span");
+    marker.className = "ep-card__title-marker";
+    marker.textContent = markerMatch[0].trim();
+    title.appendChild(marker);
   }
   titleRow.appendChild(title);
 

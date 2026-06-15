@@ -28,7 +28,10 @@ test.beforeEach(async ({ page }) => {
   await page.route("**/data/episodes.json", (route) =>
     route.fulfill({ status: 200, contentType: "application/json", body: SAMPLE_JSON }),
   );
-  await page.goto("/");
+  // The default filter set hides Club episodes; the sample fixture's
+  // Saturnalia entry is members-only and several tests assert on it.
+  // Land on the page with all filters off so those assertions hold.
+  await page.goto("/#-3000,2025/20.000,10.000,0.00/f=none");
   await expect(page.locator(READY_SELECTOR)).toBeVisible({ timeout: 30_000 });
 });
 
@@ -92,7 +95,9 @@ test("scrub to AD 1400–1500: Turkey popup shows the two Constantinople episode
 
 test("URL hash updates after timeline scrub and after country click", async ({ page }) => {
   const initialHash = await page.evaluate(() => window.location.hash);
-  expect(initialHash).toMatch(/^#-?\d+,-?\d+\/-?\d+\.\d{3},-?\d+\.\d{3},-?\d+\.\d{2}$/);
+  expect(initialHash).toMatch(
+    /^#-?\d+,-?\d+\/-?\d+\.\d{3},-?\d+\.\d{3},-?\d+\.\d{2}(?:\/f=[a-z,]+)?$/,
+  );
 
   await page.evaluate(() => window.__setTimeWindow?.(1400, 1500));
   const afterScrub = await page.evaluate(() => window.location.hash);

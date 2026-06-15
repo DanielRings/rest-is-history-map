@@ -1,22 +1,50 @@
 /**
  * URL hash sync — shareable Discord links.
  *
- * Format: `#tStart,tEnd/lat,lon,zoom`
+ * Format: `#tStart,tEnd/lat,lon,zoom[/f=club,nonhist,narrow]`
  *   tStart, tEnd: integer years
  *   lat:  −90..90, fixed 3 decimals
  *   lon:  −180..180, fixed 3 decimals
  *   zoom: 0..24, fixed 2 decimals
+ *   f=…:  comma-separated active filter flags (optional segment)
  *
  * A malformed hash is treated as "no hash present" (decodeHash returns
  * null). URLs are external input; for *internal* validation paths we still
  * throw per the project's no-fallback rule.
  */
 
-import type { TimeWindow } from "../filter/predicate";
+import { DEFAULT_FILTERS, type FilterFlags, type TimeWindow } from "../filter/predicate";
 import type { AppState, Store } from "./store";
 
 /** Subset of AppState that the URL hash round-trips. */
-export type HashFragment = Pick<AppState, "window" | "mapCenter" | "mapZoom">;
+export type HashFragment = Pick<AppState, "window" | "mapCenter" | "mapZoom" | "filters">;
+
+const FILTER_HASH_KEYS: ReadonlyArray<[keyof FilterFlags, string]> = [
+  ["hideClub", "club"],
+  ["hideNonHistorical", "nonhist"],
+  ["narrowOnly", "narrow"],
+];
+
+function encodeFilters(f: FilterFlags): string {
+  const on = FILTER_HASH_KEYS.filter(([k]) => f[k]).map(([, label]) => label);
+  return on.length === 0 ? "f=none" : `f=${on.join(",")}`;
+}
+
+function decodeFilters(seg: string): FilterFlags | null {
+  if (!seg.startsWith("f=")) return null;
+  const value = seg.slice(2);
+  const out: FilterFlags = { hideClub: false, hideNonHistorical: false, narrowOnly: false };
+  if (value === "none") return out;
+  const labels = new Set(value.split(",").filter(Boolean));
+  for (const [k, label] of FILTER_HASH_KEYS) {
+    if (labels.has(label)) {
+      out[k] = true;
+      labels.delete(label);
+    }
+  }
+  if (labels.size > 0) return null; // unknown label — treat hash as malformed
+  return out;
+}
 
 /**
  * Render a hash fragment into the canonical `#tStart,tEnd/lat,lon,zoom`
@@ -27,7 +55,14 @@ export function encodeHash(s: HashFragment): string {
   const t = `${Math.round(s.window.start)},${Math.round(s.window.end)}`;
   const c = `${s.mapCenter[1].toFixed(3)},${s.mapCenter[0].toFixed(3)}`;
   const z = s.mapZoom.toFixed(2);
-  return `#${t}/${c},${z}`;
+  // Omit the filter segment entirely when every flag matches the default —
+  // keeps the common case's hash short and noise-free.
+  const filtersMatchDefault =
+    s.filters.hideClub === DEFAULT_FILTERS.hideClub &&
+    s.filters.hideNonHistorical === DEFAULT_FILTERS.hideNonHistorical &&
+    s.filters.narrowOnly === DEFAULT_FILTERS.narrowOnly;
+  const f = filtersMatchDefault ? "" : `/${encodeFilters(s.filters)}`;
+  return `#${t}/${c},${z}${f}`;
 }
 
 /**
@@ -39,10 +74,18 @@ export function encodeHash(s: HashFragment): string {
 export function decodeHash(hash: string): HashFragment | null {
   if (hash === "" || hash === "#") return null;
   const body = hash.startsWith("#") ? hash.slice(1) : hash;
-  const slash = body.indexOf("/");
-  if (slash === -1) return null;
-  const tPart = body.slice(0, slash);
-  const camPart = body.slice(slash + 1);
+  const segs = body.split("/");
+  if (segs.length < 2 || segs.length > 3) return null;
+  const tPart = segs[0];
+  const camPart = segs[1];
+  const filterPart = segs[2];
+  if (tPart === undefined || camPart === undefined) return null;
+  let filters: FilterFlags = { ...DEFAULT_FILTERS };
+  if (filterPart !== undefined) {
+    const parsed = decodeFilters(filterPart);
+    if (parsed === null) return null;
+    filters = parsed;
+  }
   const tBits = tPart.split(",");
   const camBits = camPart.split(",");
   if (tBits.length !== 2 || camBits.length !== 3) return null;
@@ -79,7 +122,7 @@ export function decodeHash(hash: string): HashFragment | null {
     return null;
   }
   const window: TimeWindow = { start: tStart, end: tEnd };
-  return { window, mapCenter: [lon, lat], mapZoom: zoom };
+  return { window, mapCenter: [lon, lat], mapZoom: zoom, filters };
 }
 
 /**
@@ -98,6 +141,7 @@ export function wireHashSync(store: Store<AppState>): () => void {
       window: s.window,
       mapCenter: s.mapCenter,
       mapZoom: s.mapZoom,
+      filters: s.filters,
     };
     const next = encodeHash(fragment);
     if (next === lastWritten) return;
@@ -115,6 +159,7 @@ export function wireHashSync(store: Store<AppState>): () => void {
       window: parsed.window,
       mapCenter: parsed.mapCenter,
       mapZoom: parsed.mapZoom,
+      filters: parsed.filters,
     });
   };
 

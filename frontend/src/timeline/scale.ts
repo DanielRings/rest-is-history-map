@@ -45,10 +45,10 @@ export const TIMELINE_BOUNDS: { readonly min: number; readonly max: number } = {
 };
 
 /** Anchor years exposed to callers that want to draw tick labels.
- *  Year 1 is added on top of the anchor list as the BC/AD boundary marker;
- *  it isn't an anchor (the piecewise scale already interpolates through it)
- *  but it earns its own tick because formatYearTick(1) renders as "AD 1". */
-export const TIMELINE_TICKS: readonly number[] = [...ANCHORS.map((a) => a.year), 1].sort(
+ *  Year 1 is added as the BC/AD boundary marker and year 1000 as the
+ *  millennium marker — neither is a piecewise anchor (the scale already
+ *  interpolates through them) but each earns its own tick for readability. */
+export const TIMELINE_TICKS: readonly number[] = [...ANCHORS.map((a) => a.year), 1, 1000].sort(
   (a, b) => a - b,
 );
 

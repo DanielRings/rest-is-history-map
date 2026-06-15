@@ -113,6 +113,34 @@
           "minimum": 1,
           "description": "Optional. 1-indexed part number within series_id."
         },
+        "series_start": {
+          "type": "integer",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 },
+          "description": "Derived. year_start of the lowest-numbered part in this series. Injected by pipeline.emit; consumers may prefer it over the per-episode year_start when displaying a series as one block."
+        },
+        "series_end": {
+          "type": "integer",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 },
+          "description": "Derived. year_end of the highest-numbered part in this series. Injected by pipeline.emit."
+        },
+        "year_anchor": {
+          "type": "integer",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 },
+          "description": "Sort/playback anchor for this episode. Defaults to the midpoint of year_start and year_end (bumped to 1 if midpoint would be 0). Authors may override in YAML to point at the episode's center-of-gravity year when the start/end range is wider than the episode's real focus."
+        },
+        "series_year_anchor": {
+          "type": "integer",
+          "minimum": -10000,
+          "maximum": 3000,
+          "not": { "const": 0 },
+          "description": "Sort/playback anchor for the whole series. Defaults to the midpoint of series_start and series_end. Authors may override in YAML on any part (the pipeline propagates the override to siblings). Consumers use this when ≥2 parts of a series are visible together."
+        },
         "links": {
           "type": "object",
           "additionalProperties": false,
@@ -125,7 +153,8 @@
         }
       },
       "dependentRequired": {
-        "series_part": ["series_id"]
+        "series_part": ["series_id"],
+        "series_id": ["series_part", "series_start", "series_end"]
       }
     },
     "iso3": {
