@@ -3,6 +3,122 @@
   "generated_at": "2026-05-20T00:00:00Z",
   "episodes": [
     {
+      "guid": "sample-augustus",
+      "title": "Augustus: First Roman Emperor",
+      "description": "From the chaos of civil war to the Pax Romana — how Octavian became Augustus and ruled an empire spanning the Mediterranean for over forty years.",
+      "pub_date": "2024-04-08T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "ITA"
+      ],
+      "year_start": -27,
+      "year_end": 14,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "Roman Empire",
+        "principate"
+      ],
+      "historical_figures": [
+        "Augustus",
+        "Livia",
+        "Agrippa"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-augustus",
+        "spotify": "https://open.spotify.com/episode/sample-augustus"
+      },
+      "year_anchor": -7
+    },
+    {
+      "guid": "sample-bonus-saturnalia",
+      "title": "Bonus: A Roman Saturnalia",
+      "description": "A Club-only festive special: Tom and Dominic on the riotous Roman midwinter festival of Saturnalia — the inversion of the social order, the gambling, the gifts, and what survives in our own Christmas.",
+      "pub_date": "2023-12-20T07:00:00Z",
+      "access": "members",
+      "countries": [
+        "ITA"
+      ],
+      "year_start": -50,
+      "year_end": 50,
+      "date_precision": "century",
+      "kind": "historical",
+      "topics": [
+        "Roman religion",
+        "festivals",
+        "Saturnalia"
+      ],
+      "historical_figures": [],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bonus-saturnalia",
+        "spotify": "https://open.spotify.com/episode/sample-bonus-saturnalia"
+      },
+      "year_anchor": 1
+    },
+    {
+      "guid": "sample-boundary-jesus",
+      "title": "The Birth of Christianity",
+      "description": "From the Judean countryside under Roman occupation to a movement that would, within centuries, conquer the empire that crucified its founder.",
+      "pub_date": "2023-12-25T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "ISR",
+        "PSE"
+      ],
+      "year_start": -1,
+      "year_end": 1,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "Christianity",
+        "Roman Judea"
+      ],
+      "historical_figures": [
+        "Jesus of Nazareth",
+        "Herod the Great",
+        "Augustus"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-boundary-jesus",
+        "spotify": "https://open.spotify.com/episode/sample-boundary-jesus"
+      },
+      "year_anchor": 1
+    },
+    {
+      "guid": "sample-bronze-age",
+      "title": "The Late Bronze Age Collapse",
+      "description": "Around 1200 BC, the great palace civilisations of the eastern Mediterranean — Mycenae, the Hittites, the New Kingdom of Egypt — all collapsed within a century. Tom and Dominic on the Sea Peoples, climate change, and the end of an age.",
+      "pub_date": "2024-07-15T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "EGY",
+        "TUR",
+        "GRC",
+        "SYR",
+        "LBN",
+        "ISR",
+        "CYP"
+      ],
+      "year_start": -1200,
+      "year_end": -1150,
+      "date_precision": "era",
+      "kind": "historical",
+      "topics": [
+        "Bronze Age",
+        "Sea Peoples",
+        "climate",
+        "collapse"
+      ],
+      "historical_figures": [
+        "Ramesses III"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bronze-age",
+        "spotify": "https://open.spotify.com/episode/sample-bronze-age"
+      },
+      "year_anchor": -1175
+    },
+    {
       "guid": "sample-caesar-ides",
       "title": "The Ides of March",
       "description": "Tom and Dominic on the assassination of Julius Caesar on 15 March 44 BC, and how a single act of conspiracy in the Theatre of Pompey reshaped the Mediterranean world.",
@@ -29,34 +145,207 @@
       "links": {
         "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-caesar-ides",
         "spotify": "https://open.spotify.com/episode/sample-caesar-ides"
-      }
+      },
+      "year_anchor": -44
     },
     {
-      "guid": "sample-augustus",
-      "title": "Augustus: First Roman Emperor",
-      "description": "From the chaos of civil war to the Pax Romana \u2014 how Octavian became Augustus and ruled an empire spanning the Mediterranean for over forty years.",
-      "pub_date": "2024-04-08T07:00:00Z",
+      "guid": "sample-constantinople-1",
+      "title": "The Fall of Constantinople, Part 1: The City",
+      "description": "The thousand-year history of Constantinople, from its founding by Constantine the Great to the eve of the Ottoman siege of 1453.",
+      "pub_date": "2024-05-29T07:00:00Z",
       "access": "public",
       "countries": [
-        "ITA"
+        "TUR",
+        "GRC"
       ],
-      "year_start": -27,
-      "year_end": 14,
+      "year_start": 330,
+      "year_end": 1453,
       "date_precision": "year",
       "kind": "historical",
       "topics": [
-        "Roman Empire",
-        "principate"
+        "Byzantine Empire",
+        "siege",
+        "Ottoman conquest"
       ],
       "historical_figures": [
-        "Augustus",
-        "Livia",
-        "Agrippa"
+        "Constantine XI Palaiologos",
+        "Mehmed II"
+      ],
+      "series_id": "constantinople-2024",
+      "series_part": 1,
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-constantinople-1",
+        "spotify": "https://open.spotify.com/episode/sample-constantinople-1"
+      },
+      "series_start": 330,
+      "series_end": 1453,
+      "series_year_anchor": 891,
+      "year_anchor": 891
+    },
+    {
+      "guid": "sample-constantinople-2",
+      "title": "The Fall of Constantinople, Part 2: The Siege",
+      "description": "Mehmed II's seven-week siege of the walls of Theodosius, the death of the last Roman emperor, and the end of the Middle Ages.",
+      "pub_date": "2024-05-30T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "TUR",
+        "GRC"
+      ],
+      "year_start": 1453,
+      "year_end": 1453,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "Byzantine Empire",
+        "siege",
+        "Ottoman conquest"
+      ],
+      "historical_figures": [
+        "Constantine XI Palaiologos",
+        "Mehmed II",
+        "Giustiniani"
+      ],
+      "series_id": "constantinople-2024",
+      "series_part": 2,
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-constantinople-2",
+        "spotify": "https://open.spotify.com/episode/sample-constantinople-2"
+      },
+      "series_start": 330,
+      "series_end": 1453,
+      "series_year_anchor": 891,
+      "year_anchor": 1453
+    },
+    {
+      "guid": "sample-interview-hughes",
+      "title": "In Conversation with Bettany Hughes",
+      "description": "Tom Holland sits down with Bettany Hughes to talk about her career as a historian and broadcaster, and the joys and perils of writing popular history.",
+      "pub_date": "2024-06-03T07:00:00Z",
+      "access": "public",
+      "countries": [],
+      "year_start": 1900,
+      "year_end": 2024,
+      "date_precision": "year",
+      "kind": "interview",
+      "topics": [
+        "popular history",
+        "broadcasting"
+      ],
+      "historical_figures": [
+        "Bettany Hughes"
       ],
       "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-augustus",
-        "spotify": "https://open.spotify.com/episode/sample-augustus"
-      }
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-interview-hughes",
+        "spotify": "https://open.spotify.com/episode/sample-interview-hughes"
+      },
+      "year_anchor": 1962
+    },
+    {
+      "guid": "sample-lincoln",
+      "title": "Abraham Lincoln",
+      "description": "From Kentucky log cabin to the White House: the life and presidency of America's sixteenth president, and the Civil War that defined him.",
+      "pub_date": "2024-02-12T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "USA"
+      ],
+      "year_start": 1809,
+      "year_end": 1865,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "American Civil War",
+        "presidency",
+        "emancipation"
+      ],
+      "historical_figures": [
+        "Abraham Lincoln",
+        "Mary Todd Lincoln",
+        "John Wilkes Booth"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-lincoln",
+        "spotify": "https://open.spotify.com/episode/sample-lincoln"
+      },
+      "year_anchor": 1837
+    },
+    {
+      "guid": "sample-listener-rome",
+      "title": "Listener Questions: Ancient Rome",
+      "description": "Tom and Dominic answer listener questions about Roman gladiators, latrines, slavery, and just what exactly happened at a triumph.",
+      "pub_date": "2024-01-29T07:00:00Z",
+      "access": "public",
+      "countries": [],
+      "year_start": -750,
+      "year_end": 476,
+      "date_precision": "era",
+      "kind": "themed",
+      "topics": [
+        "listener questions",
+        "Roman daily life"
+      ],
+      "historical_figures": [],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-listener-rome",
+        "spotify": "https://open.spotify.com/episode/sample-listener-rome"
+      },
+      "year_anchor": -137
+    },
+    {
+      "guid": "sample-live-london",
+      "title": "Live in London: The Hundred Years' War",
+      "description": "Recorded live at the Royal Festival Hall: Tom and Dominic on Edward III, the Black Prince, Agincourt, and how England and France made one another.",
+      "pub_date": "2024-09-12T07:00:00Z",
+      "access": "public",
+      "countries": [
+        "FRA",
+        "GBR"
+      ],
+      "year_start": 1337,
+      "year_end": 1453,
+      "date_precision": "year",
+      "kind": "live",
+      "topics": [
+        "Hundred Years' War",
+        "medieval warfare",
+        "chivalry"
+      ],
+      "historical_figures": [
+        "Edward III",
+        "Henry V",
+        "Joan of Arc"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-live-london",
+        "spotify": "https://open.spotify.com/episode/sample-live-london"
+      },
+      "year_anchor": 1395
+    },
+    {
+      "guid": "sample-meta-anniversary",
+      "title": "How We Make The Rest Is History",
+      "description": "Tom and Dominic pull back the curtain: how episodes get chosen, how the research happens, and what they argue about most.",
+      "pub_date": "2024-10-01T07:00:00Z",
+      "access": "public",
+      "countries": [],
+      "year_start": 2020,
+      "year_end": 2024,
+      "date_precision": "year",
+      "kind": "meta",
+      "topics": [
+        "behind the scenes",
+        "podcast craft"
+      ],
+      "historical_figures": [
+        "Tom Holland",
+        "Dominic Sandbrook"
+      ],
+      "links": {
+        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-meta-anniversary",
+        "spotify": "https://open.spotify.com/episode/sample-meta-anniversary"
+      },
+      "year_anchor": 2022
     },
     {
       "guid": "sample-mongol-empire",
@@ -93,283 +382,13 @@
       "historical_figures": [
         "Genghis Khan",
         "Kublai Khan",
-        "\u00d6gedei Khan"
+        "Ögedei Khan"
       ],
       "links": {
         "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-mongol-empire",
         "spotify": "https://open.spotify.com/episode/sample-mongol-empire"
-      }
-    },
-    {
-      "guid": "sample-lincoln",
-      "title": "Abraham Lincoln",
-      "description": "From Kentucky log cabin to the White House: the life and presidency of America's sixteenth president, and the Civil War that defined him.",
-      "pub_date": "2024-02-12T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "USA"
-      ],
-      "year_start": 1809,
-      "year_end": 1865,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "American Civil War",
-        "presidency",
-        "emancipation"
-      ],
-      "historical_figures": [
-        "Abraham Lincoln",
-        "Mary Todd Lincoln",
-        "John Wilkes Booth"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-lincoln",
-        "spotify": "https://open.spotify.com/episode/sample-lincoln"
-      }
-    },
-    {
-      "guid": "sample-interview-hughes",
-      "title": "In Conversation with Bettany Hughes",
-      "description": "Tom Holland sits down with Bettany Hughes to talk about her career as a historian and broadcaster, and the joys and perils of writing popular history.",
-      "pub_date": "2024-06-03T07:00:00Z",
-      "access": "public",
-      "countries": [],
-      "year_start": 1900,
-      "year_end": 2024,
-      "date_precision": "year",
-      "kind": "interview",
-      "topics": [
-        "popular history",
-        "broadcasting"
-      ],
-      "historical_figures": [
-        "Bettany Hughes"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-interview-hughes",
-        "spotify": "https://open.spotify.com/episode/sample-interview-hughes"
-      }
-    },
-    {
-      "guid": "sample-listener-rome",
-      "title": "Listener Questions: Ancient Rome",
-      "description": "Tom and Dominic answer listener questions about Roman gladiators, latrines, slavery, and just what exactly happened at a triumph.",
-      "pub_date": "2024-01-29T07:00:00Z",
-      "access": "public",
-      "countries": [],
-      "year_start": -750,
-      "year_end": 476,
-      "date_precision": "era",
-      "kind": "themed",
-      "topics": [
-        "listener questions",
-        "Roman daily life"
-      ],
-      "historical_figures": [],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-listener-rome",
-        "spotify": "https://open.spotify.com/episode/sample-listener-rome"
-      }
-    },
-    {
-      "guid": "sample-constantinople-1",
-      "title": "The Fall of Constantinople, Part 1: The City",
-      "description": "The thousand-year history of Constantinople, from its founding by Constantine the Great to the eve of the Ottoman siege of 1453.",
-      "pub_date": "2024-05-29T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "TUR",
-        "GRC"
-      ],
-      "year_start": 330,
-      "year_end": 1453,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "Byzantine Empire",
-        "siege",
-        "Ottoman conquest"
-      ],
-      "historical_figures": [
-        "Constantine XI Palaiologos",
-        "Mehmed II"
-      ],
-      "series_id": "constantinople-2024",
-      "series_part": 1,
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-constantinople-1",
-        "spotify": "https://open.spotify.com/episode/sample-constantinople-1"
-      }
-    },
-    {
-      "guid": "sample-constantinople-2",
-      "title": "The Fall of Constantinople, Part 2: The Siege",
-      "description": "Mehmed II's seven-week siege of the walls of Theodosius, the death of the last Roman emperor, and the end of the Middle Ages.",
-      "pub_date": "2024-05-30T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "TUR",
-        "GRC"
-      ],
-      "year_start": 1453,
-      "year_end": 1453,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "Byzantine Empire",
-        "siege",
-        "Ottoman conquest"
-      ],
-      "historical_figures": [
-        "Constantine XI Palaiologos",
-        "Mehmed II",
-        "Giustiniani"
-      ],
-      "series_id": "constantinople-2024",
-      "series_part": 2,
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-constantinople-2",
-        "spotify": "https://open.spotify.com/episode/sample-constantinople-2"
-      }
-    },
-    {
-      "guid": "sample-bonus-saturnalia",
-      "title": "Bonus: A Roman Saturnalia",
-      "description": "A Club-only festive special: Tom and Dominic on the riotous Roman midwinter festival of Saturnalia \u2014 the inversion of the social order, the gambling, the gifts, and what survives in our own Christmas.",
-      "pub_date": "2023-12-20T07:00:00Z",
-      "access": "members",
-      "countries": [
-        "ITA"
-      ],
-      "year_start": -50,
-      "year_end": 50,
-      "date_precision": "century",
-      "kind": "historical",
-      "topics": [
-        "Roman religion",
-        "festivals",
-        "Saturnalia"
-      ],
-      "historical_figures": [],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bonus-saturnalia",
-        "spotify": "https://open.spotify.com/episode/sample-bonus-saturnalia"
-      }
-    },
-    {
-      "guid": "sample-bronze-age",
-      "title": "The Late Bronze Age Collapse",
-      "description": "Around 1200 BC, the great palace civilisations of the eastern Mediterranean \u2014 Mycenae, the Hittites, the New Kingdom of Egypt \u2014 all collapsed within a century. Tom and Dominic on the Sea Peoples, climate change, and the end of an age.",
-      "pub_date": "2024-07-15T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "EGY",
-        "TUR",
-        "GRC",
-        "SYR",
-        "LBN",
-        "ISR",
-        "CYP"
-      ],
-      "year_start": -1200,
-      "year_end": -1150,
-      "date_precision": "era",
-      "kind": "historical",
-      "topics": [
-        "Bronze Age",
-        "Sea Peoples",
-        "climate",
-        "collapse"
-      ],
-      "historical_figures": [
-        "Ramesses III"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-bronze-age",
-        "spotify": "https://open.spotify.com/episode/sample-bronze-age"
-      }
-    },
-    {
-      "guid": "sample-live-london",
-      "title": "Live in London: The Hundred Years' War",
-      "description": "Recorded live at the Royal Festival Hall: Tom and Dominic on Edward III, the Black Prince, Agincourt, and how England and France made one another.",
-      "pub_date": "2024-09-12T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "FRA",
-        "GBR"
-      ],
-      "year_start": 1337,
-      "year_end": 1453,
-      "date_precision": "year",
-      "kind": "live",
-      "topics": [
-        "Hundred Years' War",
-        "medieval warfare",
-        "chivalry"
-      ],
-      "historical_figures": [
-        "Edward III",
-        "Henry V",
-        "Joan of Arc"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-live-london",
-        "spotify": "https://open.spotify.com/episode/sample-live-london"
-      }
-    },
-    {
-      "guid": "sample-meta-anniversary",
-      "title": "How We Make The Rest Is History",
-      "description": "Tom and Dominic pull back the curtain: how episodes get chosen, how the research happens, and what they argue about most.",
-      "pub_date": "2024-10-01T07:00:00Z",
-      "access": "public",
-      "countries": [],
-      "year_start": 2020,
-      "year_end": 2024,
-      "date_precision": "year",
-      "kind": "meta",
-      "topics": [
-        "behind the scenes",
-        "podcast craft"
-      ],
-      "historical_figures": [
-        "Tom Holland",
-        "Dominic Sandbrook"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-meta-anniversary",
-        "spotify": "https://open.spotify.com/episode/sample-meta-anniversary"
-      }
-    },
-    {
-      "guid": "sample-boundary-jesus",
-      "title": "The Birth of Christianity",
-      "description": "From the Judean countryside under Roman occupation to a movement that would, within centuries, conquer the empire that crucified its founder.",
-      "pub_date": "2023-12-25T07:00:00Z",
-      "access": "public",
-      "countries": [
-        "ISR",
-        "PSE"
-      ],
-      "year_start": -1,
-      "year_end": 1,
-      "date_precision": "year",
-      "kind": "historical",
-      "topics": [
-        "Christianity",
-        "Roman Judea"
-      ],
-      "historical_figures": [
-        "Jesus of Nazareth",
-        "Herod the Great",
-        "Augustus"
-      ],
-      "links": {
-        "apple": "https://podcasts.apple.com/podcast/the-rest-is-history/id1537788786?i=sample-boundary-jesus",
-        "spotify": "https://open.spotify.com/episode/sample-boundary-jesus"
-      }
+      },
+      "year_anchor": 1287
     }
   ]
 }

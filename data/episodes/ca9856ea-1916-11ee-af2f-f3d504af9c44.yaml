@@ -29,17 +29,20 @@ pub_date: '2023-07-03T01:10:00Z'
 access: public
 countries:
 - USA
+- GBR
 - FRA
 year_start: 1776
 year_end: 1776
 date_precision: year
 kind: historical
 topics:
-  - american revolution
-  - independence
-  - george washington
-  - declaration of independence
+- american revolution
+- independence
+- george washington
+- declaration of independence
 historical_figures:
-  - George Washington
-  - King George III
+- George Washington
+- King George III
+series_id: american-revolution
+series_part: 3
 links: {}

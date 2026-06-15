@@ -11,6 +11,73 @@ import type { Episode } from "../data/episodes";
 
 import { renderEpisodeCard } from "./episode-card";
 
+/**
+ * Order a country's episodes for the popup body.
+ *
+ * Multi-part series (episodes sharing a `series_id`) render contiguously
+ * in `series_part` order. Each unit (a standalone episode or a series
+ * block with ≥2 parts present) sorts by its anchor year:
+ *   - series with ≥2 parts present → `series_year_anchor` (or midpoint fallback)
+ *   - everything else → `year_anchor` (or midpoint fallback)
+ * Ties break on the unit's start year for stability.
+ */
+function midpoint(start: number, end: number): number {
+  const m = Math.trunc((start + end) / 2);
+  return m === 0 ? 1 : m;
+}
+
+function buildOrderedEpisodes(episodes: readonly Episode[]): readonly Episode[] {
+  interface Unit {
+    items: readonly Episode[];
+    sortAnchor: number;
+    sortStart: number;
+  }
+  const seriesGroups = new Map<string, Episode[]>();
+  const standalone: Episode[] = [];
+  for (const ep of episodes) {
+    if (ep.series_id !== undefined) {
+      const arr = seriesGroups.get(ep.series_id) ?? [];
+      arr.push(ep);
+      seriesGroups.set(ep.series_id, arr);
+    } else {
+      standalone.push(ep);
+    }
+  }
+  const units: Unit[] = [];
+  for (const ep of standalone) {
+    units.push({
+      items: [ep],
+      sortAnchor: ep.year_anchor ?? midpoint(ep.year_start, ep.year_end),
+      sortStart: ep.year_start,
+    });
+  }
+  for (const arr of seriesGroups.values()) {
+    const ordered = [...arr].sort(
+      (a, b) => (a.series_part ?? Number.POSITIVE_INFINITY) - (b.series_part ?? Number.POSITIVE_INFINITY),
+    );
+    const first = ordered[0];
+    if (first === undefined) continue;
+    const useSeries = ordered.length >= 2 && first.series_start !== undefined && first.series_end !== undefined;
+    if (useSeries) {
+      const seriesAnchor =
+        first.series_year_anchor ?? midpoint(first.series_start as number, first.series_end as number);
+      units.push({
+        items: ordered,
+        sortAnchor: seriesAnchor,
+        sortStart: first.series_start as number,
+      });
+    } else {
+      units.push({
+        items: ordered,
+        sortAnchor: first.year_anchor ?? midpoint(first.year_start, first.year_end),
+        sortStart: first.year_start,
+      });
+    }
+  }
+  units.sort((a, b) => a.sortAnchor - b.sortAnchor || a.sortStart - b.sortStart);
+  return units.flatMap((u) => u.items);
+}
+
 /** Lookup payload for a single country. Resolved once at app init. */
 export interface CountryAnchor {
   iso3: string;
@@ -164,8 +231,14 @@ export function createCountryPopup(opts: CountryPopupOptions): CountryPopup {
       empty.textContent = "No matching episodes in this window.";
       list.appendChild(empty);
     } else {
-      const sorted = [...episodes].sort((a, b) => a.year_start - b.year_start);
-      for (const ep of sorted) {
+      // Group multi-part series so their parts render contiguously, then
+      // sort each unit (standalone or series) by aggregate year_end then
+      // year_start. year_end dominates because that's typically where the
+      // bulk of the content sits — a 1974-1975 episode reads as "newer"
+      // than one tagged 1000 BC - AD 1976. For a series, the aggregate is
+      // (first part's year_start, last part's year_end) in series_part
+      // order; within a series, parts render in series_part order.
+      for (const ep of buildOrderedEpisodes(episodes)) {
         list.appendChild(renderEpisodeCard(ep));
       }
     }

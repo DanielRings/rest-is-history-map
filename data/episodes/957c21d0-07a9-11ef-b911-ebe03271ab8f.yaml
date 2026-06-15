@@ -42,8 +42,8 @@ pub_date: '2024-05-07T23:05:00Z'
 access: members
 countries:
 - GBR
-year_start: -1
-year_end: 3000
+year_start: 1900
+year_end: 2024
 date_precision: era
 kind: themed
 topics:

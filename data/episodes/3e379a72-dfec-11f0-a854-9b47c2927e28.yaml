@@ -45,6 +45,7 @@ pub_date: '2026-01-05T00:10:00Z'
 access: public
 countries:
 - FRA
+- GBR
 year_start: 1429
 year_end: 1431
 date_precision: year
@@ -57,4 +58,6 @@ topics:
 historical_figures:
 - Joan of Arc
 - Charles VI
+series_id: joan-of-arc
+series_part: 2
 links: {}

@@ -47,6 +47,7 @@ pub_date: '2026-01-05T00:20:00Z'
 access: public
 countries:
 - FRA
+- GBR
 year_start: 1431
 year_end: 1431
 date_precision: year
@@ -58,4 +59,6 @@ topics:
 - hundred years war
 historical_figures:
 - Joan of Arc
+series_id: joan-of-arc
+series_part: 4
 links: {}
