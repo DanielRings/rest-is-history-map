@@ -212,29 +212,6 @@ export async function createMap(opts: CreateMapOptions): Promise<MapHandle> {
   return handle;
 }
 
-/**
- * Fetch and minimally narrow a Natural Earth Admin 0 FeatureCollection.
- *
- * Throws on non-OK response or unexpected shape per the project's no-
- * fallback rule.
- */
-export async function fetchCountriesGeoJSON(url: string): Promise<CountriesGeoJSON> {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`fetchCountriesGeoJSON: ${response.status} ${response.statusText} for ${url}`);
-  }
-  const body: unknown = await response.json();
-  if (
-    typeof body !== "object" ||
-    body === null ||
-    (body as { type: unknown }).type !== "FeatureCollection" ||
-    !Array.isArray((body as { features: unknown }).features)
-  ) {
-    throw new Error(`fetchCountriesGeoJSON: response at ${url} is not a FeatureCollection`);
-  }
-  return body as CountriesGeoJSON;
-}
-
 function mapReady(map: MapLibreMap): Promise<void> {
   return new Promise((resolve) => {
     if (map.loaded() && map.isStyleLoaded()) {

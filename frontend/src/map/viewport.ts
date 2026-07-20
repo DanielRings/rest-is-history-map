@@ -33,6 +33,35 @@ export interface CountriesGeoJSON {
 }
 
 /**
+ * Fetch and minimally narrow a Natural Earth Admin 0 FeatureCollection.
+ *
+ * Lives here (a MapLibre-free module) rather than in `basemap.ts` so that
+ * `main.ts` can call it without pulling MapLibre into the initial bundle —
+ * the map itself loads from a lazy chunk. Throws on non-OK response or
+ * unexpected shape, per the project's no-fallback rule.
+ *
+ * @param url - URL of the country FeatureCollection.
+ * @returns The parsed, shape-checked FeatureCollection.
+ * @throws If the response is not OK or is not a FeatureCollection.
+ */
+export async function fetchCountriesGeoJSON(url: string): Promise<CountriesGeoJSON> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`fetchCountriesGeoJSON: ${response.status} ${response.statusText} for ${url}`);
+  }
+  const body: unknown = await response.json();
+  if (
+    typeof body !== "object" ||
+    body === null ||
+    (body as { type: unknown }).type !== "FeatureCollection" ||
+    !Array.isArray((body as { features: unknown }).features)
+  ) {
+    throw new Error(`fetchCountriesGeoJSON: response at ${url} is not a FeatureCollection`);
+  }
+  return body as CountriesGeoJSON;
+}
+
+/**
  * Walk the rendered country fill layer and return the set of unique ISO3
  * codes currently in the viewport.
  *

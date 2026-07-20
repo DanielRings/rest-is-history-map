@@ -15,8 +15,9 @@ import {
   timelineOverlaps,
   type TimeWindow,
 } from "./filter/predicate";
-import { createMap, fetchCountriesGeoJSON, type MapHandle } from "./map/basemap";
+import type { MapHandle } from "./map/basemap";
 import { ANTIQUE_ATLAS_PALETTE } from "./map/style";
+import { fetchCountriesGeoJSON } from "./map/viewport";
 import { createCountryPopup } from "./panels/country-popup";
 import { decodeHash, wireHashSync } from "./state/hash";
 import { type AppState, createStore } from "./state/store";
@@ -32,7 +33,16 @@ declare global {
 }
 
 async function main(): Promise<void> {
+  const perfT0 = performance.now();
+  // Kick off the MapLibre chunk download immediately (it's the largest
+  // dependency, code-split into its own lazy chunk). Firing the import here
+  // — before the awaits below — lets it stream in parallel with the episode
+  // and geojson fetches, so it's usually resolved by the time we build the
+  // map. Awaited at the map-creation site; main().catch handles failures.
+  const basemapModule = import("./map/basemap");
+
   const doc: EpisodesDocument = await loadEpisodes(`${import.meta.env.BASE_URL}data/episodes.json`);
+  const perfAfterData = performance.now();
   // Drop non-geographic episodes — they have nowhere to live in the
   // map-first UI for now. To be reintroduced later through a different
   // affordance.
@@ -78,6 +88,7 @@ async function main(): Promise<void> {
       `main: ${missing.length} fixture ISO3 code(s) have no Natural Earth feature: ${missing.join(", ")}`,
     );
   }
+  const perfAfterGeo = performance.now();
 
   // Pre-index episodes by ISO3 so popup hydration is O(matches) not O(N).
   const episodesByIso3 = new Map<string, Episode[]>();
@@ -261,6 +272,8 @@ async function main(): Promise<void> {
     textureEl.style.backgroundPosition = `${origin.x}px ${origin.y}px`;
   };
 
+  const perfBeforeMap = performance.now();
+  const { createMap } = await basemapModule;
   map = await createMap({
     container: mapEl,
     geojson,
@@ -321,8 +334,21 @@ async function main(): Promise<void> {
   map.raw.on("move", syncMapTexture);
   syncMapTexture();
 
+  const perfAfterMap = performance.now();
   // Initial recompute now that the map exists and has emitted its first viewport.
   recompute(store.get());
+  const perfAfterRecompute = performance.now();
+
+  // One-line startup profile. `map` includes the lazy-chunk await (usually
+  // ~0 — it downloaded in parallel) plus MapLibre init and first idle.
+  console.info(
+    `[rih:perf] episodes=${episodes.length} ` +
+      `load=${Math.round(perfAfterData - perfT0)}ms ` +
+      `geojson=${Math.round(perfAfterGeo - perfAfterData)}ms ` +
+      `map=${Math.round(perfAfterMap - perfBeforeMap)}ms ` +
+      `firstRecompute=${Math.round(perfAfterRecompute - perfAfterMap)}ms ` +
+      `total=${Math.round(perfAfterRecompute - perfT0)}ms`,
+  );
 
   // ---------------------------------------------------------------------
   // Playback controls (speed pill + play/pause button)
