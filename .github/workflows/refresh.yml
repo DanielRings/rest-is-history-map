@@ -75,10 +75,15 @@ jobs:
         if: steps.detect.outputs.count != '0'
         uses: peter-evans/create-pull-request@v7
         with:
-          # Same App token used for checkout above, so both the branch push
-          # and the PR are App-attributed and ci.yml's pull_request trigger
-          # runs (a GITHUB_TOKEN-attributed push would be suppressed).
+          # Use the App token AND commit as the App's bot user. peter-evans
+          # defaults the committer to github-actions[bot]; a commit carrying
+          # that identity is treated as GITHUB_TOKEN-origin and its PR does
+          # not trigger ci.yml (recursion guard), even when pushed with the
+          # App token. Committing as the App bot removes that marker so CI
+          # runs. The <id> is the App bot user id (gh api /users/<slug>[bot]).
           token: ${{ steps.app-token.outputs.token }}
+          committer: rih-episode-append[bot] <307244164+rih-episode-append[bot]@users.noreply.github.com>
+          author: rih-episode-append[bot] <307244164+rih-episode-append[bot]@users.noreply.github.com>
           branch: automation/weekly-refresh
           delete-branch: true
           add-paths: data/pending
