@@ -14,7 +14,22 @@ jobs:
     name: Refresh pending episodes
     runs-on: ubuntu-latest
     steps:
+      # Mint the App token FIRST, before checkout, and check out with it. If
+      # checkout runs with the default GITHUB_TOKEN, its persisted git
+      # credentials are what create-pull-request pushes with — and a push
+      # attributed to GITHUB_TOKEN cannot trigger ci.yml (recursion guard),
+      # even when the PR itself is opened by the App. Checking out with the
+      # App token makes the branch push App-attributed, so CI runs.
+      - name: Mint app token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.REFRESH_APP_ID }}
+          private-key: ${{ secrets.REFRESH_APP_PRIVATE_KEY }}
+
       - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v5
@@ -56,25 +71,13 @@ jobs:
             echo "EOF"
           } >>"$GITHUB_OUTPUT"
 
-      # Mint a short-lived (~1h) installation token from the "rih-refresh"
-      # GitHub App. Its private key (secret REFRESH_APP_PRIVATE_KEY) does not
-      # expire on a timer, so there is no PAT-style renewal chore.
-      - name: Mint app token
-        if: steps.detect.outputs.count != '0'
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.REFRESH_APP_ID }}
-          private-key: ${{ secrets.REFRESH_APP_PRIVATE_KEY }}
-
       - name: Open refresh PR
         if: steps.detect.outputs.count != '0'
         uses: peter-evans/create-pull-request@v7
         with:
-          # App-minted token rather than the default GITHUB_TOKEN. PRs opened
-          # by GITHUB_TOKEN cannot trigger other workflows (a recursion guard),
-          # so CI would sit in `action_required` forever. A PR opened by a
-          # GitHub App runs ci.yml's pull_request trigger normally.
+          # Same App token used for checkout above, so both the branch push
+          # and the PR are App-attributed and ci.yml's pull_request trigger
+          # runs (a GITHUB_TOKEN-attributed push would be suppressed).
           token: ${{ steps.app-token.outputs.token }}
           branch: automation/weekly-refresh
           delete-branch: true
