@@ -23,11 +23,17 @@ description: 'Who was Baron Franz Nopcsa, and why was he one of the most fascina
   Johnson'
 pub_date: '2026-07-21T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries:
+- AUT
+year_start: 1889
+year_end: 1933
+date_precision: century
+kind: themed
+topics:
+- franz nopcsa
+- mayerling
+- dinosaur hunting
+- evolution
+historical_figures:
+- Franz Nopcsa
 links: {}

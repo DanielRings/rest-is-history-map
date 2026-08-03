@@ -56,11 +56,22 @@ description: 'How did the Babington Plot, another Catholic conspiracy to assassi
   Executive Producer: Dom Johnson'
 pub_date: '2026-07-26T23:30:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries:
+- GBR
+- ESP
+year_start: 1586
+year_end: 1587
+date_precision: year
+kind: historical
+topics:
+- babington plot
+- mary queen of scots
+- francis walsingham
+- execution
+historical_figures:
+- Mary Queen of Scots
+- Elizabeth I
+- Francis Walsingham
+series_id: elizabeth-i-vs-the-catholics-2026
+series_part: 6
 links: {}

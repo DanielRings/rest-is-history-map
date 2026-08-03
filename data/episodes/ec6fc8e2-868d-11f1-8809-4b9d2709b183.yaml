@@ -15,11 +15,16 @@ description: "Which one of the Founding Fathers was the most boring? Why should 
   \ & Aaliyah AkudeSenior Producer: Callum HillExecutive Producer: Dom Johnson&nbsp;"
 pub_date: '2026-07-23T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries:
+- USA
+year_start: 1776
+year_end: 1789
+date_precision: era
+kind: interview
+topics:
+- founding fathers
+- united states
+- self-critique
+- historical reflection
 historical_figures: []
 links: {}

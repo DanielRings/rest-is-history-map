@@ -53,11 +53,20 @@ description: 'How did Elizabeth I rule England? Why was she constantly in mortal
   Executive Producer: Dom Johnson&nbsp;'
 pub_date: '2026-07-26T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries:
+- GBR
+year_start: 1569
+year_end: 1569
+date_precision: year
+kind: historical
+topics:
+- elizabeth i
+- william cecil
+- espionage
+- tudor england
+historical_figures:
+- Elizabeth I
+- William Cecil
+series_id: elizabeth-i-vs-the-catholics-2026
+series_part: 1
 links: {}

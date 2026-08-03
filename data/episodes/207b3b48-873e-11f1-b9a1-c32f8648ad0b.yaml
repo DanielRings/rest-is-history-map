@@ -55,11 +55,21 @@ description: 'What inspired the deadliest bloodbath of the Tudor age: the St Bar
   Executive Producer: Dom Johnson&nbsp;'
 pub_date: '2026-07-26T23:10:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries:
+- GBR
+- FRA
+year_start: 1572
+year_end: 1572
+date_precision: year
+kind: historical
+topics:
+- st bartholomews day massacre
+- francis walsingham
+- religious conflict
+- tudor england
+historical_figures:
+- Elizabeth I
+- Francis Walsingham
+series_id: elizabeth-i-vs-the-catholics-2026
+series_part: 2
 links: {}
