@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-07-20T18:29:12.295439Z",
+  "generated_at": "2026-08-03T10:10:06.070453Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -3084,6 +3084,38 @@
       "year_anchor": 1896
     },
     {
+      "guid": "207b3b48-873e-11f1-b9a1-c32f8648ad0b",
+      "title": "Elizabeth I vs The Catholics: A Massacre in Paris (Part 2)",
+      "description": "What inspired the deadliest bloodbath of the Tudor age: the St Bartholomew’s Day Massacre of 1572, in which protestants were slaughtered en masse? How did it drive Elizabeth I’s spy master, Francis Walsingham, to repress all treasonous activity in her realm? And, what terrible treason was brewing in Rome…?&nbsp;&nbsp;\n\n\n\nJoin Tom and Dominic as they discuss the St Bartholomew’s Day Massacre, Sir Francis Walsingham, and one of the most devilish religious conspiracies of all time…\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson&nbsp;",
+      "pub_date": "2026-07-26T23:10:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "FRA"
+      ],
+      "year_start": 1572,
+      "year_end": 1572,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "st bartholomews day massacre",
+        "francis walsingham",
+        "religious conflict",
+        "tudor england"
+      ],
+      "historical_figures": [
+        "Elizabeth I",
+        "Francis Walsingham"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 2,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1572
+    },
+    {
       "guid": "210a2906-5b2d-11ee-bf4d-bf78ca20da1b",
       "title": "The Battle of Cable Street: Fascism Defeated (Ep 3)",
       "description": "“You will never catch Sir Oswald admitting to anti-semitism - all he does is embody it!”\nFollowing the violent scenes at Kensington Olympia, the British fascist movement is in decline. Britain is swirling with unemployment, having just come out of a decade of general strikes, and as the country suffers, changes and becomes more urbanised, the fascists seek a scapegoat to pin Britain’s downfall on. On the 6th of October 1936, Mosley gathers with 3000 of his blackshirts to march through London’s East End, an area with a large Jewish population; they are met by 100,000 anti-fascist demonstrators blocking the streets… Join Tom and Dominic in the third episode of our series on British fascism, as they look at the Battle of Cable Street, fascism in the pre-war years, Oswald’s role in the anti-war movement, his eventual arrest and detainment, and much more.\n\n*The Rest Is History Live Tour 2023*:\n\nTom and Dominic are back on tour this autumn! See them live in London, New Zealand, and Australia!\n\nBuy your tickets here: restishistorypod.com\n\nTwitter: \n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nProducer: Theo Young-Smith\n\nExecutive Producers: Jack Davenport + Tony Pastor",
@@ -4022,6 +4054,40 @@
       "historical_figures": [],
       "links": {},
       "year_anchor": 1942
+    },
+    {
+      "guid": "295ff312-8742-11f1-8139-6fc6eac7be7d",
+      "title": "Elizabeth I vs The Catholics: A Treacherous Conspiracy (Part 4)",
+      "description": "After ransacking Spanish treasure ships, would Elizabeth I betray Sir Francis Drake to her enemies? Who did she back in the French civil wars? And, with the help of English conspirators, would Mary Queen of Scots, incur a Spanish invasion, and see her rival Elizabeth assassinated?&nbsp;&nbsp;\n\n\n\nJoin Tom and Dominic as they discuss Sir Francis Drake’s return to England, revolts in Europe, Catholic unrest, and the Throckmorton Plot to see the Queen of England murdered, and replaced with her royal cousin…\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-07-26T23:20:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "ESP",
+        "FRA"
+      ],
+      "year_start": 1580,
+      "year_end": 1583,
+      "date_precision": "decade",
+      "kind": "historical",
+      "topics": [
+        "francis drake",
+        "throckmorton plot",
+        "mary queen of scots",
+        "spanish invasion threat"
+      ],
+      "historical_figures": [
+        "Elizabeth I",
+        "Francis Drake",
+        "Mary Queen of Scots"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 4,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1581
     },
     {
       "guid": "296cd25c-1a46-11ed-ba3c-73fd9c21f44e",
@@ -12641,6 +12707,38 @@
       "year_anchor": 1777
     },
     {
+      "guid": "7b07c70c-873e-11f1-9a69-6b8038d6f61c",
+      "title": "Elizabeth I vs The Catholics: England’s Greatest Hero (Part 3)",
+      "description": "Why is Sir Francis Drake enshrined as one of England’s greatest heroes? Where did he come from, and how did he rise to prominence and earn the adoration of Elizabeth I, from obscure poverty? And, why is he also such a controversial figure…?\n\n\n\nJoin Tom and Dominic as they sail into the remarkable life and adventures of Sir Francis Drake. From his controversial piracy, and his explorations around the world, to his burgeoning feud with the Spanish, ultimately culminating in his clash with Armada in 1588…&nbsp;\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson&nbsp;",
+      "pub_date": "2026-07-26T23:15:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "ESP"
+      ],
+      "year_start": 1540,
+      "year_end": 1588,
+      "date_precision": "century",
+      "kind": "historical",
+      "topics": [
+        "francis drake",
+        "spanish armada",
+        "piracy",
+        "exploration"
+      ],
+      "historical_figures": [
+        "Francis Drake",
+        "Elizabeth I"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 3,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1564
+    },
+    {
       "guid": "7bb7070a-4d2b-11ec-b56c-6b78db562b16",
       "title": "Australia Before Cook",
       "description": "\"Discovered this territory, 1770\". So reads the inscription on a statue of Captain Cook in Hyde Park, Sydney. But did he really discover it? Tom and Dominic are joined by David Hunt to explore the long story of human settlement in Australia, and of the European explorers who reached it before Captain Cook ever sighted Botany Bay. (Also features giant wombats)\n\nA Goalhanger Films & Left Peg Media production\nProduced by Jack Davenport\nExec Producer Tony Pastor\nTwitter:\n@TheRestHistory\n@holland_tom\n@dcsandbrook\nEmail: restishistorypod@gmail.com",
@@ -12973,6 +13071,37 @@
       ],
       "links": {},
       "year_anchor": 1746
+    },
+    {
+      "guid": "7e5040ac-873d-11f1-916e-73967b3d6390",
+      "title": "Elizabeth I vs The Catholics: The Queen’s Spymaster (Part 1)",
+      "description": "How did Elizabeth I rule England? Why was she constantly in mortal peril in 1569? Who was Sir William Cecil, and why was he so crucial to her reign? And, how did his network of spies keep her alive, and England safe…?&nbsp;\n\nJoin Tom and Dominic as they discuss the secret war raging in the heart of Elizabeth I’s Tudor England, the religious unrest flaming throughout Europe, and Elizabeth’s master of Spies: Sir William Cecil.\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever.&nbsp;⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson&nbsp;",
+      "pub_date": "2026-07-26T23:05:00Z",
+      "access": "public",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 1569,
+      "year_end": 1569,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "elizabeth i",
+        "william cecil",
+        "espionage",
+        "tudor england"
+      ],
+      "historical_figures": [
+        "Elizabeth I",
+        "William Cecil"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 1,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1569
     },
     {
       "guid": "7ed678a0-5595-11f0-b700-736c2c42a2e3",
@@ -15414,6 +15543,40 @@
       "series_end": 1876,
       "series_year_anchor": 1874,
       "year_anchor": 1876
+    },
+    {
+      "guid": "96709cd6-8742-11f1-b46d-3b8a80dc76f5",
+      "title": "Elizabeth I vs The Catholics: The Shadow War (Part 5)",
+      "description": "Who was the charismatic Sir Philip Sidney, a beloved but also suspect courtier to Elizabeth I? Why, in 1585, was England in such danger from a Spanish invasion? And, would Sydney, with his friend Sir Francis Drake, help to save their beloved queen?\n\n\n\nJoin Tom and Dominic as they plunge into the high point of the Tudor Cold War: with Philip II brooding on war in Spain, Holland ablaze, and religious tension gripping Europe, what would Elizabeth I do?&nbsp;\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-07-26T23:25:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "ESP",
+        "NLD"
+      ],
+      "year_start": 1585,
+      "year_end": 1585,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "philip sidney",
+        "dutch revolt",
+        "spanish invasion threat",
+        "tudor cold war"
+      ],
+      "historical_figures": [
+        "Philip Sidney",
+        "Francis Drake",
+        "Elizabeth I"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 5,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1585
     },
     {
       "guid": "968a57d4-4d18-11ec-bf1a-0b6894d3b100",
@@ -22867,6 +23030,39 @@
       "year_anchor": 1892
     },
     {
+      "guid": "de71f3fe-8742-11f1-9f97-eb196c539255",
+      "title": "Elizabeth I vs The Catholics: Killing the Queen of Scots (Part 6)",
+      "description": "How did the Babington Plot, another Catholic conspiracy to assassinate Elizabeth I and replace her with the imprisoned Mary Queen of Scots, unfold? Did the Spanish help her? How did Sir Francis Walsingham and his web of spies foil the plot? And, what would become of Mary once put on trial?\n\n\n\nJoin Tom and Dominic for the dramatic conclusion to their mighty series on the most climatic period of the reign of Elizabeth I, as she faces another assassination attempt, and decides whether to execute her cousin, and a fellow queen…\n\n\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠⁠Tickets available for Friday 4th September⁠⁠⁠, the Saturday show is SOLD OUT.\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-07-26T23:30:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "ESP"
+      ],
+      "year_start": 1586,
+      "year_end": 1587,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "babington plot",
+        "mary queen of scots",
+        "francis walsingham",
+        "execution"
+      ],
+      "historical_figures": [
+        "Mary Queen of Scots",
+        "Elizabeth I",
+        "Francis Walsingham"
+      ],
+      "series_id": "elizabeth-i-vs-the-catholics-2026",
+      "series_part": 6,
+      "links": {},
+      "series_start": 1569,
+      "series_end": 1587,
+      "series_year_anchor": 1578,
+      "year_anchor": 1586
+    },
+    {
       "guid": "df8cab76-7233-11ed-880e-23db578c6406",
       "title": "Senegal: The Door of No Return",
       "description": "In today's episode, Tom and Dominic discuss the Senegalese island of Gorée, and its relationship with the transatlantic slave trade. They look at both the history and mythology of the \"House of Slaves\", which still stands today as a vestige to human exploitation.\n\nTwitter:\n \n@TheRestHistory\n \n@holland_tom\n \n@dcsandbrook\n \nEmail: restishistorypod@gmail.com",
@@ -24088,6 +24284,29 @@
       "year_anchor": 1966
     },
     {
+      "guid": "ec6fc8e2-868d-11f1-8809-4b9d2709b183",
+      "title": "Conan O'Brien on What The Founding Fathers Got Wrong",
+      "description": "Which one of the Founding Fathers was the most boring? Why should a country strive towards self-critique and historic reflection? And, what about the formation of the United States makes it an experiment? \nJoin Tom as he’s joined by top friend of the show, Conan O’Brien, as they delve deeper into the personal lives of some of the Founding Fathers and their contemporary cultural significance.&nbsp;\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*The maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠Tickets available for Friday 4th September⁠⁠, the Saturday show is SOLD OUT.\n\n_______Twitter:@TheRestHistory@holland_tom@dcsandbrookVideo Editors: Jack Meek, Harry Swan + Adam ThorntonSocial Producer: Harry BaldenProducers: Tabby Syrett & Aaliyah AkudeSenior Producer: Callum HillExecutive Producer: Dom Johnson&nbsp;",
+      "pub_date": "2026-07-23T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "USA"
+      ],
+      "year_start": 1776,
+      "year_end": 1789,
+      "date_precision": "era",
+      "kind": "interview",
+      "topics": [
+        "founding fathers",
+        "united states",
+        "self-critique",
+        "historical reflection"
+      ],
+      "historical_figures": [],
+      "links": {},
+      "year_anchor": 1782
+    },
+    {
       "guid": "edd01514-1f89-11f0-a050-63f17c1106c4",
       "title": "The Golden Age of Japan: Secrets of the Imperial Court (Part 2)",
       "description": "In the vibrant but vicious golden age of Imperial Japan, how did women use writing as a way to secure their status, and express their deepest desires? Who was Sei Shōnagon, the witty courtier whose account of life around the Japanese Empress during the iconic Heian period, provides a scintillating insight into this colourful world? And, behind the sophisticated melee of the Imperial court, with its elegance and decorum, what risks and hazards haunted every aspiring courtier…?\n\nJoin Tom and Dominic for the climax to their tantalising journey into the beating heart of Imperial Japan, and the remarkable woman whose moving, keenly perceptive, but also slyly venomous, insights into this complicated arena, bring it flamboyantly to life. \n\n_______\nTwitter:\n@TheRestHistory\n@holland_tom\n@dcsandbrook\nProducer: Theo Young-Smith\nAssistant Producer: Tabby Syrett + Aaliyah Akude \nExecutive Producers: Jack Davenport + Tony Pastor",
@@ -24886,6 +25105,31 @@
       "series_end": 1914,
       "series_year_anchor": 1914,
       "year_anchor": 1914
+    },
+    {
+      "guid": "f4e4d4c4-850a-11f1-9197-bf727eda3288",
+      "title": "The Successor to the Mayerling Murder",
+      "description": "Who was Baron Franz Nopcsa, and why was he one of the most fascinating figures of the early 20th century? Why did he volunteer to become a king? How did he change our understanding of evolution forever? And, why does the climax of his life bloodily connect him to the Mayerling scandal…?\n\nIn this week’s bonus episode, Tom and Dominic delve deeper into the life of an intriguing historical figure intertwined with the Mayerling tragedy: an Austro-Hungarian aristocrat, explorer, dinosaur hunter, independence fighter, spy, and murderer...\n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*The maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠Tickets available for Friday 4th September⁠⁠, the Saturday show is SOLD OUT._______Twitter:@TheRestHistory@holland_tom@dcsandbrookVideo Editors: Jack Meek, Harry Swan + Adam ThorntonSocial Producer: Harry BaldenProducers: Tabby Syrett & Aaliyah AkudeSenior Producer: Callum HillExecutive Producer: Dom Johnson",
+      "pub_date": "2026-07-21T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "AUT"
+      ],
+      "year_start": 1889,
+      "year_end": 1933,
+      "date_precision": "century",
+      "kind": "themed",
+      "topics": [
+        "franz nopcsa",
+        "mayerling",
+        "dinosaur hunting",
+        "evolution"
+      ],
+      "historical_figures": [
+        "Franz Nopcsa"
+      ],
+      "links": {},
+      "year_anchor": 1911
     },
     {
       "guid": "f4e55532-c6da-11f0-93b6-fb8b2c38f1e4",
