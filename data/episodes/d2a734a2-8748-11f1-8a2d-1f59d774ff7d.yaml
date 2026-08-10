@@ -15,11 +15,21 @@ description: "How did Elizabeth I’s and Mary Queen of Scots’ upbringing diff
   \ Dom Johnson"
 pub_date: '2026-07-28T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries:
+- GBR
+year_start: 1509
+year_end: 1603
+date_precision: era
+kind: themed
+topics:
+- tudor monarchy
+- elizabeth i
+- mary queen of scots
+- jane grey
+- henry viii
+historical_figures:
+- Elizabeth I
+- Mary Queen of Scots
+- Jane Grey
+- Henry VIII
 links: {}
