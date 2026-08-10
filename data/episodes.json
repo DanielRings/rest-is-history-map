@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-08-03T10:10:06.070453Z",
+  "generated_at": "2026-08-10T10:08:09.569075Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -16058,6 +16058,33 @@
       "year_anchor": 1962
     },
     {
+      "guid": "9aeeb688-8f2d-11f1-86b5-a36ceca7002c",
+      "title": "Imprisoning the Catholic Queen of Conspiracy",
+      "description": "Where in England was Mary Queen of Scots imprisoned by Elizabeth I between 1568 and 1587? Why were her conditions often so grisly? And, did she have an affair with one of her jailers?\n\n\n\nIn this week’s bonus episode, Tom and Dominic discuss the tumultuous imprisonment of Mary Queen of Scots in England, before meeting her bloody end….\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nVideo Editors: Jack Meek + Harry Swan&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nExecutive Producer: Dom Johnson&nbsp;",
+      "pub_date": "2026-08-04T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 1568,
+      "year_end": 1587,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "mary queen of scots",
+        "elizabeth i",
+        "imprisonment",
+        "tudor england",
+        "execution"
+      ],
+      "historical_figures": [
+        "Mary Queen of Scots",
+        "Elizabeth I"
+      ],
+      "links": {},
+      "year_anchor": 1577
+    },
+    {
       "guid": "9afc4b0c-4d53-11ec-9ba8-3ba8318a05c8",
       "title": "Watergate - Part 1",
       "description": "What led Richard Nixon into the greatest political scandal in American history? Dominic Sandbrook, acclaimed historian of the period, leads Tom Holland on an extraordinary journey from Nixon’s humble beginnings through his political rise and to the precipice of his downfall. The first in a two part mini-series.\n\nA Goalhanger Films & Left Peg Media production\nProduced by Harry Lineker\nExec Producer Tony Pastor\nTwitter:\n@TheRestHistory\n@holland_tom\n@dcsandbrook\nEmail: restishistorypod@gmail.com",
@@ -21676,6 +21703,35 @@
       "series_end": 1800,
       "series_year_anchor": 1625,
       "year_anchor": 1646
+    },
+    {
+      "guid": "d2a734a2-8748-11f1-8a2d-1f59d774ff7d",
+      "title": "Why Was Elizabeth I Such An Effective Queen?",
+      "description": "How did Elizabeth I’s and Mary Queen of Scots’ upbringing differ in relation to their ruling abilities? Could Jane Grey have kept the throne? And, what did Henry VIII’s people think of him at the time? \n\n\n\nJoin Tom and Dominic as they answer these and many more questions in this week’s bonus Q+A.  \n\n\n\n*The Rest Is History LIVE: The Ultimate Victorian Adventure*\n\nThe maddest expedition in history and it’s NEVER been heard before on the show: join Tom Holland & Dominic Sandbrook LIVE at the Southbank as they tell the bonkers story of Queen Victoria ordering one of history’s most daring assignments ever. ⁠⁠Tickets available for Friday 4th September⁠⁠, the Saturday show is SOLD OUT. \n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude\n\nSenior Producer: Callum Hill\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-07-28T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 1509,
+      "year_end": 1603,
+      "date_precision": "era",
+      "kind": "themed",
+      "topics": [
+        "tudor monarchy",
+        "elizabeth i",
+        "mary queen of scots",
+        "jane grey",
+        "henry viii"
+      ],
+      "historical_figures": [
+        "Elizabeth I",
+        "Mary Queen of Scots",
+        "Jane Grey",
+        "Henry VIII"
+      ],
+      "links": {},
+      "year_anchor": 1556
     },
     {
       "guid": "d2e278ee-cfd3-11ed-ba43-675a25e8c82c",
