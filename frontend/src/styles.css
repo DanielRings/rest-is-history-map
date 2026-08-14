@@ -49,21 +49,38 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
+  height: 100%;
+  /* Fully static document: the app is exactly one viewport tall, so any
+     scrolling is pure rubber-band. `overflow: hidden` removes the scroll
+     port and `overscroll-behavior: none` suppresses iOS's bounce and
+     pull-to-refresh, leaving pan/zoom on the map as the only gesture. */
+  overflow: hidden;
+  overscroll-behavior: none;
+  /* iOS Safari tints BOTH its toolbars by sampling this single solid color
+     (a gradient makes it fall back to white, and the page cannot paint that
+     region itself without becoming scrollable). Parchment: it reads as part
+     of the atlas rather than a cold slab against the timeline. */
+  background: var(--bg-timeline);
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
 }
 
 #app {
   display: grid;
+  /* Dynamic viewport: exactly the visible area between Safari's bars, so the
+     page never becomes scrollable. Going taller (100lvh) does let the map
+     paint under the bars, but on iOS that extra height IS the scroll — and a
+     scrolled visual viewport makes Safari mis-hit-test `position: fixed`
+     elements, which silently kills the timeline scrubber. A working rail
+     beats an immersive backdrop. */
   height: 100dvh;
   width: 100vw;
-  grid-template-rows: 1fr var(--timeline-height);
+  grid-template-rows: 1fr calc(var(--timeline-height) + env(safe-area-inset-bottom, 0px));
   grid-template-columns: 1fr;
   grid-template-areas:
     "map"
     "timeline";
-  background: var(--bg);
+  background: var(--bg-timeline);
   position: relative;
 }
 
@@ -92,6 +109,17 @@ body {
 #timeline-wrap {
   grid-area: timeline;
   position: relative;
+  /* No browser gestures anywhere in the timeline panel: a pinch here used to
+     zoom the whole page, which is never wanted (zoom belongs to the map, and
+     MapLibre implements its own). Covers the chips and playback controls as
+     well as the canvas, which sets this on itself for scrubbing. */
+  touch-action: none;
+  /* Grow by the safe-area inset rather than absorbing it: with border-box
+     sizing a fixed height lets the padding eat the content box, squeezing
+     the rail and clipping the year labels wherever that inset is non-zero
+     (Android gesture bar, standalone mode). */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  height: calc(var(--timeline-height) + env(safe-area-inset-bottom, 0px));
   background: var(--bg-timeline);
   border-top: 1px solid var(--border);
   display: flex;
@@ -292,6 +320,9 @@ body {
   position: absolute;
   z-index: 5;
   pointer-events: auto;
+  /* Same rule as the timeline: no page zoom from a pinch on the popup. The
+     episode list re-enables vertical panning so it can still scroll. */
+  touch-action: none;
   max-width: min(280px, calc(100vw - 24px));
   background: var(--popup-bg);
   backdrop-filter: var(--popup-blur);
@@ -378,6 +409,10 @@ body {
   flex-direction: column;
   max-height: min(60dvh, 480px);
   overflow-y: auto;
+  /* Re-enable vertical panning inside the popup's `touch-action: none`, so
+     a long episode list still scrolls without permitting pinch-zoom. */
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 
 .country-popup__empty {

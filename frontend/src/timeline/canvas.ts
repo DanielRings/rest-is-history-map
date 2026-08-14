@@ -219,10 +219,19 @@ export class TimelineCanvas {
     ctx.restore();
   }
 
-  private hitTest(clientX: number, clientY: number): ActiveHandle {
+  /**
+   * Hit-test in canvas-local coordinates.
+   *
+   * Local (not client) coordinates on purpose: the canvas is inside a
+   * `position: fixed` panel, and on iOS a fixed element's
+   * `getBoundingClientRect()` is measured against the *layout* viewport
+   * while pointer `clientX/clientY` are measured against the *visual*
+   * viewport. Those diverge exactly when the page is scrolled and Safari's
+   * bars minimize, which silently moved every hit target. `offsetX/offsetY`
+   * are resolved by the browser against this element, so they can't drift.
+   */
+  private hitTest(localX: number, localY: number): ActiveHandle {
     const rect = this.canvas.getBoundingClientRect();
-    const localX = clientX - rect.left;
-    const localY = clientY - rect.top;
     const padX = HANDLE_RADIUS + 4;
     const trackWidth = Math.max(1, rect.width - padX * 2);
     const trackY = rect.height / 2;
@@ -243,17 +252,17 @@ export class TimelineCanvas {
     return null;
   }
 
-  private localXToYear(clientX: number): number {
+  /** Convert a canvas-local x to a year. See {@link hitTest} on why local. */
+  private localXToYear(localX: number): number {
     const rect = this.canvas.getBoundingClientRect();
     const padX = HANDLE_RADIUS + 4;
     const trackWidth = Math.max(1, rect.width - padX * 2);
-    const localX = clientX - rect.left;
     return pxToYear(localX - padX, trackWidth);
   }
 
   private readonly handlePointerDown = (e: PointerEvent): void => {
-    const which = this.hitTest(e.clientX, e.clientY);
-    this.downX = e.clientX;
+    const which = this.hitTest(e.offsetX, e.offsetY);
+    this.downX = e.offsetX;
     this.downHandle = which;
     this.moveDistMax = 0;
     if (which === null) {
@@ -269,16 +278,16 @@ export class TimelineCanvas {
     if (which === "year") {
       // Year mode: snap the playhead immediately so a tap-then-release
       // works as "select this year" without requiring a drag.
-      this.applyYearAt(e.clientX);
+      this.applyYearAt(e.offsetX);
     }
   };
 
   private readonly handlePointerMove = (e: PointerEvent): void => {
-    this.moveDistMax = Math.max(this.moveDistMax, Math.abs(e.clientX - this.downX));
+    this.moveDistMax = Math.max(this.moveDistMax, Math.abs(e.offsetX - this.downX));
     if (this.dragging === null) return;
-    const year = Math.round(this.localXToYear(e.clientX));
+    const year = Math.round(this.localXToYear(e.offsetX));
     if (this.dragging === "year") {
-      this.applyYearAt(e.clientX);
+      this.applyYearAt(e.offsetX);
     } else if (this.dragging === "start") {
       const next = clampWindow({ start: year, end: this.window.end });
       if (next.start !== this.window.start) {
@@ -298,8 +307,8 @@ export class TimelineCanvas {
     }
   };
 
-  private applyYearAt(clientX: number): void {
-    const year = Math.round(this.localXToYear(clientX));
+  private applyYearAt(localX: number): void {
+    const year = Math.round(this.localXToYear(localX));
     const next = clampWindow({ start: year, end: year });
     if (next.start !== this.window.start || next.end !== this.window.end) {
       this.window = next;
@@ -321,7 +330,7 @@ export class TimelineCanvas {
     // Only count gestures with negligible movement as clicks. This keeps a
     // small drag of a handle from triggering an unintended mode switch.
     if (this.moveDistMax > CLICK_SLOP_PX) return;
-    this.handleClickRelease(this.downHandle, e.clientX);
+    this.handleClickRelease(this.downHandle, e.offsetX);
   };
 
   /**
@@ -335,14 +344,14 @@ export class TimelineCanvas {
    *   around the current year.
    * - Click on a range-mode handle: never switches mode.
    */
-  private handleClickRelease(handle: ActiveHandle, clientX: number): void {
+  private handleClickRelease(handle: ActiveHandle, localX: number): void {
     const now = performance.now();
     const isDoubleTap =
       now - this.lastTapAt < DOUBLE_TAP_MS &&
-      Math.abs(clientX - this.lastTapX) < 16 &&
+      Math.abs(localX - this.lastTapX) < 16 &&
       this.lastTapHandle === handle;
     this.lastTapAt = now;
-    this.lastTapX = clientX;
+    this.lastTapX = localX;
     this.lastTapHandle = handle;
 
     const inYearMode = this.isYearMode();
@@ -369,7 +378,7 @@ export class TimelineCanvas {
       // can restore it on the way back.
       if (this.supportsHover || isDoubleTap) {
         this.savedRange = { ...this.window };
-        const year = Math.round(this.localXToYear(clientX));
+        const year = Math.round(this.localXToYear(localX));
         this.window = clampWindow({ start: year, end: year });
         this.requestRender();
         this.onChange(this.window);

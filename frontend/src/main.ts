@@ -129,11 +129,7 @@ async function main(): Promise<void> {
    * Episodes for a country whose timeline overlaps the current window and
    * pass the active user filters. Single source of truth for the popup body.
    */
-  const episodesForCountry = (
-    iso3: string,
-    w: TimeWindow,
-    f: FilterFlags,
-  ): readonly Episode[] => {
+  const episodesForCountry = (iso3: string, w: TimeWindow, f: FilterFlags): readonly Episode[] => {
     const bucket = episodesByIso3.get(iso3) ?? [];
     return bucket.filter((ep) => passesFilters(ep, f) && timelineOverlaps(ep, w));
   };
@@ -521,11 +517,7 @@ async function main(): Promise<void> {
       return;
     }
     map?.hideLabel();
-    popup.show(
-      iso3,
-      episodesForCountry(iso3, store.get().window, store.get().filters),
-      "hover",
-    );
+    popup.show(iso3, episodesForCountry(iso3, store.get().window, store.get().filters), "hover");
   };
   window.__clickCountry = (iso3: string): void => {
     if (countryInfo.get(iso3) === undefined) return;

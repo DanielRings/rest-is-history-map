@@ -53,14 +53,17 @@ function buildOrderedEpisodes(episodes: readonly Episode[]): readonly Episode[] 
   }
   for (const arr of seriesGroups.values()) {
     const ordered = [...arr].sort(
-      (a, b) => (a.series_part ?? Number.POSITIVE_INFINITY) - (b.series_part ?? Number.POSITIVE_INFINITY),
+      (a, b) =>
+        (a.series_part ?? Number.POSITIVE_INFINITY) - (b.series_part ?? Number.POSITIVE_INFINITY),
     );
     const first = ordered[0];
     if (first === undefined) continue;
-    const useSeries = ordered.length >= 2 && first.series_start !== undefined && first.series_end !== undefined;
+    const useSeries =
+      ordered.length >= 2 && first.series_start !== undefined && first.series_end !== undefined;
     if (useSeries) {
       const seriesAnchor =
-        first.series_year_anchor ?? midpoint(first.series_start as number, first.series_end as number);
+        first.series_year_anchor ??
+        midpoint(first.series_start as number, first.series_end as number);
       units.push({
         items: ordered,
         sortAnchor: seriesAnchor,

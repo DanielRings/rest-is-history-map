@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f5f3ee" />
+    <!-- iOS tints both toolbars from one sampled color; parchment keeps them
+         reading as part of the atlas rather than a cold slab. -->
+    <meta name="theme-color" content="#ead9b3" />
+    <!-- Add-to-Home-Screen: run chrome-free fullscreen (no Safari toolbars),
+         with the map drawing under a translucent status bar. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RIH Map" />
     <title>The Rest Is History — Map</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,12 +27,7 @@
       </div>
       <div id="timeline-wrap">
         <div id="filter-chips" role="group" aria-label="Episode filters">
-          <button
-            type="button"
-            class="filter-chip"
-            data-filter="hideClub"
-            aria-pressed="true"
-          >
+          <button type="button" class="filter-chip" data-filter="hideClub" aria-pressed="true">
             Hide Club
           </button>
           <button
@@ -35,12 +38,7 @@
           >
             Historical only
           </button>
-          <button
-            type="button"
-            class="filter-chip"
-            data-filter="narrowOnly"
-            aria-pressed="false"
-          >
+          <button type="button" class="filter-chip" data-filter="narrowOnly" aria-pressed="false">
             Narrow episodes only
           </button>
         </div>
