@@ -22,6 +22,15 @@
   </head>
   <body>
     <main id="app">
+      <header id="title-bar">
+        <!-- Initials are wrapped so they can be set slightly larger than the
+             rest; see #title-bar h1 in styles.css. The text content is still
+             exactly "The Rest Is History" for assistive tech. -->
+        <h1>
+          <span class="title-initial">T</span>he <span class="title-initial">R</span>est
+          <span class="title-initial">I</span>s <span class="title-initial">H</span>istory
+        </h1>
+      </header>
       <div id="map" aria-label="World map">
         <div id="map-texture" aria-hidden="true"></div>
       </div>

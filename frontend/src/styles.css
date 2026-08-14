@@ -38,6 +38,12 @@
   --timeline-handle-year-font: 13px "Marcellus Sans", "Optima", sans-serif;
   --shadow-popup: 0 6px 24px -8px rgba(20, 18, 14, 0.25), 0 2px 6px -2px rgba(20, 18, 14, 0.15);
   --timeline-height: 140px;
+  /* Mobile-only title strip. Deliberately minimal — it exists to make the
+     parchment behind Safari's omnibar read as a frame rather than a stray
+     block, so it costs as little map as possible. This height is hand-tuned
+     against the h1's cropped line box below: the two are a pair, so re-check
+     them together (on device) if the title's size or face ever changes. */
+  --title-bar-height: 16px;
   font-family: var(--font-ui);
 }
 
@@ -75,13 +81,64 @@ body {
      beats an immersive backdrop. */
   height: 100dvh;
   width: 100vw;
-  grid-template-rows: 1fr calc(var(--timeline-height) + env(safe-area-inset-bottom, 0px));
+  grid-template-rows: auto 1fr calc(var(--timeline-height) + env(safe-area-inset-bottom, 0px));
   grid-template-columns: 1fr;
   grid-template-areas:
+    "title"
     "map"
     "timeline";
   background: var(--bg-timeline);
   position: relative;
+}
+
+/* Mobile title strip. Shares the parchment that iOS samples for its toolbar
+   tint, so the omnibar above and this bar merge into one band — the map then
+   sits inside a deliberate frame (parchment rail top, timeline rail bottom)
+   instead of below an unexplained coloured block. Hidden on desktop, where
+   there is no browser-chrome tint to reconcile. */
+#title-bar {
+  grid-area: title;
+  display: flex;
+  /* Top-aligned, not centred: the type sits as high in the strip as the font
+     allows, so the parchment reads as a thin rule under the omnibar rather
+     than a band with the title floating in it. */
+  align-items: flex-start;
+  justify-content: center;
+  height: var(--title-bar-height);
+  background: var(--bg-timeline);
+  border-bottom: 1px solid var(--border);
+  touch-action: none;
+  user-select: none;
+}
+
+/* Title Case with the contrast dialled down. `font-variant-caps: small-caps`
+   pairs a FULL capital with shortened ones, a ~1.33x jump that over-
+   emphasised the initials. Instead every letter is set in small caps
+   (uniform), and the initials are scaled back up by a smaller factor — so
+   the capitals still lead each word, just less loudly. Adjust the ratio on
+   .title-initial to taste: 1 is uniform, ~1.33 matches true small-caps.
+   The DOM text remains "The Rest Is History" for assistive tech. */
+#title-bar h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  /* Far below 1 on purpose. Even at line-height:1 a font reserves room for
+     its full ascender, and small capitals are much shorter than that, so
+     unusable space sat above the letters that top-aligning could not remove.
+     Shrinking the line box below the glyph height makes the type overflow it
+     symmetrically, which pulls the letters up into that reserved space.
+     Safe here because caps forms have no descenders. This value is tuned by
+     eye against --title-bar-height and verified on-device; it depends on the
+     metrics of Marcellus Sans, so re-check it if the face changes. */
+  line-height: 0.35;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-caps: all-small-caps;
+  color: var(--fg);
+}
+
+#title-bar .title-initial {
+  font-size: 1.15em;
 }
 
 #map {
@@ -340,6 +397,19 @@ body {
 @media (min-width: 800px) {
   .country-popup {
     max-width: min(360px, calc(100vw - 24px));
+  }
+
+  /* Mobile-only: on desktop there is no tinted browser chrome to frame, so
+     the strip would just be lost map. */
+  #title-bar {
+    display: none;
+  }
+
+  #app {
+    grid-template-rows: 1fr calc(var(--timeline-height) + env(safe-area-inset-bottom, 0px));
+    grid-template-areas:
+      "map"
+      "timeline";
   }
 }
 
