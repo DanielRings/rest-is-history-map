@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f5f3ee" />
+    <!-- iOS tints both toolbars from one sampled color; parchment keeps them
+         reading as part of the atlas rather than a cold slab. -->
+    <meta name="theme-color" content="#ead9b3" />
+    <!-- Add-to-Home-Screen: run chrome-free fullscreen (no Safari toolbars),
+         with the map drawing under a translucent status bar. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="RIH Map" />
     <title>The Rest Is History — Map</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,37 +22,55 @@
   </head>
   <body>
     <main id="app">
+      <header id="title-bar">
+        <!-- Initials are wrapped so they can be set slightly larger than the
+             rest; see #title-bar h1 in styles.css. The text content is still
+             exactly "The Rest Is History" for assistive tech. -->
+        <h1>
+          <span class="title-initial">T</span>he <span class="title-initial">R</span>est
+          <span class="title-initial">I</span>s <span class="title-initial">H</span>istory
+        </h1>
+      </header>
       <div id="map" aria-label="World map">
         <div id="map-texture" aria-hidden="true"></div>
       </div>
       <div id="timeline-wrap">
-        <div id="filter-chips" role="group" aria-label="Episode filters">
-          <button
-            type="button"
-            class="filter-chip"
-            data-filter="hideClub"
-            aria-pressed="true"
-          >
+        <div id="filter-panel" role="group" aria-label="Episode filters" hidden>
+          <button type="button" class="filter-option" data-filter="hideClub" aria-pressed="true">
             Hide Club
           </button>
           <button
             type="button"
-            class="filter-chip"
+            class="filter-option"
             data-filter="hideNonHistorical"
             aria-pressed="false"
           >
             Historical only
           </button>
-          <button
-            type="button"
-            class="filter-chip"
-            data-filter="narrowOnly"
-            aria-pressed="false"
-          >
+          <button type="button" class="filter-option" data-filter="narrowOnly" aria-pressed="false">
             Narrow episodes only
           </button>
         </div>
         <div id="timeline-controls" role="group" aria-label="Playback controls">
+          <button
+            id="filter-button"
+            type="button"
+            aria-label="Filters"
+            aria-expanded="false"
+            aria-controls="filter-panel"
+          >
+            <!-- Rows sit at y=7/17 rather than 8.5/15.5 so the glyph's ink is
+                 ~17.5 units tall, matching the reset icon's ~18. At the old
+                 spacing it measured 14.5 and read visibly smaller beside it,
+                 despite both SVGs rendering at the same 26px. -->
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M4 7h16M4 17h16"></path>
+                <circle cx="9.5" cy="7" r="2.75" fill="var(--bg-timeline)"></circle>
+                <circle cx="15" cy="17" r="2.75" fill="var(--bg-timeline)"></circle>
+              </g>
+            </svg>
+          </button>
           <button id="speed-pill" type="button" aria-label="Playback speed">
             <span class="speed-text speed-text--active">1&times;</span>
             <span class="speed-text" aria-hidden="true"></span>
@@ -54,7 +80,11 @@
             <span class="range-text" aria-hidden="true"></span>
           </button>
           <button id="play-button" type="button" aria-label="Play" data-state="paused">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+            <!-- viewBox cropped to 3..21 (not the full 0..24) so the artwork,
+                 which is inset within its own box, fills the button instead of
+                 rendering with dead space around it. Still square and centred
+                 on (12,12), which the icon transitions use as their origin. -->
+            <svg viewBox="3 3 18 18" width="22" height="22" aria-hidden="true">
               <path
                 class="play-icon"
                 fill="currentColor"
@@ -67,6 +97,32 @@
               <g class="pause-icon" fill="currentColor">
                 <rect x="6.5" y="5.5" width="3.5" height="13" rx="1.5"></rect>
                 <rect x="14" y="5.5" width="3.5" height="13" rx="1.5"></rect>
+              </g>
+            </svg>
+          </button>
+          <button id="reset-button" type="button" aria-label="Reset timeline" data-state="reset">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <g
+                class="reset-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="3 5 3 11 9 11"></polyline>
+                <path d="M5.6 15a8 8 0 1 0 1.9-8.3L3 11"></path>
+              </g>
+              <g
+                class="redo-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="21 5 21 11 15 11"></polyline>
+                <path d="M18.4 15a8 8 0 1 1-1.9-8.3L21 11"></path>
               </g>
             </svg>
           </button>
