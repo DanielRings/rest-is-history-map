@@ -99,16 +99,18 @@ test("URL hash updates after timeline scrub and after country click", async ({ p
     /^#-?\d+,-?\d+\/-?\d+\.\d{3},-?\d+\.\d{3},-?\d+\.\d{2}(?:\/f=[a-z,]+)?$/,
   );
 
+  // Hash writes are debounced on a quiet period (see HASH_WRITE_IDLE_MS):
+  // continuous motion writes nothing and one write lands once things settle,
+  // so the assertion is eventual, not synchronous. The contract being tested
+  // is "a shared URL reflects the state you stopped at", which still holds.
   await page.evaluate(() => window.__setTimeWindow?.(1400, 1500));
+  await expect.poll(() => page.evaluate(() => window.location.hash)).toContain("1400,1500");
   const afterScrub = await page.evaluate(() => window.location.hash);
   expect(afterScrub).not.toBe(initialHash);
-  expect(afterScrub).toContain("1400,1500");
 
   await page.evaluate(() => window.__clickCountry?.("TUR"));
   // Same country clicked once → no fly yet; click again to commit-zoom and
   // change mapCenter/zoom in the hash.
   await page.evaluate(() => window.__clickCountry?.("TUR"));
-  await page.waitForTimeout(900);
-  const afterClick = await page.evaluate(() => window.location.hash);
-  expect(afterClick).not.toBe(afterScrub);
+  await expect.poll(() => page.evaluate(() => window.location.hash)).not.toBe(afterScrub);
 });
