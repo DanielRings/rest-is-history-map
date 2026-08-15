@@ -10,7 +10,7 @@
 import type { TimeWindow } from "../filter/predicate";
 
 import { formatYearTick } from "./format";
-import { TIMELINE_BOUNDS, TIMELINE_TICKS, clampWindow, pxToYear, yearToPx } from "./scale";
+import { TIMELINE_BOUNDS, clampWindow, pxToYear, yearToPx } from "./scale";
 
 const HANDLE_RADIUS = 22; // 44px diameter touch target
 const HANDLE_DRAW_RADIUS = HANDLE_RADIUS - 8; // visible disc; smaller than touch target
@@ -21,6 +21,31 @@ const CLICK_SLOP_PX = 4;
 const DOUBLE_TAP_MS = 350;
 /** When toggling year→range, expand to ±this many years (clamped to bounds). */
 const RANGE_EXPAND_HALFSPAN = 100;
+/**
+ * Rail centre, measured up from the bottom of the canvas.
+ *
+ * The rail is deliberately not vertically centred: the year readout occupies
+ * a band across the top, so the rail sits low enough to clear it while still
+ * leaving the handle's full 44px touch circle inside the canvas.
+ */
+const TRACK_BOTTOM_OFFSET = 26;
+/** Inset of the pinned year readouts from the canvas edges. */
+const READOUT_INSET_PX = 8;
+/** Baseline offset of the readout band from the top of the canvas. */
+const READOUT_TOP_PX = 2;
+
+/**
+ * Vertical centre of the rail for a given canvas height.
+ *
+ * Shared by rendering and hit-testing — if these two ever disagree, handles
+ * draw in one place and respond in another.
+ *
+ * @param h - Canvas height in CSS pixels.
+ * @returns The rail's centre y, in CSS pixels.
+ */
+function trackYFor(h: number): number {
+  return h - TRACK_BOTTOM_OFFSET;
+}
 
 /** Constructor options. */
 export interface TimelineCanvasOptions {
@@ -155,33 +180,17 @@ export class TimelineCanvas {
     // Read theme tokens once per frame.
     const trackColor = this.cssVar("--timeline-track", "#d8d3c8");
     const trackActiveColor = this.cssVar("--timeline-track-active", "#e07a3c");
-    const tickColor = this.cssVar("--timeline-tick", "#8c8479");
     const labelColor = this.cssVar("--timeline-label", "#3a3530");
     const handleFill = this.cssVar("--timeline-handle-fill", "#ffffff");
     const handleBorder = this.cssVar("--timeline-handle-border", "#3a3530");
-    const labelFont = this.cssVar("--timeline-label-font", "12px system-ui, sans-serif");
-    const yearFont = this.cssVar("--timeline-year-font", "600 12px system-ui, sans-serif");
-    const handleYearFont = this.cssVar(
-      "--timeline-handle-year-font",
-      "600 13px system-ui, sans-serif",
-    );
+    const readoutFont = this.cssVar("--timeline-readout-font", "600 20px system-ui, sans-serif");
 
-    const trackY = h / 2;
+    const trackY = trackYFor(h);
     const padX = HANDLE_RADIUS + 4;
     const trackWidth = Math.max(1, w - padX * 2);
 
     ctx.fillStyle = trackColor;
     ctx.fillRect(padX, trackY - TRACK_THICKNESS / 2, trackWidth, TRACK_THICKNESS);
-
-    ctx.fillStyle = tickColor;
-    ctx.font = labelFont;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-    for (const tickYear of TIMELINE_TICKS) {
-      const x = padX + yearToPx(tickYear, trackWidth);
-      ctx.fillRect(x - 0.5, trackY + TRACK_THICKNESS / 2 + 2, 1, 4);
-      ctx.fillText(formatYearTick(tickYear), x, trackY + TRACK_THICKNESS / 2 + 18);
-    }
 
     const startX = padX + yearToPx(this.window.start, trackWidth);
     const endX = padX + yearToPx(this.window.end, trackWidth);
@@ -197,23 +206,29 @@ export class TimelineCanvas {
       ctx.lineWidth = 2;
       ctx.strokeStyle = trackActiveColor;
       ctx.stroke();
-      ctx.fillStyle = labelColor;
-      ctx.font = handleYearFont;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "bottom";
-      ctx.fillText(formatYearTick(this.window.start), playheadX, trackY - HANDLE_RADIUS - 2);
     } else {
       ctx.fillStyle = trackActiveColor;
       ctx.fillRect(startX, trackY - TRACK_THICKNESS / 2, endX - startX, TRACK_THICKNESS);
       drawHandle(ctx, startX, trackY, handleFill, handleBorder);
       drawHandle(ctx, endX, trackY, handleFill, handleBorder);
+    }
 
-      ctx.fillStyle = labelColor;
-      ctx.font = yearFont;
+    // Year readout. Pinned to the canvas edges rather than tracking the
+    // handles: at this width the two labels collided constantly, and anchoring
+    // them means the numbers change in place instead of sliding around. A
+    // single-year window collapses to one centred figure, since a "start" and
+    // "end" either side of the screen would be the same number twice.
+    ctx.fillStyle = labelColor;
+    ctx.font = readoutFont;
+    ctx.textBaseline = "top";
+    if (this.isYearMode()) {
       ctx.textAlign = "center";
-      ctx.textBaseline = "bottom";
-      ctx.fillText(formatYearTick(this.window.start), startX, trackY - HANDLE_RADIUS - 2);
-      ctx.fillText(formatYearTick(this.window.end), endX, trackY - HANDLE_RADIUS - 2);
+      ctx.fillText(formatYearTick(this.window.start), w / 2, READOUT_TOP_PX);
+    } else {
+      ctx.textAlign = "left";
+      ctx.fillText(formatYearTick(this.window.start), READOUT_INSET_PX, READOUT_TOP_PX);
+      ctx.textAlign = "right";
+      ctx.fillText(formatYearTick(this.window.end), w - READOUT_INSET_PX, READOUT_TOP_PX);
     }
 
     ctx.restore();
@@ -234,7 +249,7 @@ export class TimelineCanvas {
     const rect = this.canvas.getBoundingClientRect();
     const padX = HANDLE_RADIUS + 4;
     const trackWidth = Math.max(1, rect.width - padX * 2);
-    const trackY = rect.height / 2;
+    const trackY = trackYFor(rect.height);
 
     if (this.isYearMode()) {
       // In year mode any pointerdown that's vertically near the rail

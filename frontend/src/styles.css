@@ -29,15 +29,21 @@
   --display-titlecase: small-caps;
   --timeline-track: #d3c19a;
   --timeline-track-active: #9c3b2a;
-  --timeline-tick: #8c7a5e;
   --timeline-label: #2e2418;
   --timeline-handle-fill: #f8f0da;
   --timeline-handle-border: #4a3826;
-  --timeline-label-font: 11px "Marcellus Sans", "Optima", sans-serif;
-  --timeline-year-font: 12px "Marcellus Sans", "Optima", sans-serif;
-  --timeline-handle-year-font: 13px "Marcellus Sans", "Optima", sans-serif;
+  /* The rail's only text: the window's start/end years, pinned to the edges
+     of the canvas. Sized as a primary readout now that the tick labels are
+     gone and nothing can collide with it. */
+  --timeline-readout-font: 600 21px "Marcellus Sans", "Optima", sans-serif;
+  /* Ruler scale labels (touch scrubber only) — deliberately quiet, since the
+     readout above the chevrons is the number that matters. */
+  --timeline-ruler-tick-font: 11px "Marcellus Sans", "Optima", sans-serif;
   --shadow-popup: 0 6px 24px -8px rgba(20, 18, 14, 0.25), 0 2px 6px -2px rgba(20, 18, 14, 0.15);
-  --timeline-height: 140px;
+  /* 50px controls + 74px rail. The rail needs a 22px readout band, ~6px of
+     air, and the handle's full 44px touch circle; dropping the tick-label row
+     returned the rest to the map. */
+  --timeline-height: 124px;
   /* Mobile-only title strip. Deliberately minimal — it exists to make the
      parchment behind Safari's omnibar read as a frame rather than a stray
      block, so it costs as little map as possible. This height is hand-tuned
@@ -191,63 +197,115 @@ body {
   background: transparent;
 }
 
-#filter-chips {
+/* Filters live in a popover above the timeline rather than a permanent row
+   of chips: on a phone that row cost ~27px of a scarce panel and wrapped on
+   anything narrower than 375px. Floats over the map (anchored to the panel's
+   top edge) so opening it costs no layout at all. */
+#filter-panel {
+  position: absolute;
+  left: 8px;
+  bottom: calc(100% + 8px);
+  z-index: 6;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px 8px 0;
+  flex-direction: column;
+  min-width: 190px;
+  padding: 4px;
+  border: 1px solid var(--popup-outline);
+  border-radius: 10px;
+  background: var(--popup-bg);
+  backdrop-filter: var(--popup-blur);
+  -webkit-backdrop-filter: var(--popup-blur);
+  box-shadow: var(--shadow-popup);
 }
 
-.filter-chip {
+#filter-panel[hidden] {
+  display: none;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #filter-panel {
+    background: var(--popup-bg-fallback);
+  }
+}
+
+/* Full-width rows, 44px tall — the same touch target as the transport
+   controls beside them. State reads as a check on the right rather than a
+   filled pill, which is the platform convention for a menu of toggles. */
+.filter-option {
   appearance: none;
-  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 7px;
   background: transparent;
   color: var(--fg-muted);
-  font: inherit;
-  font-size: 11px;
+  font-family: var(--font-display);
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  padding: 3px 10px;
-  border-radius: 999px;
+  text-align: left;
   cursor: pointer;
   user-select: none;
   transition:
     background-color 160ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 160ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 160ms cubic-bezier(0.4, 0, 0.2, 1);
+    color 160ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.filter-chip:hover {
+/* Checkmark, drawn in CSS so the markup stays a plain button. */
+.filter-option::after {
+  content: "";
+  width: 13px;
+  height: 7px;
+  border: 2px solid currentColor;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 1px;
+  transform: rotate(-45deg) translate(1px, -2px);
+  opacity: 0;
+  transition: opacity 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-option:hover {
   color: var(--fg);
-  border-color: var(--fg-muted);
 }
 
-.filter-chip[aria-pressed="true"] {
-  background: var(--popup-outline);
-  color: #fff8e7;
-  border-color: var(--popup-outline);
+.filter-option[aria-pressed="true"] {
+  color: var(--fg);
+  background: rgba(160, 130, 80, 0.16);
 }
 
-.filter-chip:focus-visible {
+.filter-option[aria-pressed="true"]::after {
+  opacity: 1;
+}
+
+.filter-option:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: -2px;
 }
 
 /* Play button is positioned absolutely at horizontal center so the speed
    pill changing text width never shifts it. Speed pill is anchored by its
    right edge a fixed distance left of center — also unaffected by the
    pill's own text width. Both share the same vertical centering. */
+/* 44px controls — Apple's minimum touch target, and the size the Podcasts
+   transport row uses. The previous 28-32px buttons were tappable only
+   because their hit areas overlapped the padding around them. */
 #timeline-controls {
   flex: 0 0 auto;
   position: relative;
-  height: 32px;
-  padding: 4px 0 2px;
+  height: 50px;
+  padding: 3px 0;
 }
 
 #speed-pill,
 #range-pill,
-#play-button {
+#play-button,
+#filter-button,
+#reset-button {
   appearance: none;
   border: 0;
   background: transparent;
@@ -256,49 +314,118 @@ body {
   cursor: pointer;
   user-select: none;
   padding: 0;
+  /* Five equal 20% slots, each button centred in its own fifth. Centring
+     rather than edge-anchoring is safe because every button has a fixed
+     width, so a changing label ("1×" -> "1.5×") still cannot shift anything. */
   position: absolute;
   top: 50%;
-}
-
-#speed-pill,
-#range-pill {
-  width: 40px;
-  height: 28px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  font-variant-numeric: tabular-nums;
-  color: var(--fg-muted);
-  transform: translateY(-50%);
-  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#speed-pill {
-  /* Right edge anchored 20px left of horizontal center → text changes
-     are invisible because the button's right edge doesn't move. */
-  right: calc(50% + 20px);
-}
-
-#range-pill {
-  /* Mirror of #speed-pill on the right side of the play button. */
-  left: calc(50% + 20px);
-}
-
-#play-button {
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   transform: translate(-50%, -50%);
   transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+#filter-button {
+  left: 10%;
+}
+
+#speed-pill {
+  left: 30%;
+}
+
+#play-button {
+  left: 50%;
+}
+
+#range-pill {
+  left: 70%;
+}
+
+#reset-button {
+  left: 90%;
+}
+
+#speed-pill,
+#range-pill {
+  width: 50px;
+  height: 44px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-muted);
+}
+
+#play-button {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fills the whole 44px button. The glyph still looked small at 30px because
+   the artwork itself is inset within its 24-unit viewBox (the triangle spans
+   only ~10 of 24 units), so the viewBox is cropped to 3..21 in the markup to
+   spend those pixels on the shape rather than on padding. */
 #play-button svg {
-  width: 22px;
-  height: 22px;
+  width: 44px;
+  height: 44px;
   overflow: visible;
+}
+
+/* The two icon buttons bookend the row — filters far left, reset/redo far
+   right — with the transport controls occupying the middle three slots. */
+#filter-button,
+#reset-button {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  transition:
+    transform 180ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 160ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#filter-button svg,
+#reset-button svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Reset/redo crossfade, same pattern as play/pause: both graphics are in the
+   SVG and data-state picks which is visible. */
+#reset-button .reset-icon,
+#reset-button .redo-icon {
+  transform-origin: 12px 12px;
+  transition:
+    opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#reset-button[data-state="reset"] .reset-icon,
+#reset-button[data-state="redo"] .redo-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#reset-button[data-state="reset"] .redo-icon,
+#reset-button[data-state="redo"] .reset-icon {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+#filter-button:hover,
+#reset-button:hover,
+#filter-button[aria-expanded="true"] {
+  color: var(--fg);
+}
+
+#filter-button:focus-visible,
+#reset-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 /* Two overlaid play/pause graphics inside a square SVG; crossfade + scale
@@ -356,12 +483,13 @@ body {
   color: var(--fg);
 }
 
+/* All five share the same centring transform, so the press animation must
+   preserve it or the button would jump sideways on tap. */
 #speed-pill:active,
-#range-pill:active {
-  transform: translateY(-50%) scale(0.85);
-}
-
-#play-button:active {
+#range-pill:active,
+#play-button:active,
+#filter-button:active,
+#reset-button:active {
   transform: translate(-50%, -50%) scale(0.85);
 }
 
@@ -589,4 +717,19 @@ body {
 
 .maplibregl-popup-tip {
   border-top-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Attribution: hidden on mobile, where the corner it occupies is worth more
+   as map than as credit, and shown from 800px up. Natural Earth is public
+   domain and its terms state that crediting is unnecessary, so this is a
+   layout decision rather than a licensing one — the control stays in the DOM
+   and simply reappears on wider screens. */
+.maplibregl-ctrl-attrib {
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .maplibregl-ctrl-attrib {
+    display: block;
+  }
 }

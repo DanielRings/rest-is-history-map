@@ -44,10 +44,12 @@ export const TIMELINE_BOUNDS: { readonly min: number; readonly max: number } = {
   max: 2025,
 };
 
-/** Anchor years exposed to callers that want to draw tick labels.
- *  Year 1 is added as the BC/AD boundary marker and year 1000 as the
- *  millennium marker — neither is a piecewise anchor (the scale already
- *  interpolates through them) but each earns its own tick for readability. */
+/** The scale's control points, plus the BC/AD boundary (year 1) and the
+ *  millennium (year 1000) — neither is a piecewise anchor, since the scale
+ *  already interpolates through them. Nothing renders ticks any more (the
+ *  rail is bare and shows only the window's start/end years), but these
+ *  remain the meaningful sample points for verifying the axis is monotonic
+ *  and correctly ordered. */
 export const TIMELINE_TICKS: readonly number[] = [...ANCHORS.map((a) => a.year), 1, 1000].sort(
   (a, b) => a - b,
 );

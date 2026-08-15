@@ -133,10 +133,30 @@ export function decodeHash(hash: string): HashFragment | null {
  *
  * @returns Cleanup function that detaches the listener and store sub.
  */
+/**
+ * Idle period before the URL is rewritten, in ms.
+ *
+ * The hash exists to be shared, so it only has to be right once things settle
+ * — there is no value in tracking a moving playhead or a pan in progress.
+ * Debouncing on quiet means continuous motion produces NO writes at all, and
+ * exactly one lands when it stops.
+ *
+ * This also fixes a real bug. Safari rate-limits `history.replaceState` to
+ * roughly 100 calls per 30 seconds and THROWS a SecurityError past that
+ * rather than failing quietly. Playback updates the store every frame, so
+ * writing per-change burned the quota in under two seconds; the throw escaped
+ * `store.set()` inside the playback rAF callback and killed the loop while
+ * the transport still showed "playing". Worst case here — changes spaced just
+ * over the idle period — is ~60 writes per 30s, still inside the budget.
+ */
+const HASH_WRITE_IDLE_MS = 400;
+
 export function wireHashSync(store: Store<AppState>): () => void {
   let lastWritten = "";
+  let idleTimer: number | null = null;
+  let pending: AppState | null = null;
 
-  const writeFromState = (s: AppState): void => {
+  const commit = (s: AppState): void => {
     const fragment: HashFragment = {
       window: s.window,
       mapCenter: s.mapCenter,
@@ -147,6 +167,19 @@ export function wireHashSync(store: Store<AppState>): () => void {
     if (next === lastWritten) return;
     lastWritten = next;
     history.replaceState(null, "", next);
+  };
+
+  // Hold the newest state and restart the clock on every change, so a burst
+  // (playback, a pan, a scrub) collapses to a single write when it ends.
+  const writeFromState = (s: AppState): void => {
+    pending = s;
+    if (idleTimer !== null) clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(() => {
+      idleTimer = null;
+      const latest = pending;
+      pending = null;
+      if (latest !== null) commit(latest);
+    }, HASH_WRITE_IDLE_MS);
   };
 
   const readFromHash = (): void => {
@@ -165,11 +198,17 @@ export function wireHashSync(store: Store<AppState>): () => void {
 
   const unsub = store.subscribe(writeFromState);
   window.addEventListener("hashchange", readFromHash);
-  // Prime hash from current state so the URL is canonical from the first paint.
-  writeFromState(store.get());
+  // Prime hash from current state so the URL is canonical from the first
+  // paint. Committed directly rather than debounced: there is nothing in
+  // flight to coalesce with, and the URL should be shareable immediately.
+  commit(store.get());
 
   return () => {
     unsub();
+    if (idleTimer !== null) {
+      clearTimeout(idleTimer);
+      idleTimer = null;
+    }
     window.removeEventListener("hashchange", readFromHash);
   };
 }

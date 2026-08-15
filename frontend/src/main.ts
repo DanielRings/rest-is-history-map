@@ -22,7 +22,14 @@ import { createCountryPopup } from "./panels/country-popup";
 import { decodeHash, wireHashSync } from "./state/hash";
 import { type AppState, createStore } from "./state/store";
 import { TimelineCanvas } from "./timeline/canvas";
+import { RulerTimeline } from "./timeline/ruler";
 import { TIMELINE_BOUNDS, pxToYear, yearToPx } from "./timeline/scale";
+
+/** Shared surface of the two scrubber implementations (rail and ruler). */
+interface TimelineLike {
+  setWindow: (w: TimeWindow) => void;
+  dispose: () => void;
+}
 
 declare global {
   interface Window {
@@ -112,12 +119,32 @@ async function main(): Promise<void> {
 
   const store = createStore<AppState>(initialState);
 
-  const timeline = new TimelineCanvas({
-    canvas: timelineEl,
-    initialWindow: initialState.window,
-    onChange: (w: TimeWindow) => {
-      store.set({ window: w });
-    },
+  // Touch devices get the ruler scrubber, desktop keeps the density-weighted
+  // rail. They share a surface (construct / setWindow / dispose) and the same
+  // canvas element, so the only thing that changes is which one is mounted.
+  // Rebuilt on breakpoint crossings because a phone in landscape is wider
+  // than the desktop threshold.
+  const desktopQuery = window.matchMedia("(min-width: 800px)");
+  const mountTimeline = (): TimelineLike =>
+    desktopQuery.matches
+      ? new TimelineCanvas({
+          canvas: timelineEl,
+          initialWindow: store.get().window,
+          onChange: (w: TimeWindow) => {
+            store.set({ window: w });
+          },
+        })
+      : new RulerTimeline({
+          canvas: timelineEl,
+          initialWindow: store.get().window,
+          onChange: (w: TimeWindow) => {
+            store.set({ window: w });
+          },
+        });
+  let timeline: TimelineLike = mountTimeline();
+  desktopQuery.addEventListener("change", () => {
+    timeline.dispose();
+    timeline = mountTimeline();
   });
 
   let map: MapHandle | null = null;
@@ -361,8 +388,15 @@ async function main(): Promise<void> {
   const RANGE_CYCLE = [1, 5, 10, 25, 50, 100] as const;
   const PIX_PER_SEC_BASE = 20;
   const TIMELINE_PAD_PX = 26; // HANDLE_RADIUS (22) + 4, matches TimelineCanvas
-  let speedIdx = 1; // start at 1×
+  /** Index of 1× in SPEED_CYCLE — the default, and what reset returns to. */
+  const DEFAULT_SPEED_IDX = 1;
+  let speedIdx = DEFAULT_SPEED_IDX;
   let rangeIdx = 0; // start at 1y
+  /** Window width, in years, that playback advances with. Normally the range
+   *  pill's preset, but pressing play adopts whatever spread is currently on
+   *  the rail — drag the handles out to 207 years and playback runs a
+   *  207-year window rather than snapping back to the preset. */
+  let activeSpan: number = RANGE_CYCLE[0] ?? 1;
   let playing = false;
   let rafId: number | null = null;
   let lastFrameMs = 0;
@@ -372,9 +406,13 @@ async function main(): Promise<void> {
   const rangePill = document.getElementById("range-pill");
   const playBtn = document.getElementById("play-button");
 
-  /** Convert a playhead year + selected range to a clamped TimeWindow. */
-  const windowForYear = (year: number): TimeWindow => {
-    const span = RANGE_CYCLE[rangeIdx] ?? 1;
+  /**
+   * Convert a playhead year + a window width to a clamped TimeWindow.
+   *
+   * @param year - Playhead year to centre on.
+   * @param span - Window width in years; defaults to the active span.
+   */
+  const windowForYear = (year: number, span: number = activeSpan): TimeWindow => {
     const halfBefore = Math.floor(span / 2);
     const halfAfter = span - 1 - halfBefore;
     let start = year - halfBefore;
@@ -430,7 +468,16 @@ async function main(): Promise<void> {
     const cur = store.get().window;
     const next = windowForYear(newYear);
     if (next.start !== cur.start || next.end !== cur.end) {
-      store.set({ window: next });
+      try {
+        store.set({ window: next });
+      } catch (err) {
+        // If a subscriber throws, the frame never reschedules and playback
+        // dies silently — but `playing` would stay true, leaving the button
+        // showing "pause" over a frozen timeline. Fail loudly and leave the
+        // transport in a state that matches reality.
+        stopPlayback();
+        throw err;
+      }
     }
     rafId = requestAnimationFrame(tick);
   };
@@ -438,12 +485,35 @@ async function main(): Promise<void> {
   const startPlayback = (): void => {
     // Close any open popup — episode list would flicker as years tick.
     popup.hide();
+    /** Position the window and playhead to begin advancing from `year`. */
+    const beginAt = (year: number): void => {
+      store.set({ window: windowForYear(year) });
+      playheadPx = yearToPx(year, railWidthPx());
+    };
+
     const cur = store.get().window;
-    // Anchor playback at the center of whatever window is currently
-    // selected, then size the window from the active range pill.
-    const center = Math.round((cur.start + cur.end) / 2);
-    store.set({ window: windowForYear(center) });
-    playheadPx = yearToPx(center, railWidthPx());
+    const isFullSpan = cur.start <= TIMELINE_BOUNDS.min && cur.end >= TIMELINE_BOUNDS.max;
+    if (isFullSpan) {
+      // Whole timeline selected: adopting that spread would make playback a
+      // no-op, since the window is already clamped to the bounds and can't
+      // advance. Collapse to the range pill's preset and run from the start
+      // handle instead, which is what "play the timeline" should mean.
+      activeSpan = RANGE_CYCLE[rangeIdx] ?? 1;
+      beginAt(TIMELINE_BOUNDS.min);
+    } else {
+      // Adopt the spread that's actually on the rail, so a hand-scrubbed
+      // range (say 207 years) plays through at that width instead of snapping
+      // back to the preset. The pill reasserts its own value when tapped.
+      activeSpan = Math.max(1, cur.end - cur.start + 1);
+      if (cur.end >= TIMELINE_BOUNDS.max) {
+        // Parked against the end — either playback ran out or the window was
+        // scrubbed there. Replay from the start at the same spread rather
+        // than starting with no room left to advance.
+        beginAt(TIMELINE_BOUNDS.min);
+      } else {
+        beginAt(Math.round((cur.start + cur.end) / 2));
+      }
+    }
     setPlayState(true);
     lastFrameMs = performance.now();
     rafId = requestAnimationFrame(tick);
@@ -460,20 +530,21 @@ async function main(): Promise<void> {
   // consistency.
   const speedSlots = speedPill?.querySelectorAll<HTMLElement>(".speed-text") ?? null;
   let activeSpeedSlot = 0;
+  /** Crossfade the speed pill to a new label. */
+  const setSpeedLabel = (multiplier: number): void => {
+    if (speedSlots === null || speedSlots.length !== 2) return;
+    const nextSlot = 1 - activeSpeedSlot;
+    const nextEl = speedSlots[nextSlot];
+    const prevEl = speedSlots[activeSpeedSlot];
+    if (nextEl === undefined || prevEl === undefined) return;
+    nextEl.textContent = `${multiplier}×`;
+    nextEl.classList.add("speed-text--active");
+    prevEl.classList.remove("speed-text--active");
+    activeSpeedSlot = nextSlot;
+  };
   speedPill?.addEventListener("click", () => {
     speedIdx = (speedIdx + 1) % SPEED_CYCLE.length;
-    const next = SPEED_CYCLE[speedIdx] ?? 1;
-    if (speedSlots !== null && speedSlots.length === 2) {
-      const nextSlot = 1 - activeSpeedSlot;
-      const nextEl = speedSlots[nextSlot];
-      const prevEl = speedSlots[activeSpeedSlot];
-      if (nextEl !== undefined && prevEl !== undefined) {
-        nextEl.textContent = `${next}×`;
-        nextEl.classList.add("speed-text--active");
-        prevEl.classList.remove("speed-text--active");
-        activeSpeedSlot = nextSlot;
-      }
-    }
+    setSpeedLabel(SPEED_CYCLE[speedIdx] ?? 1);
   });
 
   // Range pill: same crossfade pattern. Clicking advances through the
@@ -481,23 +552,74 @@ async function main(): Promise<void> {
   // sees the effect without having to press play.
   const rangeSlots = rangePill?.querySelectorAll<HTMLElement>(".range-text") ?? null;
   let activeRangeSlot = 0;
+  /** Crossfade the range pill to a new label. */
+  const setRangeLabel = (years: number): void => {
+    if (rangeSlots === null || rangeSlots.length !== 2) return;
+    const nextSlot = 1 - activeRangeSlot;
+    const nextEl = rangeSlots[nextSlot];
+    const prevEl = rangeSlots[activeRangeSlot];
+    if (nextEl === undefined || prevEl === undefined) return;
+    nextEl.textContent = `${years}y`;
+    nextEl.classList.add("range-text--active");
+    prevEl.classList.remove("range-text--active");
+    activeRangeSlot = nextSlot;
+  };
   rangePill?.addEventListener("click", () => {
     rangeIdx = (rangeIdx + 1) % RANGE_CYCLE.length;
     const next = RANGE_CYCLE[rangeIdx] ?? 1;
-    if (rangeSlots !== null && rangeSlots.length === 2) {
-      const nextSlot = 1 - activeRangeSlot;
-      const nextEl = rangeSlots[nextSlot];
-      const prevEl = rangeSlots[activeRangeSlot];
-      if (nextEl !== undefined && prevEl !== undefined) {
-        nextEl.textContent = `${next}y`;
-        nextEl.classList.add("range-text--active");
-        prevEl.classList.remove("range-text--active");
-        activeRangeSlot = nextSlot;
-      }
-    }
+    setRangeLabel(next);
+    // Tapping the pill reasserts the preset as the playback span, overriding
+    // any width adopted from a hand-scrubbed rail.
+    activeSpan = next;
     const cur = store.get().window;
     const center = Math.round((cur.start + cur.end) / 2);
     store.set({ window: windowForYear(center) });
+  });
+
+  // Reset clears back to the whole timeline and the 1y preset; it then turns
+  // into a redo that restores exactly what was there before, always paused —
+  // a reset pressed mid-playback is undone as a stopped timeline, not a
+  // running one. The redo goes stale as soon as the window moves again (by
+  // scrub, pill, or playback), at which point the button reverts to reset.
+  const resetBtn = document.getElementById("reset-button");
+  let undoSnapshot: { window: TimeWindow; rangeIdx: number; speedIdx: number } | null = null;
+  const setResetMode = (mode: "reset" | "redo"): void => {
+    if (resetBtn === null) return;
+    resetBtn.dataset["state"] = mode;
+    resetBtn.setAttribute(
+      "aria-label",
+      mode === "redo" ? "Restore previous timeline" : "Reset timeline",
+    );
+  };
+  resetBtn?.addEventListener("click", () => {
+    stopPlayback();
+    if (undoSnapshot !== null) {
+      const snapshot = undoSnapshot;
+      undoSnapshot = null;
+      rangeIdx = snapshot.rangeIdx;
+      speedIdx = snapshot.speedIdx;
+      activeSpan = RANGE_CYCLE[rangeIdx] ?? 1;
+      setRangeLabel(activeSpan);
+      setSpeedLabel(SPEED_CYCLE[speedIdx] ?? 1);
+      setResetMode("reset");
+      store.set({ window: snapshot.window });
+      return;
+    }
+    undoSnapshot = { window: { ...store.get().window }, rangeIdx, speedIdx };
+    rangeIdx = 0;
+    speedIdx = DEFAULT_SPEED_IDX;
+    activeSpan = RANGE_CYCLE[0] ?? 1;
+    setRangeLabel(activeSpan);
+    setSpeedLabel(SPEED_CYCLE[DEFAULT_SPEED_IDX] ?? 1);
+    setResetMode("redo");
+    store.set({ window: { start: TIMELINE_BOUNDS.min, end: TIMELINE_BOUNDS.max } });
+  });
+  store.subscribe((s) => {
+    if (undoSnapshot === null) return;
+    const isFullSpan = s.window.start <= TIMELINE_BOUNDS.min && s.window.end >= TIMELINE_BOUNDS.max;
+    if (isFullSpan) return;
+    undoSnapshot = null;
+    setResetMode("reset");
   });
 
   // Playwright test hooks — same code paths as real input.
@@ -533,27 +655,57 @@ async function main(): Promise<void> {
   };
 
   // ---------------------------------------------------------------------
-  // Filter chips
+  // Filters (popover above the timeline, opened from the controls row)
   // ---------------------------------------------------------------------
-  const filterChips = document.querySelectorAll<HTMLButtonElement>(".filter-chip");
-  const syncChips = (f: FilterFlags): void => {
-    for (const chip of filterChips) {
-      const key = chip.dataset["filter"] as keyof FilterFlags | undefined;
+  const filterOptions = document.querySelectorAll<HTMLButtonElement>(".filter-option");
+  const syncFilterOptions = (f: FilterFlags): void => {
+    for (const option of filterOptions) {
+      const key = option.dataset["filter"] as keyof FilterFlags | undefined;
       if (key === undefined) continue;
-      chip.setAttribute("aria-pressed", f[key] ? "true" : "false");
+      option.setAttribute("aria-pressed", f[key] ? "true" : "false");
     }
   };
-  syncChips(initialState.filters);
-  for (const chip of filterChips) {
-    const key = chip.dataset["filter"] as keyof FilterFlags | undefined;
+  syncFilterOptions(initialState.filters);
+  for (const option of filterOptions) {
+    const key = option.dataset["filter"] as keyof FilterFlags | undefined;
     if (key === undefined) continue;
-    chip.addEventListener("click", () => {
+    option.addEventListener("click", () => {
       const cur = store.get().filters;
       const next: FilterFlags = { ...cur, [key]: !cur[key] };
       store.set({ filters: next });
     });
   }
-  store.subscribe((s) => syncChips(s.filters));
+  store.subscribe((s) => syncFilterOptions(s.filters));
+
+  const filterButton = document.getElementById("filter-button");
+  const filterPanel = document.getElementById("filter-panel");
+  if (filterButton === null || filterPanel === null) {
+    throw new Error("main: filter controls missing");
+  }
+  const setFilterPanelOpen = (open: boolean): void => {
+    filterPanel.hidden = !open;
+    filterButton.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+  filterButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setFilterPanelOpen(filterPanel.hidden);
+  });
+  // Dismiss on any interaction outside the panel — including on the map,
+  // which swallows clicks of its own, so listen in the capture phase.
+  document.addEventListener(
+    "pointerdown",
+    (e) => {
+      if (filterPanel.hidden) return;
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (filterPanel.contains(target) || filterButton.contains(target)) return;
+      setFilterPanelOpen(false);
+    },
+    true,
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !filterPanel.hidden) setFilterPanelOpen(false);
+  });
 
   appEl.dataset["appReady"] = "true";
 }
