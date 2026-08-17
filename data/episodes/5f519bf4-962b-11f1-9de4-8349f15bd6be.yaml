@@ -56,11 +56,17 @@ description: 'How did the Troubles break out in Northern Ireland in the 1960s, a
   Executive Producer: Dom Johnson&nbsp;'
 pub_date: '2026-08-16T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR]
+year_start: 1960
+year_end: 1969
+date_precision: decade
+kind: historical
+topics:
+  - the troubles
+  - northern ireland
+  - sectarianism
+  - civil rights
 historical_figures: []
+series_id: "the-troubles-2026"
+series_part: 1
 links: {}

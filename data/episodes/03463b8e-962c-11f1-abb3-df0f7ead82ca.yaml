@@ -57,11 +57,17 @@ description: 'What was the Provisional IRA, and why did they return to the fray 
   Executive Producer: Dom Johnson'
 pub_date: '2026-08-16T23:15:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR]
+year_start: 1969
+year_end: 1970
+date_precision: year
+kind: historical
+topics:
+  - the troubles
+  - provisional ira
+  - northern ireland
+  - short strand battle
 historical_figures: []
+series_id: "the-troubles-2026"
+series_part: 3
 links: {}

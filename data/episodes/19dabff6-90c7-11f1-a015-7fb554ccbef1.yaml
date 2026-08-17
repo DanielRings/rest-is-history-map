@@ -14,11 +14,16 @@ description: 'What remarkable secrets does Soulton Hall, a famous Tudor Manor Ho
   AkudeExecutive Producer: Dom Johnson'
 pub_date: '2026-08-11T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [GBR]
+year_start: 1485
+year_end: 1603
+date_precision: era
+kind: interview
+topics:
+  - tudor history
+  - soulton hall
+  - religious persecution
+  - shakespeare
+historical_figures:
+  - Rowland Hill
 links: {}

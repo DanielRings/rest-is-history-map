@@ -1,15 +1,14 @@
-guid: 8546cafa-962b-11f1-ae70-573bdcfb4700
-title: 'The Troubles: The Brink of Civil War (Part 2)'
-description: 'Why did the violence of the Troubles escalate as it did in Ulster? How
-  did a series of marches from Belfast to Derry in 1969 result in terrible violence,
-  and heighten the conflict? And, which terrible events saw the British army cross
-  the border to intervene?
+guid: 36ef8792-962c-11f1-8e5d-b7fb65b5340f
+title: 'The Troubles: Bloody Sunday (Part 4)'
+description: 'How did Bloody Sunday erupt on the 30th of January 1972? Why did it
+  follow on the heels of terrible violence? And, what were the consequences of that
+  violent day?&nbsp;
 
 
 
 
-  Join Dominic and Tom as they discuss the next tumultuous stage of The Troubles in
-  Northern Ireland.&nbsp;
+  Join Tom and Dominic as they discuss the tragic events of Bloody Sunday, and the
+  final attempt at peace in Northern Ireland.&nbsp;
 
 
 
@@ -57,13 +56,19 @@ description: 'Why did the violence of the Troubles escalate as it did in Ulster?
 
 
   Executive Producer: Dom Johnson'
-pub_date: '2026-08-16T23:10:00Z'
+pub_date: '2026-08-16T23:20:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR]
+year_start: 1972
+year_end: 1972
+date_precision: year
+kind: historical
+topics:
+  - the troubles
+  - bloody sunday
+  - northern ireland
+  - british army
 historical_figures: []
+series_id: "the-troubles-2026"
+series_part: 4
 links: {}
