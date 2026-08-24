@@ -13,11 +13,15 @@ description: "What can the occupation of the ancient city Mosul in Iraq, in 2014
   \ Callum Hill\n\nExecutive Producer: Dom Johnson"
 pub_date: '2026-08-20T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [IRQ]
+year_start: 2014
+year_end: 2017
+date_precision: decade
+kind: interview
+topics:
+  - mosul
+  - islamic state
+  - iraq
+  - cultural heritage destruction
 historical_figures: []
 links: {}

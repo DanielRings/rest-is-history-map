@@ -17,11 +17,15 @@ description: "What are the fundamental cultural differences between Ireland and 
   \nExecutive Producer: Dom Johnson"
 pub_date: '2026-08-18T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [IRL, GBR]
+year_start: 1801
+year_end: 1922
+date_precision: era
+kind: live
+topics:
+  - irish history
+  - anglo-irish relations
+  - religion and land
+  - united kingdom of great britain and ireland
 historical_figures: []
 links: {}
