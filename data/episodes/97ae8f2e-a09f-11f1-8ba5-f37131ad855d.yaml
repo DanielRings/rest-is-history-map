@@ -56,11 +56,18 @@ description: 'Who was Gaius Marius, one of the two men who would shape the fate 
   Executive Producer: Dom Johnson'
 pub_date: '2026-08-30T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [ITA]
+year_start: -157
+year_end: -101
+date_precision: era
+kind: historical
+topics:
+  - roman civil war
+  - gaius marius
+  - roman republic
+  - ancient rome
+historical_figures:
+  - Gaius Marius
+series_id: "roman-civil-war-2026"
+series_part: 1
 links: {}

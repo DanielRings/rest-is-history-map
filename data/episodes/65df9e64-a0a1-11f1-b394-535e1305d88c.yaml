@@ -44,11 +44,22 @@ description: 'Who was Gaius Marius’ son, and how did he set out to bring down 
   Executive Producer: Dom Johnson'
 pub_date: '2026-08-30T23:20:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [ITA]
+year_start: -87
+year_end: -82
+date_precision: decade
+kind: historical
+topics:
+  - roman civil war
+  - sulla
+  - crassus
+  - pompey
+  - julius caesar
+historical_figures:
+  - Sulla
+  - Crassus
+  - Pompey
+  - Julius Caesar
+series_id: "roman-civil-war-2026"
+series_part: 4
 links: {}

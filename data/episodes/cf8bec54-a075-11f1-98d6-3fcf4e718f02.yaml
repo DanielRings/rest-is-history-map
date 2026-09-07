@@ -16,11 +16,15 @@ description: "Was there ever a world in which the Troubles might have been avoid
   \ Dom Johnson"
 pub_date: '2026-08-25T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR]
+year_start: 1968
+year_end: 1998
+date_precision: era
+kind: themed
+topics:
+  - the troubles
+  - northern ireland
+  - good friday agreement
+  - counterfactual history
 historical_figures: []
 links: {}
