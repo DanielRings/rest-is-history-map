@@ -11,11 +11,15 @@ description: "How did Roman attitudes toward slavery differ from modern moral vi
   \ Akude\n\nSenior Producer: Callum Hill\n\nExecutive Producer: Dom Johnson"
 pub_date: '2026-09-03T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [ITA]
+year_start: -27
+year_end: 476
+date_precision: era
+kind: interview
+topics:
+  - roman society
+  - roman slavery
+  - everyday life in rome
+  - roman emperors
 historical_figures: []
 links: {}
