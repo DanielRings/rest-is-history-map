@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-14T10:09:11.715174Z",
+  "generated_at": "2026-09-21T10:08:59.509693Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -1516,6 +1516,39 @@
       ],
       "links": {},
       "year_anchor": 560
+    },
+    {
+      "guid": "0d99f4ca-adf8-11f1-801a-1746c77819d4",
+      "title": "Queen Victoria’s Revenge: Storming the Citadel (Part 2)",
+      "description": "Who was Lieutenant Napier, the man set out to rescue the European hostages held by Emperor Tewodros II? How did he plan to attack the emperor’s fortress, Magdala? And, did they manage to successfully escape Abyssinia?&nbsp;\n\n\n\nJoin Dominic and Tom as they conclude the story of one of the most epic expeditions in the history of the British Empire.&nbsp;&nbsp;\n\n&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-09-13T23:10:00Z",
+      "access": "public",
+      "countries": [
+        "ETH",
+        "GBR"
+      ],
+      "year_start": 1868,
+      "year_end": 1868,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "abyssinian expedition",
+        "battle of magdala",
+        "robert napier",
+        "british empire"
+      ],
+      "historical_figures": [
+        "Robert Napier",
+        "Tewodros II",
+        "Queen Victoria"
+      ],
+      "series_id": "queen-victorias-revenge-2026",
+      "series_part": 2,
+      "links": {},
+      "series_start": 1864,
+      "series_end": 1868,
+      "series_year_anchor": 1866,
+      "year_anchor": 1868
     },
     {
       "guid": "0dede042-8dc4-11ed-b2db-0b0389cdc28a",
@@ -8302,6 +8335,38 @@
       ],
       "links": {},
       "year_anchor": 1774
+    },
+    {
+      "guid": "50276324-adf6-11f1-8c0c-a322f344875d",
+      "title": "Queen Victoria’s Revenge: The Mad Emperor of Abyssinia (Part 1)",
+      "description": "Who was Emperor Tewodros II, the colourful and controversial Emperor of Abyssinia? Why did he brutally imprison a number of British emissaries, and how did Queen Victoria respond? And, how would this spark one of the most ambitious expeditions undertaken by the British Empire…?\n\n\n\nJoin Dominic and Tom as they launch into one of the most extraordinary military expeditions in all world history.&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-09-13T23:05:00Z",
+      "access": "public",
+      "countries": [
+        "ETH",
+        "GBR"
+      ],
+      "year_start": 1864,
+      "year_end": 1868,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "abyssinian expedition",
+        "tewodros ii",
+        "british empire",
+        "hostage crisis"
+      ],
+      "historical_figures": [
+        "Tewodros II",
+        "Queen Victoria"
+      ],
+      "series_id": "queen-victorias-revenge-2026",
+      "series_part": 1,
+      "links": {},
+      "series_start": 1864,
+      "series_end": 1868,
+      "series_year_anchor": 1866,
+      "year_anchor": 1866
     },
     {
       "guid": "502ec56a-6ea2-11ee-b290-2b459508d9e7",
@@ -25073,6 +25138,33 @@
       "series_end": 1938,
       "series_year_anchor": 1935,
       "year_anchor": 1933
+    },
+    {
+      "guid": "efeaca1e-aaa3-11f1-889d-3b31d24cafe5",
+      "title": "Cicero: Defender of the Republic",
+      "description": "Who was the statesman Cicero, and how did he rise from provincial obscurity to become one of Rome’s greatest orators, crushing conspiracy along the way? How did he defend the Roman Republic against Julius Caesar and his allies? And, why did his long and tumultuous life end with a bloody execution…?\n\n\n\nIn this week’s bonus episode, Tom is joined by historian Catherine Edwards to discuss the rise, triumphs, and downfall of Cicero - one of the most famous Romans of all time - in the dying days of the Roman Republic.&nbsp;\n\n\n\nCatherine’s new book, The life of Cicero and the end of the Roman Republic is out now in hardback, audio and ebook.\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-09-08T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "ITA"
+      ],
+      "year_start": -106,
+      "year_end": -43,
+      "date_precision": "era",
+      "kind": "interview",
+      "topics": [
+        "cicero",
+        "roman republic",
+        "roman politics",
+        "catiline conspiracy",
+        "julius caesar"
+      ],
+      "historical_figures": [
+        "Cicero",
+        "Julius Caesar"
+      ],
+      "links": {},
+      "year_anchor": -75
     },
     {
       "guid": "efec2028-756c-11ed-9af5-f719395571d8",

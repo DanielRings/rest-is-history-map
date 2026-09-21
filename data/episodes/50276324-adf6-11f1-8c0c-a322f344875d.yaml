@@ -44,11 +44,19 @@ description: 'Who was Emperor Tewodros II, the colourful and controversial Emper
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-13T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [ETH, GBR]
+year_start: 1864
+year_end: 1868
+date_precision: year
+kind: historical
+topics:
+  - abyssinian expedition
+  - tewodros ii
+  - british empire
+  - hostage crisis
+historical_figures:
+  - Tewodros II
+  - Queen Victoria
+series_id: "queen-victorias-revenge-2026"
+series_part: 1
 links: {}

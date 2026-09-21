@@ -53,11 +53,18 @@ description: 'Who was the statesman Cicero, and how did he rise from provincial 
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-08T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [ITA]
+year_start: -106
+year_end: -43
+date_precision: era
+kind: interview
+topics:
+  - cicero
+  - roman republic
+  - roman politics
+  - catiline conspiracy
+  - julius caesar
+historical_figures:
+  - Cicero
+  - Julius Caesar
 links: {}
