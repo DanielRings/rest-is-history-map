@@ -44,11 +44,18 @@ description: 'Why did Robespierre hold a vast, eccentric festival in Paris 1794,
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-20T23:25:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [FRA]
+year_start: 1794
+year_end: 1794
+date_precision: year
+kind: historical
+topics:
+- french revolution
+- reign of terror
+- cult of the supreme being
+- religion
+historical_figures:
+- Maximilien Robespierre
+series_id: "the-terror"
+series_part: 5
 links: {}

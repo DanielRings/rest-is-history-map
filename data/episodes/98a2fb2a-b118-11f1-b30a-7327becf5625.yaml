@@ -45,11 +45,18 @@ description: 'Where did Maximilien Robespierre come from, and how did he rise fr
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-20T23:10:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [FRA]
+year_start: 1789
+year_end: 1794
+date_precision: decade
+kind: historical
+topics:
+- french revolution
+- reign of terror
+- maximilien robespierre
+- radicalization
+historical_figures:
+- Maximilien Robespierre
+series_id: "the-terror"
+series_part: 2
 links: {}

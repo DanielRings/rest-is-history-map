@@ -46,11 +46,18 @@ description: 'How did the infamous murder of Jean-Paul Marat, one of the great f
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-20T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [FRA]
+year_start: 1793
+year_end: 1793
+date_precision: year
+kind: historical
+topics:
+- french revolution
+- reign of terror
+- jean-paul marat
+- political violence
+historical_figures:
+- Jean-Paul Marat
+series_id: "the-terror"
+series_part: 1
 links: {}

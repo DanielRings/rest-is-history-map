@@ -43,11 +43,19 @@ description: 'What made Hormuz Rassam the extraordinary character he proved to b
   Executive Producer: Dom Johnson'
 pub_date: '2026-09-15T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [ETH, GBR]
+year_start: 1868
+year_end: 1868
+date_precision: year
+kind: historical
+topics:
+- abyssinian expedition
+- british empire
+- ethiopia
+- exploration
+historical_figures:
+- Hormuz Rassam
+- Captain Speedy
+- Prince Alemayehu
+- Emperor Tewodros
 links: {}

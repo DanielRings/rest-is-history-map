@@ -13,10 +13,16 @@ description: "How has satire been used to critique governments throughout the ye
 pub_date: '2026-09-17T23:05:00Z'
 access: members
 countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+year_start: 1700
+year_end: 2026
+date_precision: era
+kind: interview
+topics:
+- satire
+- political cartoons
+- journalism
+historical_figures:
+- Ian Hislop
+- James Gillray
+- Jonathan Swift
 links: {}
