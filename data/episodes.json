@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-28T10:09:34.894307Z",
+  "generated_at": "2026-10-05T10:10:47.098568Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -24841,6 +24841,32 @@
       "series_end": 1900,
       "series_year_anchor": 350,
       "year_anchor": -420
+    },
+    {
+      "guid": "eb0e6a80-b5db-11f1-bb5e-1b56781ed62a",
+      "title": "The Man Who Painted The Terror",
+      "description": "Who was Jacques-Louis David, the neoclassical painter of Revolutionary France? What was his relationship with journalist and Montagnard, Jean-Paul Marat? And, how does David’s painting, The Death of Marat, represent both the artistic and political climate of late 18th century Paris?\n\n\n\nIn today’s bonus episode, Tom is joined by Friend of the Show, art historian and writer Laura Cumming, to talk about Jaques-Louis David, Jean-Paul Marat, and the French Revolution.\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude\n\nSenior Producer: Callum Hill\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-09-22T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "FRA"
+      ],
+      "year_start": 1793,
+      "year_end": 1794,
+      "date_precision": "decade",
+      "kind": "historical",
+      "topics": [
+        "french revolution",
+        "the terror",
+        "art history",
+        "jacques-louis david"
+      ],
+      "historical_figures": [
+        "Jacques-Louis David",
+        "Jean-Paul Marat"
+      ],
+      "links": {},
+      "year_anchor": 1793
     },
     {
       "guid": "eb6be144-de3f-11ef-b16d-2756652ea9ff",
