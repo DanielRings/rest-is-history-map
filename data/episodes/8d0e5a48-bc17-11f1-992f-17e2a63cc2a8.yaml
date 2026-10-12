@@ -11,11 +11,16 @@ description: "Why did the French Revolution descend into the Reign of Terror? Ho
   \nExecutive Producer: Dom Johnson"
 pub_date: '2026-09-29T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries:
+- FRA
+year_start: 1789
+year_end: 1794
+date_precision: year
+kind: interview
+topics:
+- french revolution
+- reign of terror
+- committee of public safety
+- ancien regime
 historical_figures: []
 links: {}
