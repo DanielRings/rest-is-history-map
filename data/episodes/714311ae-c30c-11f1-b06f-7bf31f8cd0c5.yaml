@@ -43,11 +43,18 @@ description: 'What is the truth behind the tales of King Arthur, Britain’s gre
   Executive Producer: Dom Johnson'
 pub_date: '2026-10-11T23:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [GBR]
+year_start: 400
+year_end: 600
+date_precision: era
+kind: historical
+topics:
+- king arthur
+- arthurian legend
+- early medieval britain
+- mythology
+historical_figures:
+- King Arthur
+series_id: "king-arthur-2026"
+series_part: 1
 links: {}

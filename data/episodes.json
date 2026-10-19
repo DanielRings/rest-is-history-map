@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-12T10:10:38.203194Z",
+  "generated_at": "2026-10-19T10:12:19.599048Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -7907,6 +7907,36 @@
       "year_anchor": 1395
     },
     {
+      "guid": "4c2a5de0-c30d-11f1-98ab-ebcc0cb4c4af",
+      "title": "King Arthur: The Truth Behind the Legend (Part 4)",
+      "description": "Did King Arthur really exist or is he just a legend that has developed over the centuries? Could he have been a Roman general who fought against the Saxons? Or is he a Celtic warlord?\n\n\n\nJoin Tom and Dominic as they solve one of the greatest mysteries in British history and reveal who the real King Arthur was.\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-11T23:20:00Z",
+      "access": "public",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 400,
+      "year_end": 600,
+      "date_precision": "era",
+      "kind": "historical",
+      "topics": [
+        "king arthur",
+        "arthurian legend",
+        "roman britain",
+        "saxon invasions"
+      ],
+      "historical_figures": [
+        "King Arthur"
+      ],
+      "series_id": "king-arthur-2026",
+      "series_part": 4,
+      "links": {},
+      "series_start": 400,
+      "series_end": 600,
+      "series_year_anchor": 500,
+      "year_anchor": 500
+    },
+    {
       "guid": "4c9caf44-9018-11ec-9dff-db5401d14b3b",
       "title": "God and the American Empire",
       "description": "On today's episode Tom and Dominic are joined by Friend of the Show, Professor Andrew Preston, to talk about the relationship between the US and religion, both at home and abroad in the 20th and 21st centuries.\n\nWhy have there been such low levels of anti-clericalism in the US compared to the rest of the world? What's behind the sustained and growing numbers of religious believers in the United States? Was the Cold War really a religious crusade against godless communism?\n\nTune in to hear the boys drill down into American Exceptionalism, the Marketplace of Faith and whether 'US isolationism' is an ahistorical term.\n\nProducer: Dom Johnson\nExec Producer: Jack Davenport\n\nTwitter:\n@TheRestHistory\n@holland_tom\n@dcsandbrook",
@@ -8070,6 +8100,29 @@
       "historical_figures": [],
       "links": {},
       "year_anchor": -1270
+    },
+    {
+      "guid": "4d78f4f4-c19b-11f1-9e76-9bc2446a4755",
+      "title": "Did the Illuminati Control the French Revolution?",
+      "description": "Why were the French Revolutionaries obsessed by conspiracies? How did people at the time link the Illuminati to the Revolution? And, have 18th century conspiracies developed into modern pop culture tropes?\n\n\n\nIn today’s bonus episode, Tom is joined by author Michael Taylor, to talk about the history of conspiracies and their role in the French Revolution. \n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude\n\nSenior Producer: Callum Hill\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-06T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "FRA"
+      ],
+      "year_start": 1789,
+      "year_end": 1799,
+      "date_precision": "era",
+      "kind": "interview",
+      "topics": [
+        "french revolution",
+        "illuminati",
+        "conspiracy theories",
+        "18th century europe"
+      ],
+      "historical_figures": [],
+      "links": {},
+      "year_anchor": 1794
     },
     {
       "guid": "4d8f9156-e60f-11ee-b04f-231527e6eba4",
@@ -12013,6 +12066,36 @@
       "series_end": 1185,
       "series_year_anchor": 1042,
       "year_anchor": 1182
+    },
+    {
+      "guid": "714311ae-c30c-11f1-b06f-7bf31f8cd0c5",
+      "title": "King Arthur: The Once & Future King (Part 1)",
+      "description": "What is the truth behind the tales of King Arthur, Britain’s greatest myth? When did these stories begin, and with whom? And, is Arthur’s apocalyptic last battle based on an English historical reality from the 15th century?\n\n\n\nJoin Tom and Dominic as they launch into one of the greatest historical mysteries of all time, and discover the truth behind the legends of King Arthur.&nbsp;&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-11T23:05:00Z",
+      "access": "public",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 400,
+      "year_end": 600,
+      "date_precision": "era",
+      "kind": "historical",
+      "topics": [
+        "king arthur",
+        "arthurian legend",
+        "early medieval britain",
+        "mythology"
+      ],
+      "historical_figures": [
+        "King Arthur"
+      ],
+      "series_id": "king-arthur-2026",
+      "series_part": 1,
+      "links": {},
+      "series_start": 400,
+      "series_end": 600,
+      "series_year_anchor": 500,
+      "year_anchor": 500
     },
     {
       "guid": "71672a48-270b-11ef-a7dd-93c454b06d3f",
@@ -22769,6 +22852,38 @@
       "year_anchor": 1865
     },
     {
+      "guid": "d5878cf8-c30c-11f1-82f7-132fe5eea2b0",
+      "title": "King Arthur: Lancelot and the Round Table (Part 2)",
+      "description": "Who was the real Lancelot, King Arthur’s dashing love rival from the Arthurian legends? Was he the first medieval knight? How would his relationship with Queen Guinevere come to shape romance and chivalry for centuries to come? And, was there a historical Camelot…?\n\n\n\nJoin Tom and Dominic as they divulge the tantalising true stories behind Sir Lancelot, Guinevere, and the Knights of the Round Table.&nbsp;&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-11T23:10:00Z",
+      "access": "public",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 400,
+      "year_end": 600,
+      "date_precision": "era",
+      "kind": "historical",
+      "topics": [
+        "lancelot",
+        "round table",
+        "arthurian legend",
+        "chivalry"
+      ],
+      "historical_figures": [
+        "King Arthur",
+        "Lancelot",
+        "Guinevere"
+      ],
+      "series_id": "king-arthur-2026",
+      "series_part": 2,
+      "links": {},
+      "series_start": 400,
+      "series_end": 600,
+      "series_year_anchor": 500,
+      "year_anchor": 500
+    },
+    {
       "guid": "d60c046a-1f89-11f0-b2d5-7fff71462332",
       "title": "The Golden Age of Japan: Lady Murasaki and the Shining Prince (Part 1)",
       "description": "At the height of Imperial Japan, during a golden age of court intrigue, obsessive hierarchy, and fabulous sophistication, who was the legendary lothario and emperor’s son, Genji? What can the Tale of Genji - a great masterpiece of Japanese literature - tell us about this remarkable and alien world, and the imperial family at the heart of it? Who was the woman who wrote it, at a time when in the West it would have been unthinkable? What was the influence of China, Japan’s powerful neighbour, on the world the text describes? And, does the story hold the secrets to the divine power of the Japanese emperors…?\n\nJoin Tom and Dominic as they discuss the thrilling and romantic Tale of Genji; the historical man behind the myth, and the glorious world of Imperial Japan, with its glittering court. \n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\nProducer: Theo Young-Smith\n\nAssistant Producer: Tabby Syrett + Aaliyah Akude \n\nExecutive Producers: Jack Davenport + Tony Pastor",
@@ -26161,6 +26276,37 @@
       "series_end": 1960,
       "series_year_anchor": 1003,
       "year_anchor": 1813
+    },
+    {
+      "guid": "f69c537e-c30c-11f1-926a-83cc820ddcee",
+      "title": "King Arthur: The Mysteries of Merlin (Part 3)",
+      "description": "What are the origins of Merlin, the powerful wizard and King Arthur’s advisor? Who was Geoffrey of Monmouth, and what role did he play in evolving the tales of Arthur and the Round Table? And, was Merlin based on a real historical figure from the Saxon invasion of Britain in the 5th century, and the totemic battle of Badon…?\n\n\n\nJoin Tom and Dominic as they delve into the true origins of history’s greatest wizard: Merlin….\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-11T23:15:00Z",
+      "access": "public",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 400,
+      "year_end": 600,
+      "date_precision": "era",
+      "kind": "historical",
+      "topics": [
+        "merlin",
+        "arthurian legend",
+        "geoffrey of monmouth",
+        "early medieval britain"
+      ],
+      "historical_figures": [
+        "Merlin",
+        "Geoffrey of Monmouth"
+      ],
+      "series_id": "king-arthur-2026",
+      "series_part": 3,
+      "links": {},
+      "series_start": 400,
+      "series_end": 600,
+      "series_year_anchor": 500,
+      "year_anchor": 500
     },
     {
       "guid": "f6a14194-2c94-11ed-943f-7f71dcb4ed68",

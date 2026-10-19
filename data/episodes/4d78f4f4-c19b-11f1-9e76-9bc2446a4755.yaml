@@ -11,11 +11,15 @@ description: "Why were the French Revolutionaries obsessed by conspiracies? How 
   \ Dom Johnson"
 pub_date: '2026-10-06T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [FRA]
+year_start: 1789
+year_end: 1799
+date_precision: era
+kind: interview
+topics:
+- french revolution
+- illuminati
+- conspiracy theories
+- 18th century europe
 historical_figures: []
 links: {}
