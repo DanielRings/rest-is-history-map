@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-19T10:12:19.599048Z",
+  "generated_at": "2026-10-26T10:06:29.314762Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -4205,6 +4205,33 @@
       "series_end": 1587,
       "series_year_anchor": 1578,
       "year_anchor": 1581
+    },
+    {
+      "guid": "2963a42c-c6e8-11f1-a6d0-fba112a89d02",
+      "title": "King Arthur and the Ballads of His Greatest Knight",
+      "description": "Where and when does the chilling Arthurian legend of Gawain and the Green Knight come from? How does it relate to the mythical foundations of Britain in the Trojan War? And, what is the bloody climax of this gripping tale?\n\n\n\nIn this week’s bonus episode, Tom is joined by friend of the show, singer and songwriter Muco, master of reinterpreting medieval folk songs in middle and old English, to delve deeper into the most epic Arthurian romance of all: Sir Gawain and the Green Knight.&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;",
+      "pub_date": "2026-10-13T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": -1200,
+      "year_end": 1400,
+      "date_precision": "era",
+      "kind": "interview",
+      "topics": [
+        "sir gawain and the green knight",
+        "arthurian legend",
+        "trojan war myth",
+        "medieval ballads"
+      ],
+      "historical_figures": [
+        "King Arthur",
+        "Gawain",
+        "The Green Knight"
+      ],
+      "links": {},
+      "year_anchor": 100
     },
     {
       "guid": "296cd25c-1a46-11ed-ba3c-73fd9c21f44e",
