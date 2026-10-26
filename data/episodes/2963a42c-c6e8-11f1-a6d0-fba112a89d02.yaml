@@ -42,11 +42,18 @@ description: 'Where and when does the chilling Arthurian legend of Gawain and th
   Senior Producer: Callum Hill&nbsp;'
 pub_date: '2026-10-13T23:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [GBR]
+year_start: -1200
+year_end: 1400
+date_precision: era
+kind: interview
+topics:
+- sir gawain and the green knight
+- arthurian legend
+- trojan war myth
+- medieval ballads
+historical_figures:
+- King Arthur
+- Gawain
+- The Green Knight
 links: {}
