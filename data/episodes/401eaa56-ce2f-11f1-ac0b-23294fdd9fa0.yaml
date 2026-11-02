@@ -46,11 +46,18 @@ description: 'Three days into the Hungarian Uprising against the Soviet Union, h
   Executive Producer: Dom Johnson'
 pub_date: '2026-10-24T23:20:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [HUN, RUS]
+year_start: 1956
+year_end: 1956
+date_precision: year
+kind: historical
+topics:
+  - hungarian revolution
+  - cold war
+  - soviet union
+  - red army
+historical_figures:
+  - Nikita Khrushchev
+series_id: "revolution-in-the-soviet-empire"
+series_part: 4
 links: {}

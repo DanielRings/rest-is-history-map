@@ -46,11 +46,17 @@ description: 'What triggered the Hungarian Revolution in 1956? Was Stalinism sti
   Executive Producer: Dom Johnson'
 pub_date: '2026-10-24T23:15:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [HUN, RUS]
+year_start: 1956
+year_end: 1956
+date_precision: year
+kind: historical
+topics:
+  - hungarian revolution
+  - cold war
+  - soviet union
+  - 1956 uprising
 historical_figures: []
+series_id: "revolution-in-the-soviet-empire"
+series_part: 3
 links: {}

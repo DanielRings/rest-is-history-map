@@ -45,11 +45,18 @@ description: 'What role did France, Russia, America and Israel play in the Suez 
   Executive Producer: Dom Johnson'
 pub_date: '2026-10-24T23:10:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [GBR, FRA, RUS, USA, ISR, EGY]
+year_start: 1956
+year_end: 1956
+date_precision: year
+kind: historical
+topics:
+  - suez crisis
+  - egypt
+  - israel
+  - cold war
+historical_figures:
+  - Gamal Abdel Nasser
+series_id: "the-suez-crisis"
+series_part: 2
 links: {}
