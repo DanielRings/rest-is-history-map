@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-11-02T10:06:11.978704Z",
+  "generated_at": "2026-11-02T10:07:25.961990Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -582,7 +582,7 @@
         "1956 uprising"
       ],
       "historical_figures": [],
-      "series_id": "revolution-in-the-soviet-empire",
+      "series_id": "revolution-in-the-soviet-empire-2026",
       "series_part": 3,
       "links": {},
       "series_start": 1956,
@@ -3279,7 +3279,7 @@
         "Anthony Eden",
         "Gamal Abdel Nasser"
       ],
-      "series_id": "the-suez-crisis",
+      "series_id": "the-suez-crisis-2026",
       "series_part": 1,
       "links": {},
       "series_start": 1956,
@@ -6944,7 +6944,7 @@
       "historical_figures": [
         "Nikita Khrushchev"
       ],
-      "series_id": "revolution-in-the-soviet-empire",
+      "series_id": "revolution-in-the-soviet-empire-2026",
       "series_part": 4,
       "links": {},
       "series_start": 1956,
@@ -8247,7 +8247,7 @@
       "historical_figures": [
         "Gamal Abdel Nasser"
       ],
-      "series_id": "the-suez-crisis",
+      "series_id": "the-suez-crisis-2026",
       "series_part": 2,
       "links": {},
       "series_start": 1956,
