@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-26T10:06:29.314762Z",
+  "generated_at": "2026-11-02T10:07:25.961990Z",
   "episodes": [
     {
       "guid": "0063d0f8-6f42-11ed-8aee-4302508e7b48",
@@ -560,6 +560,35 @@
       "series_end": 1800,
       "series_year_anchor": 1625,
       "year_anchor": 1472
+    },
+    {
+      "guid": "046675de-ce2f-11f1-8bc8-73607254673e",
+      "title": "Revolution in the Soviet Empire: The Hungarian Uprising (Part 3)",
+      "description": "What triggered the Hungarian Revolution in 1956? Was Stalinism still the major political force in Hungary, even after the paranoid dictator’s death? And, how did the revolution almost bring down the Soviet Empire during the peak of the Cold War?\n\n\n\nJoin Dominic and Tom as they delve into the tragic, dramatic story of the Hungarian Revolution, which brought the seemingly indomitable USSR to the brink of disaster…&nbsp;&nbsp;\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-24T23:15:00Z",
+      "access": "public",
+      "countries": [
+        "HUN",
+        "RUS"
+      ],
+      "year_start": 1956,
+      "year_end": 1956,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "hungarian revolution",
+        "cold war",
+        "soviet union",
+        "1956 uprising"
+      ],
+      "historical_figures": [],
+      "series_id": "revolution-in-the-soviet-empire-2026",
+      "series_part": 3,
+      "links": {},
+      "series_start": 1956,
+      "series_end": 1956,
+      "series_year_anchor": 1956,
+      "year_anchor": 1956
     },
     {
       "guid": "0471e5e8-2c4c-11f1-af98-ebe2e4d2966e",
@@ -3225,6 +3254,38 @@
       ],
       "links": {},
       "year_anchor": 1936
+    },
+    {
+      "guid": "2115523c-ce2e-11f1-b775-273adbc6d807",
+      "title": "The Suez Crisis: Anarchy in the Middle East (Part 1)",
+      "description": "Why did the Suez Crisis break out in 1956? Who were Anthony Eden, the British Prime Minister at the heart of the scandal, and Gamal Abdel Nasser, his opposite? And, would the crisis be the death knell to the British Empire?\n\n\n\nJoin Dominic and Tom as they begin their journey into one of the greatest international scandals of all time, in the dying days of the British Empire.&nbsp;&nbsp;&nbsp;&nbsp;\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-24T23:05:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "EGY"
+      ],
+      "year_start": 1956,
+      "year_end": 1956,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "suez crisis",
+        "cold war",
+        "egypt",
+        "british empire"
+      ],
+      "historical_figures": [
+        "Anthony Eden",
+        "Gamal Abdel Nasser"
+      ],
+      "series_id": "the-suez-crisis-2026",
+      "series_part": 1,
+      "links": {},
+      "series_start": 1956,
+      "series_end": 1956,
+      "series_year_anchor": 1956,
+      "year_anchor": 1956
     },
     {
       "guid": "21264378-a0a0-11f1-8ec4-abbf47c886f4",
@@ -6861,6 +6922,37 @@
       "year_anchor": 2022
     },
     {
+      "guid": "401eaa56-ce2f-11f1-ac0b-23294fdd9fa0",
+      "title": "Revolution in the Soviet Empire: Revenge of the Red Army (Part 4)",
+      "description": "Three days into the Hungarian Uprising against the Soviet Union, had the revolution escalated nationwide? How did the Soviet leader Nikita Khrushchev respond? And, with the threat of a Red Army invasion, would Hungary abandon the Soviet Pact?&nbsp;\n\n\n\nJoin Dominic and Tom as they reach the violent denouement of the Hungarian Revolution of 1956, and explain its bloody outcome.&nbsp;&nbsp;&nbsp;\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-24T23:20:00Z",
+      "access": "public",
+      "countries": [
+        "HUN",
+        "RUS"
+      ],
+      "year_start": 1956,
+      "year_end": 1956,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "hungarian revolution",
+        "cold war",
+        "soviet union",
+        "red army"
+      ],
+      "historical_figures": [
+        "Nikita Khrushchev"
+      ],
+      "series_id": "revolution-in-the-soviet-empire-2026",
+      "series_part": 4,
+      "links": {},
+      "series_start": 1956,
+      "series_end": 1956,
+      "series_year_anchor": 1956,
+      "year_anchor": 1956
+    },
+    {
       "guid": "404d5258-3c50-11ee-9e13-079cb782661a",
       "title": "RIHC: Britain's Greatest Prime Ministers (Livestream)",
       "description": "Which Prime Ministers undoubtedly left their mark on Great Britain? Join Tom and Dominic in this week's bonus episode, as Dominic takes you on a journey through his ten most important British PMs.\n\n*The Rest Is History Live Tour 2023*:\n\nTom and Dominic are back on tour this autumn! See them live in London, New Zealand, and Australia!\n\nBuy your tickets here: restishistorypod.com\n\nTwitter: \n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook",
@@ -8127,6 +8219,41 @@
       "historical_figures": [],
       "links": {},
       "year_anchor": -1270
+    },
+    {
+      "guid": "4d57a476-ce2e-11f1-9a55-9b3de3638cbe",
+      "title": "The Suez Crisis: Britain's Shattered Empire (Part 2)",
+      "description": "What role did France, Russia, America and Israel play in the Suez Crisis of 1956? Did the Egyptian leader, President Gamal Abdel Nasser, respond to the foreign invasion with military force? And, how did the debacle unfold?&nbsp;\n\n\n\nJoin Dominic and Tom as they embark upon the final, dramatic leg of the Suez Crisis, and explain the outcome of the scandal.&nbsp;&nbsp;&nbsp;\n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton&nbsp;\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude&nbsp;\n\nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-24T23:10:00Z",
+      "access": "public",
+      "countries": [
+        "GBR",
+        "FRA",
+        "RUS",
+        "USA",
+        "ISR",
+        "EGY"
+      ],
+      "year_start": 1956,
+      "year_end": 1956,
+      "date_precision": "year",
+      "kind": "historical",
+      "topics": [
+        "suez crisis",
+        "egypt",
+        "israel",
+        "cold war"
+      ],
+      "historical_figures": [
+        "Gamal Abdel Nasser"
+      ],
+      "series_id": "the-suez-crisis-2026",
+      "series_part": 2,
+      "links": {},
+      "series_start": 1956,
+      "series_end": 1956,
+      "series_year_anchor": 1956,
+      "year_anchor": 1956
     },
     {
       "guid": "4d78f4f4-c19b-11f1-9e76-9bc2446a4755",
@@ -13302,6 +13429,32 @@
       ],
       "links": {},
       "year_anchor": 1894
+    },
+    {
+      "guid": "7db1dd8c-c945-11f1-9360-5b52f57d2c52",
+      "title": "King Arthur's Secret Tomb and Other Great Churches",
+      "description": "Where was King Arthur buried, and how does it relate to Glastonbury? What connects the Luftwaffe attack on Coventry to the conservation of the UK’s medieval churches? And, how did the Norman conquest of England change its churches?\n\n\n\nIn today's bonus episode, Dominic is joined by author Rachel Morley to discuss Britain's rich history of Anglican churches, and the mysteries behind King Arthur's burial. \n\n\n\n_______\n\nTwitter:\n\n@TheRestHistory\n\n@holland_tom\n\n@dcsandbrook\n\n\n\nVideo Editors: Jack Meek, Harry Swan + Adam Thornton\n\nSocial Producer: Harry Balden\n\nProducers: Tabby Syrett & Aaliyah Akude\n\nSenior Producer: Callum Hill\n\nExecutive Producer: Dom Johnson",
+      "pub_date": "2026-10-20T23:05:00Z",
+      "access": "members",
+      "countries": [
+        "GBR"
+      ],
+      "year_start": 500,
+      "year_end": 1940,
+      "date_precision": "era",
+      "kind": "themed",
+      "topics": [
+        "king arthur",
+        "glastonbury",
+        "english churches",
+        "norman conquest",
+        "world war two"
+      ],
+      "historical_figures": [
+        "King Arthur"
+      ],
+      "links": {},
+      "year_anchor": 1220
     },
     {
       "guid": "7db8b7aa-4f75-11ec-b898-5b086d840daf",
