@@ -45,11 +45,18 @@ description: 'In what way was Hungarian football a product of national culture i
   Executive Producer: Dom Johnson'
 pub_date: '2026-11-04T00:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [HUN]
+year_start: 1900
+year_end: 1956
+date_precision: era
+kind: interview
+topics:
+  - hungarian football
+  - ferenc puskás
+  - hungarian uprising
+  - national identity
+historical_figures:
+  - Ferenc Puskás
+series_id: "the-rise-and-fall-of-hungarian-football-2026"
+series_part: 2
 links: {}

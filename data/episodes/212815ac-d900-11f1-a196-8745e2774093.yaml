@@ -54,11 +54,17 @@ description: 'What caused the outbreak of the Crimean War in spring 1854? Who we
   Executive Producer: Dom Johnson'
 pub_date: '2026-11-08T00:05:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR, RUS, TUR]
+year_start: 1854
+year_end: 1854
+date_precision: year
+kind: historical
+topics:
+  - crimean war
+  - outbreak of war
+  - light cavalry
+  - victorian army
 historical_figures: []
+series_id: "the-charge-of-the-light-brigade-2026"
+series_part: 1
 links: {}

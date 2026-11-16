@@ -49,11 +49,17 @@ description: 'How did post-war industrial prosperity result in Wolverhampton Wan
   Executive Producer: Dom Johnson'
 pub_date: '2026-10-28T00:05:00Z'
 access: members
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
+countries: [GBR, HUN]
+year_start: 1953
+year_end: 1953
+date_precision: year
+kind: interview
+topics:
+  - hungarian football
+  - wolverhampton wanderers
+  - cold war sport
+  - european football
 historical_figures: []
+series_id: "the-rise-and-fall-of-hungarian-football-2026"
+series_part: 1
 links: {}

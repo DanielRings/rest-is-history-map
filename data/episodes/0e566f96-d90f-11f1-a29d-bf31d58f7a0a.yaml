@@ -14,11 +14,19 @@ description: "Who was Baron Raglan, the commander of Britain’s forces sent to 
   \nSenior Producer: Callum Hill&nbsp;&nbsp;\n\nExecutive Producer: Dom Johnson"
 pub_date: '2026-11-08T00:10:00Z'
 access: public
-countries: []
-year_start: null
-year_end: null
-date_precision: null
-kind: null
-topics: []
-historical_figures: []
+countries: [GBR, RUS, TUR]
+year_start: 1854
+year_end: 1854
+date_precision: year
+kind: historical
+topics:
+  - crimean war
+  - siege of silistria
+  - crimean war commanders
+historical_figures:
+  - Baron Raglan
+  - Lord Cardigan
+  - Lord Lucan
+series_id: "the-charge-of-the-light-brigade-2026"
+series_part: 2
 links: {}
